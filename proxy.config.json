@@ -1,0 +1,35 @@
+{
+  "/govio/api/*": {
+    "target": "http://172.16.1.121:8083/govio/api/v1",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false,
+    "pathRewrite": {
+      "^/govio/api/v1": ""
+    }
+  },
+  "/api/*": {
+    "target": "http://172.16.1.121:8083/govio/api/v1",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  },
+  "/logout": {
+    "target": "http://localhost:9003",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/profile": {
+    "target": "http://172.16.1.121:8083/govio/api/v1",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

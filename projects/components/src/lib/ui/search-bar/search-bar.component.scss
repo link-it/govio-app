@@ -1,0 +1,295 @@
+.gp-filtered-search-bar-container .gp-search-box-by-click .gp-filtered-search-scrollable {
+  width: 1px;
+}
+
+.gp-filtered-search-bar-container .gp-search-box-by-click .input-group-prepend+.gp-filtered-search-scrollable {
+  border-radius: 0;
+}
+
+.gp-filtered-search-bar-container .sort-dropdown-container .gp-button {
+  box-shadow: inset 0 0 0 1px #868686;
+}
+@media (min-width: 768px) {
+  .gp-filtered-search-bar-container .sort-dropdown-container {
+    margin-left: 10px;
+  }
+}
+
+.row-content-block {
+  margin-top: 0;
+  // background-color: #fafafa;
+  padding: 5px 10px;
+  margin-bottom: 0;
+  // border-top: 1px solid #eaeaea;
+  // border-bottom: 1px solid #eaeaea;
+  color: #303030;
+}
+
+.row-content-block.oneline-block {
+  line-height: 42px;
+}
+
+.row-content-block.white {
+  background-color: #fff;
+}
+
+.row-content-block.top-block {
+  border-top: 0;
+}
+
+.row-content-block.top-block .container-fluid,
+.row-content-block.top-block .container-lg,
+.row-content-block.top-block .container-md,
+.row-content-block.top-block .container-sm,
+.row-content-block.top-block .container-xl {
+  background-color: inherit;
+}
+
+.row-content-block.middle-block {
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+
+.row-content-block.clear-block {
+  margin-bottom: 15px;
+  padding-bottom: 16px;
+}
+
+.row-content-block.second-block {
+  margin-top: -1px;
+  margin-bottom: 0;
+}
+
+.row-content-block.footer-block {
+  margin-top: 24px;
+  border-bottom: 0;
+}
+
+.row-content-block.content-component-block {
+  padding: 8px 0;
+  background-color: #fff;
+}
+
+.row-content-block .title {
+  color: #303030;
+}
+
+.row-content-block > p:last-child {
+  margin-bottom: 0;
+}
+
+gp-search-box-by-click {
+  font-size: .875rem;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history > button {
+  padding: .5rem;
+  border-style: none;
+  box-shadow: inset 0 0 0 1px #868686;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-history-icon {
+  margin-right: .25rem;
+  color: #666;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-history-icon-chevron {
+  color: #666;
+  margin-right: 0;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-close-history-button {
+  position: absolute;
+  top: 0;
+  right: .25rem;
+  line-height: 0;
+  box-shadow: none;
+  width: auto;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-history-header {
+  text-align: center;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-history-no-searches {
+  text-align: center;
+  color: #666;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-history-no-searches .gp-dropdown-text {
+  font-weight: 400;
+}
+
+.gp-search-box-by-click .input-group > .input-group-append,
+.gp-search-box-by-click .input-group > .input-group-prepend {
+  background-color: transparent;
+}
+
+.gp-search-box-by-click .input-group .gp-search-box-by-click-search-button {
+  color: #666;
+  padding: .5rem;
+  box-shadow: inset 0 0 0 1px #868686;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-input {
+  padding-right: 2rem;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-clear-button {
+  position: absolute;
+  top: .25rem;
+  right: 2rem;
+  margin-right: .9rem;
+  z-index: 3;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-menu {
+  font-size: .875rem;
+  width: 25rem;
+}
+
+.filtered-search-input-dropdown-menu {
+  max-height: 445px;
+  max-width: 280px;
+  overflow: auto;
+}
+@media (max-width: 767.98px) {
+  .filtered-search-input-dropdown-menu {
+    width: auto;
+    left: 0;
+    right: 0;
+    max-width: none;
+    min-width: 100%;
+  }
+}
+
+.filtered-search-input-dropdown-menu .btn-helptext {
+  margin-left: auto;
+  color: var(--gray);
+}
+
+.filtered-search-input,
+.sort-dropdown-container {
+  .mat-icon {
+    font-size: 1.2em;
+    padding-top: 0;
+    color: #6c757d;
+    text-align: center;
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history > button {
+  padding: .5rem;
+  border-style: none;
+  box-shadow: inset 0 0 0 1px #868686;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-history-icon {
+  margin-right: .25rem;
+  color: #666;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-history-icon-chevron {
+  color: #666;
+  margin-right: 0;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-close-history-button {
+  position: absolute;
+  top: 0;
+  right: .25rem;
+  line-height: 0;
+  box-shadow: none;
+  width: auto;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-history-header {
+  text-align: center;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-history-no-searches {
+  text-align: center;
+  color: #666;
+}
+
+.gp-search-box-by-click .gp-search-box-by-click-history .gp-search-box-by-click-history-no-searches .gp-dropdown-text {
+  font-weight: 400;
+}
+
+.gp-filtered-search-scrollable {
+  background-color: #fff;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  overflow-y: auto;
+  align-items: center;
+  padding: .25rem .25rem .25rem .75rem;
+  box-shadow: inset 0 0 0 1px #868686;
+  border-style: none;
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+}
+
+.gp-filtered-search-term-input {
+  padding: 0;
+  border-style: none;
+  outline: none;
+  height: 1.5rem;
+  min-width: 15rem;
+}
+
+.input-group-append .btn,
+.input-group-prepend .btn {
+  border-radius: 4px;
+  font-size: .875rem;
+  font-weight: 400;
+  padding: 6px 10px;
+}
+
+.input-group-append .btn:active,
+.input-group-append .btn:focus,
+.input-group-prepend .btn:active,
+.input-group-prepend .btn:focus {
+  background-color: #f0f0f0;
+  box-shadow: none;
+}
+
+.input-group-append .btn:hover,
+.input-group-prepend .btn:hover {
+  outline: none;
+}
+
+.input-group-append .btn:active,
+.input-group-prepend .btn:active {
+  outline: none;
+}
+
+.input-group-append .btn.btn-clipboard,
+.input-group-prepend .btn.btn-clipboard {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.input-group-append .active,
+.input-group-prepend .active {
+  box-shadow: rgba(0, 0, 0, 0.16);
+  border: 1px solid #e3e3e3 !important;
+  background-color: #f0f0f0 !important;
+}
+
+.input-group .input-group-append,
+.input-group .input-group-prepend {
+  background-color: #fafafa;
+}
+
+.input-group .input-group-append:not(:first-child):not(:last-child),
+.input-group .input-group-prepend:not(:first-child):not(:last-child) {
+  border-left: 0;
+  border-right: 0;
+}

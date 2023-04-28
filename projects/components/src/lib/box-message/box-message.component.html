@@ -1,0 +1,14 @@
+<div class="" *ngIf="show">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="text-center py-3 back-error">
+        <div class="h1 text-muted text-center mt-5 mb-1" *ngIf="icon">
+          <mat-icon fontSet="material-icons-outlined" class="{{ color }}" style="font-size: 4rem;">{{ icon }}</mat-icon>
+        </div>
+        <div class="h5 text-muted text-center mt-3 mb-1">
+          {{ message }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div id="route-section" class="">
+  <!-- <div class="alert-wrapper gp-force-block-formatting-context">
+    <ui-breadcrumb [breadcrumbs]="breadcrumbs"></ui-breadcrumb>
+  </div> -->
+  <section class="container-fluid container-scroller container-scroller-no-search px-0 container-scroller-no-top-area container-scroller-no-breadcrumb">
+    <ui-box-spinner [color]="'accent'" [diameter]="48" [strokeWidth]="4" *ngIf="_spin"></ui-box-spinner>
+    <ng-container *ngIf="!_newDashboard && !_spin">
+      <div class="dashboard" *ngIf="!_spin">
+        <div class="row justify-content-center mt-5 mb-2">
+          <ui-box-message style="padding-top: 5%;"
+            [image]="config.image"
+            [message]="config.title | translate"
+            [subMessage]="config.subTitle | translate">
+          </ui-box-message>
+        </div>
+      </div>
+    </ng-container>
+  </section>
+</div>

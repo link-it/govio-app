@@ -1,0 +1,103 @@
+<div id="route-section" class="">
+  <div class="breadcrumbs-area">
+    <ui-breadcrumb [breadcrumbs]="breadcrumbs" (onClick)="onBreadcrumb($event)"></ui-breadcrumb>
+  </div>
+  <div class="top-area">
+    <div class="tabs gp-tabs d-flex flex-grow-1 p-0 m-0 mobile-separator issuable-state-filters">
+      <div class="">
+        <ul role="tablist" class="nav gp-border-b-0 gp-tabs-nav">
+          <li class="nav-item">
+            <a role="tab" tabindex="-1" target="_self" class="nav-link gp-tab-nav-item gp-tab-nav-item-active cursor-pointer" (click)="_resetScroll()">
+              <span title="Show all messages.">{{ 'APP.FILTER.Found' | translate }}</span> <span class="badge gp-tab-counter-badge badge-muted badge-pill gp-badge sm" [title]="messages.length">{{ page?.total || 0 }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="nav-controls">
+    </div>
+  </div>
+  <section class="search-bar container-fluid px-0" *ngIf="_hasFilter">
+    <div class="row align-items-center">
+      <div class="col-12">
+        <ui-search-bar-form #searchBarForm
+          [classBlock]="''"
+          [placeholder]="'APP.PLACEHOLDER.Search' | translate"
+          [showHistory]="showHistory"
+          [historyStore]="'messages'"
+          [showSearch]="showSearch"
+          [searchFields]="searchFields"
+          [showSorting]="showSorting"
+          [sortField]="sortField"
+          [sortDirection]="sortDirection"
+          [sortFields]="sortFields"
+          [formGroup]="_formGroup"
+          (onSearch)="_onSearch($event)"
+          (onSort)="_onSort($event)">
+          <div form-search>
+            <form class="row" [formGroup]="_formGroup" (submit)="_onSubmit(_formGroup.value)">
+              <fieldset>
+                <div class="row">
+                  <div class="form-group col-md-4 mb-2">
+                    <label class="label-bold mb-0" for="scheduled_expedition_date_from">{{ 'APP.LABEL.DateFrom' | translate }}</label>
+                    <input class="form-control form-control-sm gl-form-input" id="scheduled_expedition_date_from" type="date" formControlName="scheduled_expedition_date_from" autocomplete="off">
+                  </div>
+                  <div class="form-group col-md-4 mb-2">
+                    <label class="label-bold mb-0" for="scheduled_expedition_date_to">{{ 'APP.LABEL.DateTo' | translate }}</label>
+                    <input class="form-control form-control-sm gl-form-input" id="scheduled_expedition_date_to" type="date" formControlName="scheduled_expedition_date_to" autocomplete="off">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-4 mb-2">
+                    <label class="label-bold mb-0" for="tax_code">{{ 'APP.LABEL.TaxCode' | translate }}</label>
+                    <input class="form-control form-control-sm gl-form-input" id="tax_code" type="text" formControlName="tax_code" autocomplete="off">
+                  </div>
+                  <div class="form-group col-md-4 mb-2">
+                    <label class="label-bold mb-0" for="organization_q">{{ 'APP.LABEL.Organization' | translate }}</label>
+                    <input class="form-control form-control-sm gl-form-input" id="organization_q" type="text" formControlName="organization_q" autocomplete="off">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-4 mb-2">
+                    <label class="label-bold mb-0" for="service_q">{{ 'APP.LABEL.ServiceName' | translate }}</label>
+                    <input class="form-control form-control-sm gl-form-input" id="service_q" type="text" formControlName="service_q" autocomplete="off">
+                  </div>
+                </div>
+                <button type="submit" class="d-none">hidden submit</button>
+              </fieldset>
+            </form>
+          </div>
+        </ui-search-bar-form>
+      </div>
+    </div>
+  </section>
+  <section id="container-scroller" class="container-fluid container-scroller px-0" [class.container-scroller-no-search]="!_hasFilter"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="__loadMoreData()"
+    [scrollWindow]="false">
+
+    <ui-box-message *ngIf="messages.length == 0 && !_spin"
+      [size]="64"
+      [icon]="'report_problem'"
+      [image]="'./assets/images/illustrations/messages.svg'"
+      [message]="_message | translate"
+      [subMessage]="_messageHelp | translate">
+    </ui-box-message>
+
+    <div class="row">
+      <div class="col-12">
+        <ui-item-row class="border-bottom" *ngFor="let message of messages;trackBy: trackByFn;"
+          [data]="message"
+          [config]="messagesConfig"
+          [hasLink]="true"
+          (itemClick)="_onEdit($event, message)">
+        </ui-item-row>
+      </div>
+    </div>
+
+    <ui-box-spinner [color]="'accent'" [diameter]="48" [strokeWidth]="4" *ngIf="_spin"></ui-box-spinner>
+
+  </section>
+</div>>

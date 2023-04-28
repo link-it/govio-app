@@ -1,0 +1,16 @@
+<div class="d-flex align-items-center mb-5" *ngIf="dialogData?.titolo">
+  <h1 class="mb-0 mr-3 text-break">{{ dialogData?.titolo || 'Avviso' }}</h1>
+</div>
+<mat-dialog-content class="py-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <p *ngFor="let msg of dialogData?.messaggio" class="text-break">{{ msg }}</p>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<div class="d-block form-actions text-right">
+  <button mat-button color="accent" type="button" (click)="_closeDialog(false)">{{ dialogData?.NOLabel || 'Annulla' }}</button>
+  <button mat-button color="accent" type="button" (click)="_closeDialog(true)">{{ dialogData?.YESLabel || 'Conferma' }}</button>
+</div>

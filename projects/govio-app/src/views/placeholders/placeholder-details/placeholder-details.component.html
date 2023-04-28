@@ -1,0 +1,172 @@
+<div id="route-section" class="">
+  <div class="alert-wrapper gp-force-block-formatting-context">
+    <ui-breadcrumb [breadcrumbs]="breadcrumbs" [classContainer]="'limit-container-width'" (onClick)="onBreadcrumb($event)"></ui-breadcrumb>
+  </div>
+  <div class="top-area container-fluid container-limited limit-container-width px-0">
+    <h3 class="page-title" *ngIf="_isEdit && !_isNew">{{ 'APP.TITLE.EditPlaceholder' | translate }}</h3>
+    <h3 class="page-title" *ngIf="_isEdit && _isNew">{{ 'APP.TITLE.NewPlaceholder' | translate }}</h3>
+    <div class="d-flex flex-grow-1">&nbsp;</div>
+    <!-- <ng-template [appHasPermission]="'SETTINGS'" [action]="'edit'"> -->
+      <div class="nav-controls">
+        <div class="position-relative" *ngIf="!_isEdit && !_spin">
+          <button aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-icon" [tooltip]="'APP.TOOLTIP.EditPlaceholder' | translate" (click)="_editPlaceholder()">
+            <i class="bi bi-pencil"></i>
+          </button>
+        </div>
+        <!-- <ng-template [appHasPermission]="'SETTINGS'" [action]="'delete'"> -->
+          <!-- <div role="group" class="btn-group- ms-1" *ngIf="!_isEdit && !_spin">
+            <div class="dropdown b-dropdown gl-new-dropdown btn-group" id="actions">
+              <button aria-haspopup="true" aria-expanded="false" type="button" class="btn dropdown-toggle btn-default btn-md gl-button gl-dropdown-toggle btn-default-tertiary dropdown-icon-only dropdown-toggle-no-caret" data-bs-toggle="dropdown" data-bs-display="static" id="other_actions">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul role="menu" tabindex="-1" class="dropdown-menu dropdown-menu-end" aria-labelledby="sort_toggle">
+                <div class="gl-new-dropdown-inner">
+                  <div class="gl-new-dropdown-contents">
+                    <li role="presentation" class="gl-new-dropdown-item">
+                      <button role="menuitem" type="button" class="dropdown-item" (click)="_deletePlaceholder()">
+                        <div class="gl-icon s16 gl-new-dropdown-item-check-icon gl-mt-3 gl-align-self-start">
+                          <i class="bi bi-trash text-danger"></i>
+                        </div>
+                        <div class="gl-new-dropdown-item-text-wrapper">
+                          <p class="gl-new-dropdown-item-text-primary">{{ 'APP.MENU.DeletePlaceholder' | translate }}</p>
+                        </div>
+                      </button>
+                    </li>
+                  </div>
+                </div>
+              </ul>
+            </div>
+          </div> -->
+        <!-- </ng-template> -->
+        <div role="group" class="gl-w-full btn-group- position-relative" *ngIf="_isEdit && !_spin">
+          <button aria-haspopup="true" aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-default-tertiary ms-2" [tooltip]="(_isNew ? 'APP.TOOLTIP.CancelNew' : 'APP.TOOLTIP.CancelEdit') | translate" (click)="_onCancelEdit()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+    <!-- </ng-template> -->
+  </div>
+  <section class="container-fluid container-limited limit-container-width container-scroller container-scroller-no-search">
+    <ui-box-spinner [color]="'accent'" [diameter]="48" [strokeWidth]="4" *ngIf="_spin && !_isNew"></ui-box-spinner>
+    <ui-box-message *ngIf="!placeholder && !_spin && !_isNew"
+      [image]="'./assets/images/illustrations/no-data.svg'"
+      [message]="'APP.MESSAGE.NoData' | translate"
+      [subMessage]="'APP.MESSAGE.NoDataHelp' | translate">
+    </ui-box-message>
+
+    <div class="settings" *ngIf="(placeholder && !_spin) || _isNew">
+      <div class="settings-header d-none">
+        <h4 class="settings-title">{{ 'APP.PLACEHOLDERS.TITLE.GeneralInformations' | translate }}</h4>
+        <ng-template [appHasPermission]="'SETTINGS'" [action]="'edit'">
+          <button aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-icon" [tooltip]="'APP.TOOLTIP.EditPlaceholder' | translate" (click)="_editPlaceholder()" *ngIf="!_isEdit && !_spin">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <div role="group" class="gl-w-full btn-group- position-relative" *ngIf="_isEdit && !_spin">
+            <button aria-haspopup="true" aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-default-tertiary ms-2 btn-icon" [tooltip]="(_isNew ? 'APP.TOOLTIP.CancelNew' : 'APP.TOOLTIP.CancelEdit') | translate" (click)="_onCancelEdit()">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+        </ng-template>
+        <p markdown>{{ 'APP.PLACEHOLDERS.TITLE.GeneralInformations_sub' | translate }}</p>
+      </div>
+      <div class="settings-content">
+        <div class="gl-alert gl-alert-danger col-md-12 mb-5" *ngIf="!_isEdit && _error">
+          {{ _errorMsg }}
+        </div>
+        <div class="edit-form">
+          <form novalidate class="issue-form common-note-form mt-3 gl-show-field-errors gfm-form" [class.form-readonly]="!_isEdit" [formGroup]="_formGroup" (submit)="_onSubmit(_formGroup.value)">
+            <div class="row gl-mt-3">
+              <div class="col-lg-4 mb-4">
+                <h4 class="gl-mt-0 text-break">{{ 'APP.PLACEHOLDERS.TITLE.GeneralInformations' | translate }}</h4>
+                <div class="text-break" markdown>{{ 'APP.PLACEHOLDERS.TITLE.GeneralInformations_sub' | translate }}</div>
+              </div>
+              <div class="col-lg-8">
+                <div class="form-group name">
+                  <label class="label-bold" for="name">{{ 'APP.LABEL.Name' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'name'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <input aria-required="true" autofocus="autofocus" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('name')" type="text" name="nameg" id="name" formControlName="name">
+                    <p *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['name'].errors && f['name'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                    </p>
+                    <ui-input-help field="name" context="PLACEHOLDER"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input type="text" readonly class="form-control-plaintext" id="name" [value]="placeholder.name || '-'">
+                  </div>
+                </div>
+                <div class="form-group description">
+                  <label class="label-bold" for="description">{{ 'APP.LABEL.Description' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'description'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <input aria-required="true" autofocus="autofocus" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('description')" type="text" name="description" id="description" formControlName="description">
+                    <p *ngIf="f['description'].invalid && (f['description'].dirty || f['description'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['description'].errors && f['description'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                    </p>
+                    <ui-input-help field="description" context="PLACEHOLDER"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input type="text" readonly class="form-control-plaintext" id="description" [value]="placeholder.description || '-'">
+                  </div>
+                </div>
+                <div class="form-group example">
+                  <label class="label-bold" for="example">{{ 'APP.LABEL.Example' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'example'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <textarea aria-required="true" autofocus="autofocus" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('example')" name="example" id="example" formControlName="example" rows="5"></textarea>
+                    <p *ngIf="f['example'].invalid && (f['example'].dirty || f['example'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['example'].errors && f['example'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                    </p>
+                    <ui-input-help field="example" context="PLACEHOLDER"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input type="text" readonly class="form-control-plaintext" id="example" [value]="placeholder.example || '-'">
+                  </div>
+                </div>
+                <div class="form-group type">
+                  <label class="label-bold" for="type">{{ 'APP.LABEL.Type' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'type'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <select class="form-select form-control-sm" id="type" formControlName="type" [class.gl-field-error-outline]="_hasControlError('type')">
+                      <option *ngFor="let pt of placeholderTypes" [value]="pt.value">{{ pt.label }}</option>
+                    </select>  
+                    <!-- <input aria-required="true" autofocus="autofocus" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('type')" type="text" name="type" id="type" formControlName="type"> -->
+                    <p *ngIf="f['type'].invalid && (f['type'].dirty || f['type'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['type'].errors && f['type'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                    </p>
+                    <ui-input-help field="type" context="PLACEHOLDER"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input type="text" readonly class="form-control-plaintext" id="type" [value]="placeholder.type">
+                  </div>
+                </div>
+                <div class="form-group pattern" *ngIf="f['type'] && (f['type'].value == 'STRING')">
+                  <label class="label-bold" for="pattern">{{ 'APP.LABEL.Pattern' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'pattern'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <input aria-required="true" autofocus="autofocus" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('pattern')" type="text" name="pattern" id="pattern" formControlName="pattern">
+                    <p *ngIf="f['pattern'].invalid && (f['pattern'].dirty || f['pattern'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['pattern'].errors && f['pattern'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                    </p>
+                    <ui-input-help field="pattern" context="PLACEHOLDER"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input pattern="text" readonly class="form-control-plaintext" id="pattern" [value]="placeholder.pattern || '-'">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gl-alert gl-alert-danger col-md-12 mt-3" *ngIf="_isEdit && _error">
+              {{ _errorMsg }}
+            </div>
+
+            <div class="row-content-block footer-block" *ngIf="_isEdit">
+              <button aria-label="Save" type="submit" class="gl-button btn btn-confirm gl-mr-2" [disabled]="_formGroup.invalid">
+                {{ 'APP.BUTTON.Save' | translate }}
+              </button>
+              <button aria-label="Cancel" type="button" class="btn gl-button btn-default" (click)="_onCancelEdit()">
+                {{ 'APP.BUTTON.Cancel' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

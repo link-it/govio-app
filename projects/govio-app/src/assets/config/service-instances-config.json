@@ -1,0 +1,39 @@
+{
+  "editSingleColumn": false,
+
+  "itemRow": {
+    "primaryText": [
+      { "field": "template.name", "type": "text" }
+    ],
+    "secondaryText": [],
+    "metadata": {
+      "text": [
+        { "field": "id", "type": "cardinal" },
+        { "field": "service.service_name", "type": "text", "emptySpace": true },
+        { "field": "per", "type": "message", "emptySpace": true },
+        { "field": "organization.legal_name", "type": "text" }
+      ],
+      "label": [
+        { "field": "enabled", "type": "tag", "options": "enabled" }
+      ]
+    },
+    "secondaryMetadata": []
+  },
+
+  "details": [
+    { "label": "APP.LABEL.ServiceName", "field": "service_name", "type": "text" },
+    { "label": "APP.LABEL.Description", "field": "description", "type": "text" }
+  ],
+
+  "options": {
+    "enabled": {
+      "label": "APP.LABEL.Enabled",
+      "small": true,
+      "values": {
+        "true": { "label": "APP.STATUS.ENABLED", "background": "#57cc99", "border": "#57cc99", "color": "#1f1f1f" },
+        "false": { "label": "APP.STATUS.DISABLED", "background": "#A4ABB6", "border": "#A4ABB6", "color": "#ffffff" }
+      }
+    }
+  }
+}
+

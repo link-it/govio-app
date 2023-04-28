@@ -1,0 +1,54 @@
+<div #bar class="nav-toolbar container h-100">
+  <div class="d-flex align-items-center flex-grow-1 flex-nowrap">
+    <button mat-icon-button class="me-5" type="button" (click)="__onStepBack(true, backMode)" *ngIf="modalMode"><mat-icon fontSet="material-icons-outlined">close</mat-icon></button>
+    <button mat-icon-button class="me-5" type="button" (click)="__onToggleMenu()" *ngIf="!isDetail && hamburger && !modalMode"><mat-icon fontSet="material-icons-outlined">menu</mat-icon></button>
+    <button mat-icon-button class="me-5" type="button" (click)="__onStepBack(false, backMode)" *ngIf="isDetail && !modalMode"><mat-icon fontSet="material-icons-outlined">arrow_back</mat-icon></button>
+    <h2 *ngIf="!prominent || contextual" [title]="title">{{ title }}</h2>
+    <div class="ms-auto d-flex align-items-center">
+      <div class="d-flex align-items-center" *ngIf="prominent && !contextual && toolbarActions">
+        <div *ngIf="(toolbarActions[ActionType.Global].Actions|filterActions:toolbarActions[ActionType.Global].Filter).length !== 0">
+          <button *ngFor="let ta of toolbarActions[ActionType.Global].Actions|filterActions:toolbarActions[ActionType.Global].Filter" mat-icon-button class="ms-3" type="button" (click)="__toolActionClick(ta.icon, ActionType.Global, ta, toggle)">
+            <span class="material-icons-outlined" #toggle>{{ ta.icon }}</span>
+          </button>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="toolbarActions && __hasValidActions((toolbarActions[ActionType.Menu].Actions|filterActions:toolbarActions[ActionType.Menu].Filter))">
+          <mat-icon fontSet="material-icons-outlined">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" [xPosition]="'before'" [yPosition]="'below'">
+          <div *ngFor="let ta of toolbarActions[ActionType.Menu].Actions|filterActions:toolbarActions[ActionType.Menu].Filter" [class]="(ta.value === MatMenuDivider.value)?'action-menu-item divider':'action-menu-item'">
+            <button *ngIf="ta.value !== MatMenuDivider.value" mat-menu-item (click)="__toolActionClick(ta.value, ActionType.Menu)">{{ta.label}}</button>
+            <mat-divider *ngIf="ta.value === MatMenuDivider.value"></mat-divider>
+          </div>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+  <div class="row second-row align-items-center flex-nowrap" *ngIf="prominent">
+    <h2 [title]="title">{{ title }}</h2>
+  </div>
+</div>
+<div class="container position-relative" *ngIf="toolbarActions && toolbarActions[ActionType.Main].Action && toolbarActions[ActionType.Main].Filter()">
+  <link-fab-extended class="action-bar"
+    [submitLabel]="toolbarActions[ActionType.Main].Action.label"
+    [submitIcon]="toolbarActions[ActionType.Main].Action.icon"
+    (submit)="__toolActionClick(toolbarActions[ActionType.Main].Action.icon, ActionType.Main)">
+  </link-fab-extended>
+</div>
+<!-- <nav mat-tab-nav-bar mat-align-tabs="center" color="accent" backgroundColor="primary" *ngIf="hasTab">
+  <a mat-tab-link *ngFor="let tab of tabs" [routerlink]="tab.path" [disabled]="false" routerlinkactive="true" [active]="true">{{ tab.label }}</a>
+</nav> -->
+<div class="context-bar" *ngIf="toolbarActions && ((toolbarActions[ActionType.Context].Actions|filterActions:toolbarActions[ActionType.Context].Filter).length !== 0 ||
+(toolbarActions[ActionType.TwinContext].Actions|filterActions:toolbarActions[ActionType.TwinContext].Filter).length !== 0) && !contextual">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-end">
+      <button mat-icon-button class="ml-3" type="button" *ngFor="let ci of toolbarActions[ActionType.Context].Actions|filterActions:toolbarActions[ActionType.Context].Filter" (click)="__toolActionClick(ci.icon, ActionType.Context, ci, ctoggle)">
+        <span class="material-icons-outlined" #ctoggle>{{ ci.icon }}</span>
+      </button>
+      <!-- <mat-chip-list class="ml-3 py-1">
+        <mat-chip *ngFor="let ci of toolbarActions[ActionType.TwinContext].Actions|filterActions:toolbarActions[ActionType.TwinContext].Filter; let i = index"
+                  [selected]="(i === _indexChp)" selectable="false" color="accent" [disabled]="ci.disabled" type="button"
+                  (click)="__toolTwinClick($event, ci, i)" (keydown)="__twinKeyDown($event, ci, i)">{{ ci.label }}</mat-chip>
+      </mat-chip-list> -->
+    </div>
+  </div>
+</div>

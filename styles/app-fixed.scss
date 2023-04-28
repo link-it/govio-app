@@ -1,0 +1,19 @@
+.language-bar {
+  &.fixed-header {
+    z-index: 2000;
+  }
+}
+
+.header-bar {
+  &.fixed-language {
+    top: 48px;
+  }
+}
+
+.content-fixed {
+  padding-top: 48px;
+}
+
+.content-fixed-language {
+  padding-top: 112px;
+}

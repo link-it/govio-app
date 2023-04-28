@@ -1,0 +1,40 @@
+<div id="route-section" class="">
+  <div class="alert-wrapper gp-force-block-formatting-context">
+    <ui-breadcrumb [breadcrumbs]="breadcrumbs" [classContainer]="'limit-container-width'" (onClick)="onBreadcrumb($event)"></ui-breadcrumb>
+  </div>
+  <div class="top-area container-fluid container-limited limit-container-width px-0">
+    <div class="d-flex flex-grow-1">&nbsp;</div>
+    <!-- <ng-template [appHasPermission]="'SETTINGS'" [action]="'edit'"> -->
+      <div class="nav-controls">
+      </div>
+    <!-- </ng-template> -->
+  </div>
+  <section class="container-fluid container-limited limit-container-width container-scroller container-scroller-no-search">
+    <ui-box-spinner [color]="'accent'" [diameter]="48" [strokeWidth]="4" *ngIf="_spin"></ui-box-spinner>
+    <ui-box-message *ngIf="!message && !_spin"
+      [image]="'./assets/images/illustrations/no-data.svg'"
+      [message]="'APP.MESSAGE.NoData' | translate"
+      [subMessage]="'APP.MESSAGE.NoDataHelp' | translate">
+    </ui-box-message>
+
+    <div class="settings" *ngIf="(message && !_spin)">
+      <div class="settings-content">
+        <div class="row gl-mt-3">
+          <div class="row gl-mt-3">
+            <div class="col-lg-4 mb-4">
+              <h4 class="gl-mt-0 text-break">{{ 'APP.MESSAGES.TITLE.GeneralInformations' | translate }}</h4>
+              <div class="text-break" markdown>{{ 'APP.MESSAGES.TITLE.GeneralInformations_sub' | translate }}</div>
+            </div>
+            <div class="col-lg-8">
+              <ui-data-view
+                [data]="message"
+                [config]="config"
+                [columns]="appConfig.AppConfig?.Layout?.Details?.columns || 6">
+              </ui-data-view>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

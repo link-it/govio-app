@@ -1,0 +1,85 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+mat-form-field {
+  width: 100%;
+  min-width: 0;
+}
+
+mat-hint {
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+button.mat-icon-button:focus {
+  outline: 1px dotted;
+}
+
+.mat-icon-button,
+.mat-fab .mat-button-wrapper {
+  line-height: 1.1 !important;
+}
+
+.mat-mini-fab .mat-button-wrapper {
+  line-height: 1 !important;
+}
+
+.mat-menu-panel {
+  max-height: 300px !important;
+  max-width: 100% !important;
+  border-radius: 0 !important;
+}
+
+.mat-tab-label-content,
+.mat-tab-link {
+  text-transform: uppercase;
+}
+
+.mat-dialog-container {
+  border-radius: 0 !important;
+}
+
+// Angular Bug: Baseline Mat-Field Truncated
+.mat-form-field-flex {
+  height: 65.5px;
+}
+
+.mat-form-field-infix {
+  line-height: 1.3;
+}
+
+// Bug Safari!
+.mat-drawer-container {
+  z-index: auto !important;
+}
+
+/** BUG: Snackbar container width **/
+.mat-snack-bar-container {
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+.mat-simple-snackbar {
+  overflow-x: hidden !important;
+  padding-right: 85px; //Action Button Size
+}
+
+.mat-simple-snackbar-action {
+  position: absolute !important;
+  display: flex !important;
+  align-items: center !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  right: 10px !important;
+  margin: auto !important;
+  background-color: #323232 !important;
+}
+
+.mat-autocomplete-option .mat-option-text {
+  font-size: 1rem;
+}
+
+.mat-tab-active {
+  opacity: 1 !important;
+}

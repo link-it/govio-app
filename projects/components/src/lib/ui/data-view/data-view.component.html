@@ -1,0 +1,27 @@
+<form>
+  <fieldset>
+    <div class="row">
+      <div class="form-group col-xs-12 col-sm-{{ _field.columns || _columns }} form-col-block" [class.mb-4]="!last" [class.mb-0]="last" *ngFor="let _field of _detailsConfig;let last = last;">
+        <ng-container *ngIf="_field.type !== 'image' && _field.download && _field.icon">
+          <label class="label-bold mb-0">{{ _field.label | translate }}</label>
+          <div class="form-control-plaintext">
+            <button type="button" class="btn btn-sn btn-secondary" (click)="__downloadClick(_field)">
+              <i class="bi bi-{{ _field.icon }}"></i>
+              {{ 'APP.BUTTON.Download' | translate }}
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="_field.type !== 'image' && !_field.download && _showEmpty(_field)">
+          <label class="label-bold mb-0">{{ _field.label | translate }}</label>
+          <span class="form-control-plaintext">
+            <ui-data-type
+              [data]="_data"
+              [elem]="_field"
+              [config]="_config">
+            </ui-data-type>
+          </span>
+        </ng-container>
+      </div>
+    </div>
+  </fieldset>
+</form>

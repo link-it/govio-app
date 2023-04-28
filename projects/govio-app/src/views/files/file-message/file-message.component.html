@@ -1,0 +1,71 @@
+<ng-container *ngIf="_isDialog">
+  <div class="modal-header">
+    <h3 class="modal-title mb-0">{{ 'APP.TITLE.JournalTransaction' | translate }}</h3>
+    <div class="button-bar">
+      <button mat-icon-button type="button" matDialogClose>
+        <span class="material-icons-outlined">{{ 'close' }}</span>
+      </button>
+    </div>
+  </div>
+  <div class="modal-body overflow-auto" style="height: 76vh;">
+    <section class="container pt-5">
+      <ui-form-readonly
+        [fields]="_informazioni"
+        [columns]="appConfig.AppConfig?.Layout?.Details?.columns || 6">
+      </ui-form-readonly>
+      <app-text-box-highlighter class="mt-5"
+        [text]="transaction.source.content"
+        [isBase64]="true"
+        [type]="config.transactions.contentHightlightType || 'TYPE_DEFAULT'"
+        [showTooltip]="config.transactions.contentHightlightTooltip || false"
+        [config]="transaction.isPagoPaTransaction ? config.transactions.contentHightlight : []">
+      </app-text-box-highlighter>
+    </section>
+  </div>
+</ng-container>
+<ng-container *ngIf="!_isDialog">
+  <div id="route-section" class="">
+    <div class="alert-wrapper gp-force-block-formatting-context">
+      <ui-breadcrumb [breadcrumbs]="breadcrumbs" [classContainer]="'limit-container-width'" (onClick)="onBreadcrumb($event)"></ui-breadcrumb>
+    </div>
+    <!-- <div class="top-area">
+      <div class="tabs gp-tabs d-flex flex-grow-1 p-0 m-0 mobile-separator issuable-state-filters">
+      </div>
+      <div class="nav-controls">
+      </div>
+    </div> -->
+    <section class="container-fluid container-limited limit-container-width container-scroller container-scroller-no-search container-scroller-no-top-area">
+      <ui-box-spinner [color]="'accent'" [diameter]="48" [strokeWidth]="4" *ngIf="_spin"></ui-box-spinner>
+      <ui-box-message *ngIf="!transaction && !_spin"
+        [image]="'./assets/images/illustrations/no-data.svg'"
+        [message]="_message | translate"
+        [subMessage]="_messageHelp | translate">
+      </ui-box-message>
+      <ui-box-collapse *ngIf="transaction && !_spin"
+        [opened]="true"
+        [showCollapse]="appConfig.AppConfig?.Layout?.Details?.Collapsible?.informations"
+        [id]="'general-informations'"
+        [title]="'APP.JOURNALS.TITLE.GeneralInformations' | translate"
+        [subTitle]="'APP.JOURNALS.TITLE.GeneralInformations_sub' | translate">
+        <ui-form-readonly
+          [fields]="_informazioni"
+          [columns]="appConfig.AppConfig?.Layout?.Details?.columns || 6">
+        </ui-form-readonly>
+      </ui-box-collapse>
+      <ui-box-collapse *ngIf="transaction && !_spin"
+        [class]="'border-top'"
+        [opened]="true"
+        [id]="'content-transaction'"
+        [title]="'APP.JOURNALS.TITLE.ContentTransaction' | translate"
+        [subTitle]="'APP.JOURNALS.TITLE.ContentTransaction_sub' | translate">
+        <app-text-box-highlighter
+          [text]="transaction.content"
+          [isBase64]="true"
+          [type]="config.transactions.contentHightlightType || 'TYPE_DEFAULT'"
+          [showTooltip]="config.transactions.contentHightlightTooltip || false"
+          [config]="transaction.pagoPaTransaction ? config.transactions.contentHightlight : []">
+        </app-text-box-highlighter>
+      </ui-box-collapse>
+    </section>
+  </div>
+</ng-container>

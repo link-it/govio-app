@@ -1,0 +1,66 @@
+<div class="">
+  <ui-box-spinner [color]="'accent'" [diameter]="24" [strokeWidth]="2" *ngIf="_spin"></ui-box-spinner>
+  <div class="mt-5 text-center" *ngIf="!template && !_spin">
+    <p class="">{{ 'APP.MESSAGE.NoTemplateSelected' | translate }}</p>
+  </div>
+
+  <div class="" *ngIf="template && !_spin">
+    <div class="gl-alert gl-alert-danger col-md-12 mb-5" *ngIf="_error">
+      {{ _errorMsg }}
+    </div>
+    <div class="edit-form">
+      <form novalidate class="form-readonly" [formGroup]="_formGroup">
+        <div class="">
+          <div class="form-group name">
+            <label class="label-bold" for="name">{{ 'APP.LABEL.Name' | translate }}</label>
+            <input type="text" readonly class="form-control-plaintext" id="name" [value]="template.name">
+          </div>
+          <div class="form-group description">
+            <label class="label-bold" for="description">{{ 'APP.LABEL.Description' | translate }}</label>
+            <input type="text" readonly class="form-control-plaintext" id="description" [value]="template.description">
+          </div>
+          <div class="form-group subject">
+            <label class="label-bold" for="subject">{{ 'APP.LABEL.Subject' | translate }}</label>
+            <input type="text" readonly class="form-control-plaintext" id="subject" [value]="template.subject">
+          </div>
+          <div class="form-group message_body">
+            <label class="label-bold" for="message_body">{{ 'APP.LABEL.MessageBody' | translate }}</label>
+            <!-- <textarea type="text" readonly class="form-control-plaintext" id="message_body" [value]="template.message_body" rows="9"></textarea> -->
+            <div class="my-2">
+              <span class="mt-1 text-break">{{ template.message_body }}</span>
+            </div>
+          </div>
+          <div class="row mt-5 has_payment has_due_date">
+            <div class="col-md-6">
+              <div class="gl-form-checkbox custom-control custom-checkbox has_payment">
+                <input class="custom-control-input" type="checkbox" name="has_payment" id="has_payment" [checked]="template.has_payment" disabled>
+                <label class="custom-control-label text-dark" for="has_payment">
+                  <span>{{ 'APP.LABEL.HasPayment' | translate }}</span>
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="gl-form-checkbox custom-control custom-checkbox has_due_date">
+                <input class="custom-control-input" type="checkbox" name="has_due_date" id="has_due_date" [checked]="template.has_due_date" disabled>
+                <label class="custom-control-label text-dark" for="has_due_date">
+                  <span>{{ 'APP.LABEL.HasDueDate' | translate }}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <div class="settings border-top mt-3">
+      <div class="row gl-mt-5 PLACEHOLDERS">
+        <div class="col-lg-4 mb-4">
+          <h4 class="gl-mt-0 text-break">{{ 'APP.TEMPLATES.TITLE.Placeholders' | translate }}</h4>
+          <div class="text-break" markdown>{{ 'APP.TEMPLATES.TITLE.Placeholders_sub' | translate }}</div>
+        </div>
+        <div class="col-lg-8">
+          <app-template-placeholders [id]="id"></app-template-placeholders>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

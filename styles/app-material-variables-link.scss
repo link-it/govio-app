@@ -1,0 +1,146 @@
+@import '~@angular/material/theming';
+
+// @import 'assets/css/material-icons.css';
+// @import 'assets/css/font-titillium-300-400-600-700.css';
+
+$link-accent: (
+  50: #e5ecff,
+  100: #bfd0ff,
+  200: #94b1ff,
+  300: #6991ff,
+  400: #497aff,
+  500: #2962ff,
+  600: #245aff,
+  700: #1f50ff,
+  800: #1946ff,
+  900: #0f34ff,
+  A100: #ffffff,
+  A200: #f7f8ff,
+  A400: #c4ccff,
+  A700: #abb5ff,
+  contrast: (
+    50: rgba(33, 33, 33, 1),
+    100: rgba(33, 33, 33, 1),
+    200: rgba(33, 33, 33, 1),
+    300: rgba(33, 33, 33, 1),
+    400: rgba(33, 33, 33, 1),
+    500: rgba(33, 33, 33, 1),
+    600: rgba(33, 33, 33, .5),
+    700: rgba(33, 33, 33, .5),
+    800: rgba(33, 33, 33, .5),
+    900: rgba(33, 33, 33, .5),
+    A100: rgba(33, 33, 33, 1),
+    A200: rgba(33, 33, 33, 1),
+    A400: rgba(33, 33, 33, 1),
+    A700: rgba(33, 33, 33, .5)
+  )
+);
+
+$link-primary: (
+  50: #f7fbff,
+  100: #ebf5fe,
+  200: #ddeffd,
+  300: #cfe8fc,
+  400: #c5e3fc,
+  500: #bbdefb,
+  600: #b5dafa,
+  700: #acd5fa,
+  800: #a4d1f9,
+  900: #96c8f8,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #ffffff,
+  A700: #ffffff,
+  contrast: (
+    50: rgba(33, 33, 33, 1),
+    100: rgba(33, 33, 33, 1),
+    200: rgba(33, 33, 33, 1),
+    300: rgba(33, 33, 33, 1),
+    400: rgba(33, 33, 33, 1),
+    500: rgba(33, 33, 33, 1),
+    600: rgba(33, 33, 33, .5),
+    700: rgba(33, 33, 33, .5),
+    800: rgba(33, 33, 33, .5),
+    900: rgba(33, 33, 33, .5),
+    A100: rgba(33, 33, 33, 1),
+    A200: rgba(33, 33, 33, 1),
+    A400: rgba(33, 33, 33, 1),
+    A700: rgba(33, 33, 33, .5)
+  )
+);
+
+$link-warn: (
+  50 : #fdeaea,
+  100 : #facbcb,
+  200 : #f7a9a8,
+  300 : #f48785,
+  400 : #f16d6a,
+  500 : #ef5350,
+  600 : #ed4c49,
+  700 : #eb4240,
+  800 : #e83937,
+  900 : #e42927,
+  A100 : #ffffff,
+  A200 : #ffeded,
+  A400 : #ffbbba,
+  A700 : #ffa2a1,
+  contrast: (
+    50: rgba(33, 33, 33, 1),
+    100: rgba(33, 33, 33, 1),
+    200: rgba(33, 33, 33, 1),
+    300: rgba(33, 33, 33, 1),
+    400: rgba(33, 33, 33, 1),
+    500: rgba(33, 33, 33, 1),
+    600: rgba(33, 33, 33, .5),
+    700: rgba(33, 33, 33, .5),
+    800: rgba(33, 33, 33, .5),
+    900: rgba(33, 33, 33, .5),
+    A100: rgba(33, 33, 33, 1),
+    A200: rgba(33, 33, 33, 1),
+    A400: rgba(33, 33, 33, 1),
+    A700: rgba(33, 33, 33, .5)
+  )
+);
+
+$_primary: mat-palette($link-primary, 500);
+$_accent: mat-palette($link-accent, 500);
+$_warn: mat-palette($link-warn);
+
+$background-color: #BBDEFB;
+$background-2nd-color: #E3F2FD;
+$background-3rd-color: #F5F5F5;
+$background-4th-color: rgba(255, 255, 255, .75);
+$background-5th-color: rgba(0, 0, 0, .05);
+$background-6th-color: rgba(33, 33, 33, .05);
+$background-nth-color: #fff;
+
+$hover-color: mat-color($link-accent, 500);
+$text-color: rgba(33, 33, 33, 1);
+$text-2nd-color: rgba(33, 33, 33, .5);
+$text-3rd-color: rgba(33, 33, 33, .6);
+
+$reverse-text-color: #ffffff;
+
+$sidenavWidth: 310px;
+// $border-color: rgba(33, 33, 33, 0.16);
+
+// Theme
+
+$app-primary: mat-palette($link-primary, 500);
+$app-accent: mat-palette($link-accent, 500);
+$app-info: mat-palette($mat-light-blue);
+$app-success: mat-palette($mat-light-green);
+$app-error: mat-palette($mat-deep-orange);
+$app-background: mat-palette($mat-gray);
+
+// The warn palette is optional (defaults to red).
+$app-warn: mat-palette($link-warn);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$link-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+$app-white: mat-color($app-background, 100);
+$app-black: mat-color($app-background, 900);
+
+$foreground: map-get($link-theme, foreground);
+$foreground: map_merge($foreground, (divider: rgba(33, 33, 33, .2)));
+

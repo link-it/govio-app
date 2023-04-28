@@ -1,0 +1,369 @@
+{
+	"APP": {
+		"BUTTON": {
+			"AddFile": "Aggiungi tracciato",
+			"AddPlaceholder": "Aggiungi segnaposto",
+			"AddService": "Aggiungi servizio",
+			"AddTemplate": "Aggiungi modello",
+			"AlertAction": "Chiudi",
+			"AssignPlaceholder": "Assegna segnaposto",
+			"Cancel": "Annulla",
+			"Clear": "Pulisci",
+			"Close": "Chiudi",
+			"CloseSidebar": "Chiudi la barra laterale",
+			"Collapse": "Contrai",
+			"CollapseSidebar": "Comprimi la barra laterale",
+			"Confirm": "Conferma",
+			"Continue": "Continua",
+			"CreateNewPlaceholder": "Crea un nuovo segnaposto",
+			"Download": "Scarica",
+			"Entra": "Entra",
+			"Expand": "Espandi",
+			"Export": "Esporta",
+			"Go": "Vai",
+			"Login": "Accedi",
+			"MoreInfo": "Ulteriori informazioni",
+			"Remove": "Rimuovi",
+			"Report": "Resoconto",
+			"Save": "Salva",
+			"SaveNewPlaceholder": "Salva nuovo segnaposto",
+			"Search": "Cerca",
+			"UploadFile": "Carica tracciato"
+		},
+		"ENUM": {
+			"COMPLETATO": "Completato",
+			"ELABORAZIONE": "Elaborazione",
+			"NUOVO": "Nuovo",
+			"SCARTATO": "Scartato"
+		},
+		"FILES": {
+			"FILTER": {
+				"All": "Tutti",
+				"Closed": "Chiusi",
+				"Found": "Trovati",
+				"Open": "Aperti"
+			},
+			"TITLE": {
+				"ContentFile": "Contenuto",
+				"ContentFile_sub": "",
+				"FileMessages": "File messaggi",
+				"FileMessages_sub": "Esporta i messaggi di errore in un file csv",
+				"GeneralInformations": "Informazioni generali",
+				"GeneralInformations_sub": "",
+				"ShowMessages": "Messaggi",
+				"ShowMessages_sub": ""
+			}
+		},
+		"FILTER": {
+			"All": "Tutti",
+			"Closed": "Chiusi",
+			"Found": "Trovati",
+			"Open": "Aperti"
+		},
+		"HTTP": {
+			"CodeException": "Si è verificato un problema non previsto, si prega di riprovare più tardi",
+			"Default": "Servizio non disponibile, si prega di riprovare più tardi.",
+			"ErrorMap": [
+				{
+					"Match": "stringa_di_controllo",
+					"Message": "[%1, %2, %3, %4] Messaggio di errore"
+				}
+			],
+			"Status400": "Richiesta non valida.",
+			"Status401": "Accesso al servizio non autorizzato. Autenticarsi per avviare la sessione.",
+			"Status403": "Accesso non consentito.",
+			"Status404": "Servizio non trovato.",
+			"Status422": "Impossibile completare la richiesta.",
+			"Status500": "Errore interno del server.",
+			"Status504": "Timeout del gateway."
+		},
+		"LABEL": {
+			"AcquiredMessages": "Messaggi acquisiti",
+			"All": "Tutti",
+			"ApiKey": "Api Key",
+			"AppioMessageId": "AppIO Message Id",
+			"AvailabilityDate": "Data di disponibilità",
+			"Content": "Contenuto",
+			"CreationDate": "Data creazione",
+			"CreationDateFrom": "Data da",
+			"CreationDateTo": "Data a",
+			"Date": "Data",
+			"DateFrom": "Data da",
+			"DateTo": "Data a",
+			"Description": "Descrizione",
+			"DueDate": "Data di scadenza",
+			"Email": "E-mail",
+			"Enabled": "Abilitato",
+			"ErrorMessages": "Messaggi di errore",
+			"Example": "Esempio",
+			"File": "Tracciato",
+			"FileName": "Nome del file",
+			"Filename": "Nome del file",
+			"FullName": "Nome e cognome",
+			"HasDueDate": "Ha una data di scadenza",
+			"HasPayment": "Ha il pagamento",
+			"Id": "ID",
+			"Index": "Indice",
+			"LastUpdateDate": "Data ultimo aggiornamento",
+			"LastUpdateStatus": "Ultimo aggiornamento stato",
+			"LegalName": "Ragione sociale",
+			"Logo": "Logo",
+			"Mandatory": "Obbligatorio",
+			"Markdown": "Markdown",
+			"Message": "Messaggio",
+			"MessageBody": "Corpo del messaggio",
+			"Name": "Nome",
+			"Organization": "Organizzazione",
+			"Password": "Password",
+			"Pattern": "Pattern",
+			"Placeholder": "Segnaposto",
+			"Position": "Posizione",
+			"Principal": "Nome utente",
+			"ScheduledExpeditionDate": "Data di spedizione pianificata",
+			"Service": "Servizio",
+			"ServiceInstance": "Istanza di servizio",
+			"ServiceName": "Nome Servizio",
+			"Status": "Stato",
+			"Subject": "Oggetto",
+			"TaxCode": "Codice fiscale",
+			"Template": "Modello",
+			"Type": "Tipo",
+			"User": "Utente",
+			"UserFullName": "Nome utente"
+		},
+		"LABEL_HELP": {
+			"All": ""
+		},
+		"MENU": {
+			"Configurations": "Configurazioni",
+			"Dashboard": "Cruscotto",
+			"DeleteFile": "Elimina tracciato...",
+			"DeletePlaceholder": "Elimina segnaposto...",
+			"DeleteService": "Elimina servizio...",
+			"DeleteTemplate": "Elimina modello...",
+			"ExportCSV": "Esporta CSV",
+			"ExportPDF": "Esporta PDF",
+			"Files": "Tracciati",
+			"Home": "Home",
+			"Logout": "Logout",
+			"Messages": "Messaggi",
+			"Placeholders": "Segnaposto",
+			"ServiceInstances": "Istanze di servizio",
+			"Services": "Servizi",
+			"Templates": "Modelli"
+		},
+		"MESSAGE": {
+			"AreYouSure": "Sei sicuro di voler eliminare l'elemento selezionato?",
+			"ERROR": {
+				"Default": "Si è verificato un problema non previsto",
+				"DefaultHelp": "Si prega di riprovare più tardi",
+				"TimeoutError": "Si è verificato un timeout",
+				"Unauthorized": "Non autorizzato",
+				"Unprocessable Entity": "Entità non elaborabile"
+			},
+			"EsportingFile": "Sto esportando il documento…",
+			"Files_Results": {
+				"none": "Nessun file trovato",
+				"plural": "Trovati {{count}} tracciati",
+				"singular": "C'è un solo un tracciato"
+			},
+			"InsertNotice": "Inserisci il numero dell'avviso e premi il pulsante di ricerca …",
+			"LOGIN": {
+				"PasswordRequired": "Password richiesta",
+				"UsernameRequired": "Nome utente richiesto",
+				"login_400": "Username o password errati. Controlla la corretta scrittura dei dati.",
+				"login_401": "Username o password errati. Oppure non sei autorizzato ad accedere.",
+				"login_403": "Username o password errati. Oppure non sei autorizzato ad accedere.",
+				"login_404": "Risorsa non trovata.",
+				"login_422": "Username o password errati. Oppure non sei autorizzato ad accedere.",
+				"valid_email": "Inserisci una mail valida",
+				"wrong_username_password": "Username o password errati. Controlla la corretta scrittura dei dati."
+			},
+			"NoData": "Spiacenti, le informazioni richieste non sono state trovate",
+			"NoDataHelp": "Controlla la tua connessione e riprova",
+			"NoItem": "Nessun elemento",
+			"NoPlaceholder": "Nessun segnaposto",
+			"NoResponse": "Nessuna risposta",
+			"NoResponseUnimplemented": "Nessuna risposta o ancora non implementato",
+			"NoResults": "Siamo spiacenti, il tuo filtro non ha prodotto risultati",
+			"NoResultsHelp": "Per ampliare la tua ricerca, cambia o rimuovi i filtri qui sopra",
+			"NoTemplateSelected": "Nessun modello selezionato",
+			"NotFoundItem": "Elemento non trovato",
+			"NotFoundText": "Testo non trovato",
+			"PageNumber": "Pagina {{page}} di {{total}}",
+			"PleaseEnterMin": "Inserisci {{lengthTerm}} o più caratteri",
+			"Sign_in_message": "Accedi con il tuo account",
+			"Unimplemented": "Funzionalità attualmente non disponibile",
+			"VALIDATION": {
+				"Email": "Inserisci una e-mail valida",
+				"FieldRequired": "Campo richiesto",
+				"GreaterThanEqual": "L'importo deve avere un valore maggiore o uguale a {{value}}",
+				"GreaterThanZero": "L'importo deve avere un valore maggiore di zero",
+				"LessThanEqual": "L'importo deve avere un valore minore o uguale a {{value}}",
+				"MaxAmount": "L'importo deve avere un valore massimo di {{value}}",
+				"MinAmount": "L'importo deve essere un valore maggiore di {{value}}",
+				"NameMaxLength": "La lunghezza del nome deve essere minore o uguale a {{length}}.",
+				"NoticeLenght": "Il numero avviso deve contenere {{value}} caratteri",
+				"Number": "Il valore deve essere un numero",
+				"OneOfLength": "La lunghezza deve essere uno dei seguenti valori",
+				"OrganizationTaxCode": "Il codice fiscale deve essere numerico e di 11 cifre",
+				"Range": "L'importo deve avere un valore compreso tra {{min}} e {{max}}",
+				"Taxcode": "Codice fiscale errato",
+				"TaxcodeVat": "Codice fiscale o partita IVA errati"
+			}
+		},
+		"MESSAGES": {
+			"FILTER": {
+				"All": "Tutti",
+				"Closed": "Chiusi",
+				"Found": "Trovati",
+				"Open": "Aperti"
+			},
+			"TITLE": {
+				"GeneralInformations": "Informazioni generali",
+				"GeneralInformations_sub": ""
+			}
+		},
+		"PDF": {
+			"PAGE_NUMBER": "Pagina {{pageNumber}} di {{totalPages}}"
+		},
+		"PLACEHOLDER": {
+			"Search": "Cerca...",
+			"SelectOrganization": "Seleziona un'ente",
+			"SelectService": "Seleziona un servizio",
+			"SelectServiceInstance": "Seleziona un'istanza di servizio",
+			"SelectTemplate": "Seleziona un modello"
+		},
+		"PLACEHOLDERS": {
+			"FILTER": {
+				"All": "Tutti",
+				"Closed": "Chiusi",
+				"Found": "Trovati",
+				"Open": "Aperti"
+			},
+			"TITLE": {
+				"GeneralInformations": "Informazioni generali",
+				"GeneralInformations_sub": ""
+			}
+		},
+		"SEARCH": {
+			"ClearRecentSearches": "Cancella le ricerche recenti",
+			"NoRecentSearches": "Non hai ricerche recenti",
+			"RecentSearches": "Ricerche recenti",
+			"View": "Vista"
+		},
+		"SERVICES": {
+			"FILTER": {
+				"All": "Tutti",
+				"Closed": "Chiusi",
+				"Found": "Trovati",
+				"Open": "Aperti"
+			},
+			"TITLE": {
+				"GeneralInformations": "Informazioni generali",
+				"GeneralInformations_sub": ""
+			}
+		},
+		"SIDENAV": {
+			"Title": "GovIO"
+		},
+		"STATUS": {
+			"ACCEPTED": "Accettato",
+			"BAD_REQUEST": "Richiesta non valida",
+			"CREATED": "Creato",
+			"DENIED": "Negato",
+			"DISABLED": "Disabilitato",
+			"ENABLED": "Abilitato",
+			"ERRORE": "Errore",
+			"FORBIDDEN": "Proibito",
+			"PROCESSED": "Elaborato",
+			"PROCESSING": "In elaborazione",
+			"PROFILE_NOT_EXISTS": "Profilo non esiste",
+			"RECIPIENT_ALLOWED": "Destinatario consentito",
+			"REJECTED": "Rifiutato",
+			"SCHEDULED": "Schedulato",
+			"SENDER_NOT_ALLOWED": "Mittente non consentito",
+			"SENT": "Inviato",
+			"THROTTLED": "Limitazione"
+		},
+		"TAB": {
+			"Content": "Contenuto",
+			"Details": "Dettagli"
+		},
+		"TABLE": {
+			"Description": "Descrizione",
+			"Status": "Stato"
+		},
+		"TEMPLATES": {
+			"FILTER": {
+				"All": "Tutti",
+				"Closed": "Chiusi",
+				"Found": "Trovati",
+				"Open": "Aperti"
+			},
+			"TITLE": {
+				"GeneralInformations": "Informazioni generali",
+				"GeneralInformations_sub": "",
+				"Placeholders": "Segnaposto",
+				"Placeholders_sub": ""
+			}
+		},
+		"TITLE": {
+			"Attention": "Attenzione",
+			"Configurations": "Configurazioni",
+			"Dashboard": "Cruscotto",
+			"EditFiles": "Modifica tracciato",
+			"EditPlaceholder": "Modifica segnaposto",
+			"EditService": "Modifica servizio",
+			"EditServiceInstance": "Modifica istanza del servizio",
+			"EditTemplate": "Modifica modello",
+			"File": "Tracciato",
+			"Files": "Tracciati",
+			"GeneralInformations": "Informazioni generali",
+			"Home": "Home",
+			"Login": "Login",
+			"Messages": "Messaggi",
+			"New": "Nuovo",
+			"NewFile": "Nuovo tracciato",
+			"NewPlaceholder": "Nuovo segnaposto",
+			"NewService": "Nuovo servizio",
+			"NewServiceInstance": "Nuova istanza di servizio",
+			"NewTemplate": "Nuovo modello",
+			"Organization": "Organizzazione",
+			"Placeholders": "Segnaposto",
+			"Service": "Servizio",
+			"ServiceInstance": "Istanza di servizio",
+			"ServiceInstances": "Istanze di servizio",
+			"Services": "Servizi",
+			"Template": "Modello",
+			"Templates": "Modelli",
+			"Watermark": "Staging"
+		},
+		"TOOLTIP": {
+			"AcquiredMessages": "Messaggi acquisiti",
+			"Add": "Aggiungi",
+			"AddPlaceholder": "Aggiungi segnaposto",
+			"CancelEdit": "Annulla modifica",
+			"CancelNew": "Annulla inserimento",
+			"EditFile": "Modifica tracciato",
+			"EditPlaceholder": "Modifica segnaposto",
+			"EditPlaceholders": "Modifica i segnaposto",
+			"EditService": "Modifica servizio",
+			"EditTemplate": "Modifica modello",
+			"ErrorMessages": "Messaggi di errore",
+			"Export": "Esporta",
+			"ExportCSV": "Esporta documento CSV",
+			"ExportPDF": "Esporta documento PDF",
+			"Mandatory": "Obbligatorio",
+			"Position": "Posizione",
+			"Preview": "Anteprima",
+			"Remove": "Rimuovi",
+			"ScheduledExpeditionDate": "Data di spedizione pianificata"
+		},
+		"TYPE": {
+			"DATE": "Data",
+			"MANUALE": "Manuale",
+			"STRING": "Stringa"
+		}
+	}
+}

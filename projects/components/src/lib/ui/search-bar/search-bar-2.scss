@@ -1,0 +1,43 @@
+$gp-search-box-by-type-input-padding: 3.5 * $grid-size;
+
+.gp-search-box-by-type-search-icon {
+  @include gp-m-3;
+  @include gp-text-gray-500;
+  @include gp-w-5;
+  @include gp-absolute;
+}
+
+.gp-search-box-by-type {
+  @include gp-display-flex;
+  @include gp-relative;
+}
+
+.gp-search-box-by-type-loading-icon {
+  @include gp-text-gray-500;
+  @include gp-w-5;
+  @include gp-mr-2;
+}
+
+.gp-search-box-by-type-clear {
+  @include gp-z-index-3;
+}
+
+.gp-search-box-by-type-input,
+.gp-search-box-by-type-input.gp-form-input {
+  @include gp-h-7;
+  @include gp-pr-7;
+  padding-left: $gp-search-box-by-type-input-padding;
+
+  &::-webkit-search-cancel-button {
+    @include gp-display-none;
+  }
+}
+
+.gp-search-box-by-type-right-icons {
+  @include gp-display-flex;
+  @include gp-align-items-center;
+  @include gp-line-height-0;
+  @include gp-right-0;
+  @include gp-absolute;
+  @include gp-h-full;
+}

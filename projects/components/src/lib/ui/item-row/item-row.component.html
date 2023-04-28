@@ -1,0 +1,68 @@
+<div class="d-flex align-items-center">
+  <div #ir class="active-item d-flex flex-grow-1 align-items-center">
+    <div class="d-flex align-items-center w-100 main-content">
+      <div class="avatar-image" *ngIf="_itemRowConfig?.avatar">
+        <ui-item-type
+          [data]="_data"
+          [elem]="_itemRowConfig?.avatar"
+          [config]="_config">
+        </ui-item-type>
+      </div>
+      <div class="main-info">
+        <div class="main-data">
+          <div class="primary-text text-break fw-bold-600">
+            <span [class.text-hover]="hasLink" [class.cursor-pointer]="hasLink" (click)="__itemClick($event, ir)">
+              <ng-container *ngFor="let elem of _itemRowConfig?.primaryText">
+                <ui-item-type
+                  [data]="_data"
+                  [elem]="elem"
+                  [config]="_config">
+                </ui-item-type>
+              </ng-container>
+            </span>
+          </div>
+        </div>
+        <div class="meta-data">
+          <div class="d-inline-block text">
+            <ng-container *ngFor="let elem of _itemRowConfig?.metadata.text">
+              <ui-item-type
+                [data]="_data"
+                [elem]="elem"
+                [config]="_config">
+              </ui-item-type>
+            </ng-container>
+          </div>
+          <div class="d-inline-block labels ms-2">
+            <ng-container *ngFor="let elem of _itemRowConfig?.metadata.label">
+              <ui-item-type
+                [data]="_data"
+                [elem]="elem"
+                [config]="_config">
+              </ui-item-type>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="meta-info">
+        <div class="main-data d-block">
+          <ng-container *ngFor="let elem of _itemRowConfig?.secondaryText">
+            <ui-item-type
+              [data]="_data"
+              [elem]="elem"
+              [config]="_config">
+            </ui-item-type>
+          </ng-container>
+        </div>
+        <div class="meta-data">
+          <ng-container *ngFor="let elem of _itemRowConfig?.secondaryMetadata">
+            <ui-item-type
+              [data]="_data"
+              [elem]="elem"
+              [config]="_config">
+            </ui-item-type>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

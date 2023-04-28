@@ -1,0 +1,63 @@
+{
+  "itemRow": {
+    "primaryText": [
+      { "field": "description", "type": "text" }
+    ],
+    "secondaryText": [],
+    "metadata": {
+      "text": [
+        { "field": "id", "type": "cardinal", "class": "" },
+        { "field": "name", "type": "text", "class": "" }
+      ],
+      "label": [
+        { "field": "type", "type": "label", "options": "type" }
+      ]
+    },
+    "secondaryMetadata": []
+  },
+
+  "itemRowAlt": {
+    "primaryText": [
+      { "field": "description", "type": "text" }
+    ],
+    "secondaryText": [],
+    "metadata": {
+      "text": [
+        { "field": "name", "type": "text", "class": "" }
+      ],
+      "label": [
+        { "field": "type", "type": "label", "options": "type" }
+      ]
+    },
+    "secondaryMetadata": []
+  },
+
+  "details": [
+    { "label": "APP.LABEL.Name", "field": "name", "type": "text" },
+    { "label": "APP.LABEL.Description", "field": "description", "type": "text" },
+    { "label": "APP.LABEL.Type", "field": "type", "type": "tag", "options": "type"}
+  ],
+
+  "options": {
+    "type": {
+      "label": "APP.LABEL.Type",
+      "small": true,
+      "values": {
+        "DATE": { "label": "APP.TYPE.DATE", "background": "#D1D100", "border": "#D1D100", "color": "#1f1f1f" },
+        "STRING": { "label": "APP.TYPE.STRING", "background": "#326C1A", "border": "#326C1A", "color": "#ffffff" },
+        "accepeted": { "label": "APP.STATUS.ACCEPTED", "background": "#A8D695", "border": "#A8D695", "color": "#1f1f1f" },
+        "throttled": { "label": "APP.STATUS.THROTTLED", "background": "#A8D695", "border": "#A8D695", "color": "#1f1f1f" },
+        "recipient_allowed": { "label": "APP.STATUS.RECIPIENT_ALLOWED", "background": "#A8D695", "border": "#A8D695", "color": "#1f1f1f" },
+        "sent": { "label": "APP.STATUS.SENT", "background": "#A8D695", "border": "#A8D695", "color": "#1f1f1f" },
+        "created": { "label": "APP.STATUS.CREATED", "background": "#A8D695", "border": "#A8D695", "color": "#1f1f1f" },
+        "profile_not_exists": { "label": "APP.STATUS.PROFILE_NOT_EXISTS", "background": "#FF8200", "border": "#FF8200", "color": "#1f1f1f" },
+        "sender_not_allowed": { "label": "APP.STATUS.SENDER_NOT_ALLOWED", "background": "#FF8200", "border": "#FF8200", "color": "#1f1f1f" },
+        "forbidden": { "label": "APP.STATUS.FORBIDDEN", "background": "#FF8200", "border": "#FF8200", "color": "#1f1f1f" },
+        "rejected": { "label": "APP.STATUS.REJECTED", "background": "#FF8200", "border": "#FF8200", "color": "#1f1f1f" },
+        "processing": { "label": "APP.STATUS.PROCESSING", "background": "#E87823", "border": "#E87823", "color": "#ffffff" },
+        "denied": { "label": "APP.STATUS.DENIED", "background": "#E82323", "border": "#E82323", "color": "#ffffff" },
+        "bad_request": { "label": "APP.STATUS.BAD_REQUEST", "background": "#E82323", "border": "#E82323", "color": "#ffffff" }
+      }
+    }
+  }
+}

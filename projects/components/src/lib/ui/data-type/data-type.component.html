@@ -1,0 +1,51 @@
+<ng-container [ngSwitch]="_elem.type">
+  <ng-container *ngSwitchCase="'text'">
+    <span class="{{ _elem.class || '' }}">{{ _value | translate }}</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'markdown'">
+    <span markdown class="text-break {{ _elem.class || '' }}">{{ _value }}</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'number'">
+    <div class="d-inline-block" *ngIf="!(_elem.hideZero && _value == 0)">
+      <span class="{{ _elem.class || '' }}" [tooltip]="_elem.tooltip || '' | translate" container="body" [delay]="500">
+        <i class="bi bi-{{ _elem.icon }} {{ _elem.iconClass }}" *ngIf="_elem.icon"></i>
+        {{ utilsLib.formatNumberSuff(_value) || 0 }}
+      </span>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'message'">
+    <span [tooltip]="(_elem.tooltip || '') | translate" container="body" [delay]="500" class="{{ _elem.class || '' }}">{{ _elem.field }}</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'date'">
+    <span [tooltip]="(_elem.tooltip || '') | translate" container="body" [delay]="500" class="{{ _elem.class || '' }}">{{ utilsLib.dateFormatter(_value, _elem.format) }}</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'label'">
+    <span class="status-label {{_class}} status-label-scoped status-ml-2" style="--label-background-color:{{_background}}; --label-inset-border:inset 0 0 0 1px {{_border}};" [style.color]="_color"> <span class="status-link status-label-link"> <span class="status-label-text">{{_label | translate}}</span> <span class="status-label-text-scoped">{{_value | translate}}</span></span></span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'status'">
+    <span class="status-label {{_class}} status-label-scoped status-ml-2" style="--label-background-color:{{_background}}; --label-inset-border:inset 0 0 0 1px {{_border}};" [style.color]="_color"> <span class="status-link status-label-link"> <span class="status-label-text">{{_label | translate}}</span> <span class="status-label-text-scoped">{{_value | translate}}</span></span></span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'tag'">
+    <span class="{{_class}}" [style.background-color]="_background" [style.color]="_color" *ngIf="_showBadged">{{_value | translate}}</span>
+    <span class="" *ngIf="!_showBadged">{{_value | translate}}</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'cardinal'">
+    <span [tooltip]="_elem.tooltip || '' | translate" container="body" [delay]="500" class="{{ _elem.class || '' }}">#{{ _value }}</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'currency'">
+    <span [tooltip]="_elem.tooltip || '' | translate" container="body" [delay]="500" class="{{ _elem.class || '' }}">{{ utilsLib.currencyFormatter(_value) }}</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'progress'">
+    <span class="progress">{{ _value }}</span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'avatar'">
+    <span class="position-relative" [tooltip]="(_value || '') | translate" container="body" [delay]="500">
+      <img class="align-top" ngxGravatar [email]="_value" [size]="20" fallback="retro">
+    </span>
+  </ng-container>
+  <ng-container *ngSwitchCase="'image'">
+    <span class="position-relative border rounded-circle d-flex justify-content-center align-content-center" style="width: 20px;height: 20px;padding: 0.15rem !important;" [tooltip]="(_tooltip || '') | translate" container="body" [delay]="500">
+      <img class="rounded-circle" [src]="_value" style="width: 20px;height: auto;">
+    </span>
+  </ng-container>
+</ng-container>

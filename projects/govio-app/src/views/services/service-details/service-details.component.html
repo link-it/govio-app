@@ -1,0 +1,282 @@
+<div id="route-section" class="">
+  <div class="alert-wrapper gp-force-block-formatting-context">
+    <ui-breadcrumb [breadcrumbs]="breadcrumbs" [classContainer]="'limit-container-width'" (onClick)="onBreadcrumb($event)"></ui-breadcrumb>
+  </div>
+  <div class="top-area container-fluid container-limited limit-container-width px-0">
+    <h3 class="page-title" *ngIf="_isEdit && !_isNew">{{ 'APP.TITLE.EditServiceInstance' | translate }}</h3>
+    <h3 class="page-title" *ngIf="_isEdit && _isNew">{{ 'APP.TITLE.NewServiceInstance' | translate }}</h3>
+    <div class="d-flex flex-grow-1">&nbsp;</div>
+    <!-- <ng-template [appHasPermission]="'SETTINGS'" [action]="'edit'"> -->
+      <div class="nav-controls">
+        <div class="position-relative" *ngIf="!_isEdit && !_spin">
+          <button aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-icon" [tooltip]="'APP.TOOLTIP.EditService' | translate" (click)="_editService()">
+            <i class="bi bi-pencil"></i>
+          </button>
+        </div>
+        <!-- <ng-template [appHasPermission]="'SETTINGS'" [action]="'delete'"> -->
+          <div role="group" class="btn-group- ms-1" *ngIf="!_isEdit && !_spin">
+            <div class="dropdown b-dropdown gl-new-dropdown btn-group" id="actions">
+              <button aria-haspopup="true" aria-expanded="false" type="button" class="btn dropdown-toggle btn-default btn-md gl-button gl-dropdown-toggle btn-default-tertiary dropdown-icon-only dropdown-toggle-no-caret" data-bs-toggle="dropdown" data-bs-display="static" id="other_actions">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul role="menu" tabindex="-1" class="dropdown-menu dropdown-menu-end" aria-labelledby="sort_toggle">
+                <div class="gl-new-dropdown-inner">
+                  <div class="gl-new-dropdown-contents">
+                    <li role="presentation" class="gl-new-dropdown-item">
+                      <button role="menuitem" type="button" class="dropdown-item" (click)="_deleteService()">
+                        <div class="gl-icon s16 gl-new-dropdown-item-check-icon gl-mt-3 gl-align-self-start">
+                          <i class="bi bi-file text-danger-"></i>
+                        </div>
+                        <div class="gl-new-dropdown-item-text-wrapper">
+                          <p class="gl-new-dropdown-item-text-primary">{{ 'APP.MENU.ServiceDisable' | translate }}</p>
+                        </div>
+                      </button>
+                    </li>
+                  </div>
+                </div>
+              </ul>
+            </div>
+          </div>
+        <!-- </ng-template> -->
+        <div role="group" class="gl-w-full btn-group- position-relative" *ngIf="_isEdit && !_spin">
+          <button aria-haspopup="true" aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-default-tertiary ms-2" [tooltip]="(_isNew ? 'APP.TOOLTIP.CancelNew' : 'APP.TOOLTIP.CancelEdit') | translate" (click)="_onCancelEdit()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+    <!-- </ng-template> -->
+  </div>
+  <section class="container-fluid container-limited limit-container-width container-scroller container-scroller-no-search">
+    <ui-box-spinner [color]="'accent'" [diameter]="48" [strokeWidth]="4" *ngIf="_spin && !_isNew"></ui-box-spinner>
+    <ui-box-message *ngIf="!service && !_spin && !_isNew"
+      [image]="'./assets/images/illustrations/no-data.svg'"
+      [message]="'APP.MESSAGE.NoData' | translate"
+      [subMessage]="'APP.MESSAGE.NoDataHelp' | translate">
+    </ui-box-message>
+
+    <div class="settings" *ngIf="(service && !_spin) || _isNew">
+      <div class="settings-header d-none">
+        <h4 class="settings-title">{{ 'APP.SERVICES.TITLE.GeneralInformations' | translate }}</h4>
+        <ng-template [appHasPermission]="'SETTINGS'" [action]="'edit'">
+          <button aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-icon" [tooltip]="'APP.TOOLTIP.EditService' | translate" (click)="_editService()" *ngIf="!_isEdit && !_spin">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <div role="group" class="gl-w-full btn-group-" *ngIf="_isEdit && !_spin">
+            <button aria-haspopup="true" aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-default-tertiary ms-2 btn-icon" [tooltip]="(_isNew ? 'APP.TOOLTIP.CancelNew' : 'APP.TOOLTIP.CancelEdit') | translate" (click)="_onCancelEdit()">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+        </ng-template>
+        <p markdown>{{ 'APP.SERVICES.TITLE.GeneralInformations_sub' | translate }}</p>
+      </div>
+      <div class="settings-content">
+        <div class="gl-alert gl-alert-danger col-md-12 mb-5" *ngIf="!_isEdit && _error">
+          {{ _errorMsg }}
+        </div>
+        <div class="edit-form">
+          <form novalidate class="issue-form common-note-form mt-3 gl-show-field-errors gfm-form" [class.form-readonly]="!_isEdit" [formGroup]="_formGroup" (submit)="_onSubmit(_formGroup.value)">
+            <div class="row gl-mt-3" [class.justify-content-center]="_isNew || _singleColumn">
+              <div class=" mb-4" [class.col-lg-4]="!_singleColumn" [class.col-lg-9]="_singleColumn" [class.mb-5]="_singleColumn" *ngIf="!_isNew">
+                <h4 class="gl-mt-0 text-break">{{ 'APP.SERVICES.TITLE.GeneralInformations' | translate }}</h4>
+                <div class="text-break" markdown>{{ 'APP.SERVICES.TITLE.GeneralInformations_sub' | translate }}</div>
+              </div>
+              <div class="" [class.col-lg-8]="!_singleColumn" [class.col-lg-9]="_singleColumn">
+                <div class="form-group">
+                  <label class="label-bold" for="organization_id">{{ 'APP.LABEL.Organization' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'organization_id'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <ng-select class="" [class.gl-field-error-outline]="_hasControlError('organization_id')"
+                      [items]="organizations$ | async"
+                      [trackByFn]="trackByFn"
+                      [typeahead]="organizationsInput$"
+                      [minTermLength]="minLengthTerm" 
+                      [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+                      [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{ lengthTerm: minLengthTerm }"
+                      bindValue="id"
+                      labelForId="organization_id"
+                      [editableSearchTerm]="true"
+                      formControlName="organization_id">
+                      <ng-template ng-label-tmp let-item="item">
+                        <div class="d-flex flex-row align-items-center">
+                          <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _orgLogoBackground"></div>
+                          <!-- <img height="25" width="25" [src]="item | mapper: _orgLogo" /> -->
+                          <span class="flex-shrink-1 ms-3">{{item.legal_name}}</span>
+                        </div>
+                      </ng-template>
+                      <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                        <div class="d-flex flex-row align-items-center">
+                          <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _orgLogoBackground"></div>
+                          <!-- <img height="25" width="25" [src]="item | mapper: _orgLogo" /> -->
+                          <span class="flex-shrink-1 ms-3">{{item.legal_name}}</span>
+                        </div>
+                      </ng-template>
+                    </ng-select>
+                    <p *ngIf="f['organization_id'].invalid && (f['organization_id'].dirty || f['organization_id'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['organization_id'].errors && f['organization_id'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                      <span *ngIf="f['organization_id'].errors && f['organization_id'].errors['pattern']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Serviceorganization_id' | translate }}</span>
+                    </p>
+                    <ui-input-help field="organization_id" context="SERVICE"></ui-input-help>
+                  </div>
+                  <div class="mt-2" *ngIf="!_isEdit">
+                    <div class="d-flex flex-row align-items-center">
+                      <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="service.organization | mapper: _orgLogoBackground"></div>
+                      <span class="flex-shrink-1 ms-3">{{service.organization?.legal_name}}</span>
+                    </div>
+                    <!-- <input type="text" readonly class="form-control-plaintext" id="organization_id" [value]="service.organization?.legal_name"> -->
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="label-bold" for="service_id">{{ 'APP.LABEL.ServiceName' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'service_id'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <ng-select class="" [class.gl-field-error-outline]="_hasControlError('service_id')"
+                      [items]="services$ | async"
+                      [trackByFn]="trackByFn"
+                      [typeahead]="servicesInput$"
+                      [minTermLength]="minLengthTerm" 
+                      [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+                      [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{ lengthTerm: minLengthTerm }"
+                      bindValue="id"
+                      labelForId="service_id"
+                      [editableSearchTerm]="true"
+                      formControlName="service_id">
+                      <ng-template ng-label-tmp let-item="item">
+                        <div class="d-flex flex-row align-items-center">
+                          <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _serviceLogoBackground"></div>
+                          <!-- <img height="25" width="25" [src]="item | mapper: _serviceLogo" /> -->
+                          <span class="flex-shrink-1 ms-3">{{item.service_name}}</span>
+                        </div>
+                      </ng-template>
+                      <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                        <div class="d-flex flex-row align-items-center">
+                          <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _serviceLogoBackground"></div>
+                          <!-- <img height="25" width="25" [src]="item | mapper: _serviceLogo" /> -->
+                          <span class="flex-shrink-1 ms-3">{{item.service_name}}</span>
+                        </div>
+                      </ng-template>
+                    </ng-select>
+                    <!-- <input aria-required="true" autofocus="autofocus" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('service_id')" type="text" name="service_id" id="service_id" formControlName="service_id"> -->
+                    <p *ngIf="f['service_id'].invalid && (f['service_id'].dirty || f['service_id'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['service_id'].errors && f['service_id'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                    </p>
+                    <ui-input-help field="service_id" context="SERVICE"></ui-input-help>
+                  </div>
+                  <div class="mt-2" *ngIf="!_isEdit">
+                    <div class="d-flex flex-row align-items-center">
+                      <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="service.service | mapper: _serviceLogoBackground"></div>
+                      <span class="flex-shrink-1 ms-3">{{service.service?.service_name}}</span>
+                    </div>
+                    <!-- <input type="text" readonly class="form-control-plaintext" id="service_id" [value]="service?.service_name"> -->
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="label-bold" for="template_id">
+                    <span>{{ 'APP.LABEL.Template' | translate }} </span><span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'template_id'" *ngIf="_isEdit"></span><span class="ms-2" (click)="openTemplateInfo()" [class.d-none]="!template?.name && !_hasControlValue('template_id')"><i class="bi bi-info-circle"></i></span>
+                  </label>
+                  <div class="" *ngIf="_isEdit">
+                    <ng-select class="" [class.gl-field-error-outline]="_hasControlError('template_id')"
+                      [items]="templates$ | async"
+                      [trackByFn]="trackByFn"
+                      [typeahead]="templatesInput$"
+                      [minTermLength]="minLengthTerm" 
+                      [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+                      [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{ lengthTerm: minLengthTerm }"
+                      bindValue="id"
+                      bindLabel="name"
+                      labelForId="template_id"
+                      [editableSearchTerm]="true"
+                      formControlName="template_id">
+                      <ng-template ng-label-tmp let-item="item">
+                        {{ item.name }}
+                      </ng-template>
+                      <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                        <div class="fw-bold">{{ item.name }}</div>
+                        <div class="">
+                          <span class="small text-muted">{{ item.description }}</span>
+                        </div>
+                      </ng-template>
+                    </ng-select>
+                    <p *ngIf="f['template_id'].invalid && (f['template_id'].dirty || f['template_id'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['template_id'].errors && f['template_id'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                      <span *ngIf="f['template_id'].errors && f['template_id'].errors['pattern']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Servicetemplate_id' | translate }}</span>
+                    </p>
+                    <ui-input-help field="template_id" context="SERVICE"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input type="text" readonly class="form-control-plaintext" id="template_id" [value]="service.template?.name">
+                  </div>
+                </div>
+                <div class="form-group mt-5">
+                  <label class="label-bold" for="apiKey">{{ 'APP.LABEL.ApiKey' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'apiKey'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <input aria-required="true" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('apiKey')" type="text" name="apiKey" id="apiKey" formControlName="apiKey">
+                    <p *ngIf="f['apiKey'].invalid && (f['apiKey'].dirty || f['apiKey'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['apiKey'].errors && f['apiKey'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                      <span *ngIf="f['apiKey'].errors && f['apiKey'].errors['pattern']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.ServiceapiKey' | translate }}</span>
+                    </p>
+                    <ui-input-help field="apiKey" context="SERVICE"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input type="text" readonly class="form-control-plaintext" id="apiKey" [value]="service.apiKey">
+                  </div>
+                </div>
+                <div class="row mt-5 enabled">
+                  <div class="col-md-6">
+                    <div class="" *ngIf="_isEdit">
+                      <div class="gl-form-checkbox custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="enabled" id="enabled" formControlName="enabled">
+                        <label class="custom-control-label" for="enabled">
+                          <span>{{ 'APP.LABEL.Enabled' | translate }}</span> <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'enabled'" *ngIf="_isEdit"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="" *ngIf="!_isEdit">
+                      <div class="gl-form-checkbox custom-control custom-checkbox">
+                        <input autofocus="autofocus" class="custom-control-input" type="checkbox" name="enabled" id="enabled" [checked]="service.enabled" disabled>
+                        <label class="custom-control-label text-dark" for="enabled">
+                          <span>{{ 'APP.LABEL.Enabled' | translate }}</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gl-alert gl-alert-danger col-md-12 mt-3" *ngIf="_isEdit && _error">
+              {{ _errorMsg }}
+            </div>
+
+            <div class="row-content-block footer-block" *ngIf="_isEdit">
+              <button aria-label="Save" type="submit" class="gl-button btn btn-confirm gl-mr-2" [disabled]="_formGroup.invalid">
+                {{ 'APP.BUTTON.Save' | translate }}
+              </button>
+              <button aria-label="Cancel" type="button" class="btn gl-button btn-default" (click)="_onCancelEdit()">
+                {{ 'APP.BUTTON.Cancel' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<ng-template #templateInfo>
+  <div class="modal-content">
+    <div class="modal-header pb-2">
+      <h5 class="modal-title pull-left">{{ 'APP.TITLE.Template' | translate }}</h5>
+      <button type="button" class="btn btn-default btn-md gl-tertiary pull-right p-0" aria-label="Close" (click)="closeModal()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="p-3">
+        <div class="view-template" style="min-height: 150px;">
+          <app-template-view
+            [id]="_isEdit ? f['template_id'].value : service.template_id"
+            [config]="templateConfig">
+          </app-template-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

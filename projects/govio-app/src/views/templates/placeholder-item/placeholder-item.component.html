@@ -1,0 +1,168 @@
+<div class="border-2 border-success" [class.border]="_isEdit">
+  <div class="d-flex align-items-center" *ngIf="data?._embedded && !_isEdit">
+    <!-- <div class="text-center me-3 placeholder-drag-handle" cdkDragHandle>
+      <i class="bi-grip-vertical"></i><span class="mt-0 mb-1">{{ data.position }}</span>
+    </div> -->
+    <div class="flex-grow-1">
+      <!-- <p class="mt-0 mb-1 fw-bold">{{ data._embedded.placeholder.name }}</p>
+      <small>{{ data._embedded.placeholder.description }}</small> -->
+      <ui-item-row class="item-row-small"
+        [data]="_dataSrc"
+        [config]="config"
+        [configRow]="'itemRowAlt'"
+        [hasLink]="false">
+      </ui-item-row>
+      <div class="d-block d-md-none">
+        <span class="badge rounded-pill text-bg-dark" *ngIf="data.mandatory">{{ 'APP.LABEL.Mandatory' | translate }}</span>
+      </div>
+    </div>
+    <div class="text-start position-relative pe-5 d-none d-md-block">
+      <!-- <i class="bi-exclamation-circle-fill text-primary smaller-" *ngIf="data.mandatory" [tooltip]="'APP.TOOLTIP.Mandatory' | translate" placement="left"></i> -->
+      <span class="badge rounded-pill text-bg-dark" *ngIf="data.mandatory">{{ 'APP.LABEL.Mandatory' | translate }}</span>
+    </div>
+    <div class="ms-3 text-end" *ngIf="editable">
+      <div class="btn-group">
+        <!-- <button type="button" class="btn btn-default btn-md gl-button btn-icon" (click)="_onEdit($event)">
+          <i class="bi bi-pencil"></i>
+        </button> -->
+        <button type="button" class="btn btn-default btn-md gl-button btn-icon" (click)="_onDelete($event)">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="border-2 px-3 py-3 position-relative" *ngIf="_isNew && !_isNewPlaceholder">
+    <div class="position-absolute top-0 end-0" (click)="_onCloseEdit($event)">
+      <button type="button" class="close"><i class="bi bi-x"></i></button>
+    </div>
+    <form novalidate class="gl-show-field-errors form-sm" [class.form-readonly]="!_isEdit" [formGroup]="_formGroup" (submit)="_onSubmit(_formGroup.value)">
+      <div class="row row-cols-lg-auto align-items-center">
+        <div class="col-2" *ngIf="showPosition">
+          <div class="form-group position mb-0">
+            <label class="label-bold visually-hidden-" for="position">{{ 'APP.LABEL.Position' | translate }}</label>
+            <input autofocus="autofocus" autocomplete="off" class="form-control" type="text" name="position" id="position" formControlName="position" [placeholder]="'APP.LABEL.Position' | translate">
+          </div>
+        </div>
+        <div [class.col-7]="showPosition" [class.col-9]="!showPosition">
+          <div class="form-group position mb-0 w-100">
+            <label class="label-bold visually-hidden-" for="placeholderId">{{ 'APP.LABEL.Placeholder' | translate }}</label>
+            <!-- <input autofocus="autofocus" autocomplete="off" class="form-control" type="text" name="placeholderId" id="placeholderId" formControlName="placeholderId" [placeholder]="'APP.LABEL.Placeholder' | translate"> -->
+            <ng-select class="select-custom"
+              [items]="placeholders$ | async"
+              [trackByFn]="trackByFn"
+              [typeahead]="placeholdersInput$"
+              [minTermLength]="minLengthTerm" 
+              [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+              [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{lengthTerm: minLengthTerm}"
+              bindLabel="description"
+              bindValue="id"
+              [editableSearchTerm]="true"
+              formControlName="placeholderId">
+              <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                <div class="fw-bold">{{ item.description }}</div>
+                <div class="">
+                  <span class="small text-muted">{{ item.name }}</span>
+                </div>
+              </ng-template>
+            </ng-select>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group position mb-0">
+            <label class="label-bold visually-hidden-" for="placeholderId">&nbsp;</label>
+            <div class="gl-form-checkbox custom-control custom-checkbox mandatory">
+              <label class="label-bold visually-hidden-" for="mandatory">&nbsp;</label>
+              <input class="custom-control-input" type="checkbox" name="mandatory" id="mandatory" formControlName="mandatory">
+              <label class="custom-control-label" for="mandatory">
+                <span>{{ 'APP.LABEL.Mandatory' | translate }}</span>
+              </label>
+            </div>  
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-alert gl-alert-danger mt-3 p-3" *ngIf="_isEdit && _error">
+        {{ _errorMsg }}
+      </div>
+
+      <div class="row-content-block footer-block text-end mt-1- py-2">
+        <button aria-label="Create" class="gl-button btn btn-sm btn-default gl-mr-3" (click)="_newPlaceholder()" *ngIf="!data">
+          {{ 'APP.BUTTON.CreateNewPlaceholder' | translate }}
+        </button>
+        <button aria-label="Save" type="submit" class="gl-button btn btn-sm btn-confirm gl-mr-2" [disabled]="_formGroup.invalid">
+          {{ 'APP.BUTTON.Save' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="border-2 px-3 py-3 position-relative" *ngIf="_isNewPlaceholder">
+    <div class="position-absolute top-0 end-0" (click)="_onCloseNewPlaceholder($event)">
+      <button type="button" class="close"><i class="bi bi-x"></i></button>
+    </div>
+    <form novalidate class="gl-show-field-errors form-sm" [class.form-readonly]="!_isEdit" [formGroup]="_formGroupPlaceholder" (submit)="_onSubmitPlaceholder(_formGroupPlaceholder.value)">
+      <div class="row row-cols-lg-auto align-items-center">
+        <div class="col-lg-12">
+          <div class="form-group name">
+            <label class="label-bold" for="name">{{ 'APP.LABEL.Name' | translate }}</label>
+            <input aria-required="true" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('name')" type="text" name="nameg" id="name" formControlName="name">
+            <p *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)" class="form-text text-danger">
+              <span *ngIf="f['name'].errors && f['name'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+            </p>
+          </div>
+          <div class="form-group description">
+            <label class="label-bold" for="description">{{ 'APP.LABEL.Description' | translate }}</label>
+            <input aria-required="true" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('description')" type="text" name="description" id="description" formControlName="description">
+            <p *ngIf="f['description'].invalid && (f['description'].dirty || f['description'].touched)" class="form-text text-danger">
+              <span *ngIf="f['description'].errors && f['description'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+            </p>
+          </div>
+          <div class="form-group example">
+            <label class="label-bold" for="example">{{ 'APP.LABEL.Example' | translate }}</label>
+            <textarea aria-required="true" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('example')" name="example" id="example" formControlName="example" rows="5"></textarea>
+            <p *ngIf="f['example'].invalid && (f['example'].dirty || f['example'].touched)" class="form-text text-danger">
+              <span *ngIf="f['example'].errors && f['example'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+            </p>
+          </div>
+          <div class="form-group type">
+            <label class="label-bold" for="type">{{ 'APP.LABEL.Type' | translate }}</label>
+            <select class="form-select form-control-sm" id="type" formControlName="type" [class.gl-field-error-outline]="_hasControlError('type')">
+              <option *ngFor="let pt of placeholderTypes" [value]="pt.value">{{ pt.label }}</option>
+            </select>
+            <p *ngIf="f['name'].invalid && (f['type'].dirty || f['type'].touched)" class="form-text text-danger">
+              <span *ngIf="f['type'].errors && f['type'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+            </p>
+          </div>
+          <div class="form-group pattern" *ngIf="f['type'] && (f['type'].value == 'STRING')">
+            <label class="label-bold" for="pattern">{{ 'APP.LABEL.Pattern' | translate }}</label>
+            <input aria-required="true" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('pattern')" type="text" name="pattern" id="pattern" formControlName="pattern">
+            <p *ngIf="f['pattern'].invalid && (f['pattern'].dirty || f['pattern'].touched)" class="form-text text-danger">
+              <span *ngIf="f['pattern'].errors && f['pattern'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+            </p>
+          </div>
+          <div class="form-group mandatory mb-0">
+            <div class="gl-form-checkbox custom-control custom-checkbox mandatory">
+              <input class="custom-control-input" type="checkbox" name="mandatory" id="mandatory" formControlName="mandatory">
+              <label class="custom-control-label" for="mandatory">
+                <span>{{ 'APP.LABEL.Mandatory' | translate }}</span>
+              </label>
+            </div>  
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-alert gl-alert-danger mt-3 p-3" *ngIf="_isEdit && _error">
+        {{ _errorMsg }}
+      </div>
+
+      <div class="row-content-block footer-block text-end mt-1 py-2">
+        <button aria-label="Assign" class="gl-button btn btn-sm btn-default gl-mr-3" (click)="_onEdit($event)" *ngIf="!data">
+          {{ 'APP.BUTTON.AssignPlaceholder' | translate }}
+        </button>
+        <button aria-label="Save" type="submit" class="gl-button btn btn-sm btn-confirm gl-mr-2" [disabled]="_formGroupPlaceholder.invalid || _savingPlaceHolder">
+          <span>{{ 'APP.BUTTON.SaveNewPlaceholder' | translate }}</span>
+          <span class="spinner-border spinner-border-sm text-primary ms-3" *ngIf="_savingPlaceHolder"></span> 
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,193 @@
+<div id="route-section" class="">
+  <div class="alert-wrapper gp-force-block-formatting-context">
+    <ui-breadcrumb [breadcrumbs]="breadcrumbs" [classContainer]="'limit-container-width'" (onClick)="onBreadcrumb($event)"></ui-breadcrumb>
+  </div>
+  <div class="top-area container-fluid container-limited limit-container-width px-0">
+    <h3 class="page-title" *ngIf="_isEdit && !_isNew">{{ 'APP.TITLE.EditTemplate' | translate }}</h3>
+    <h3 class="page-title" *ngIf="_isEdit && _isNew">{{ 'APP.TITLE.NewTemplate' | translate }}</h3>
+    <div class="d-flex flex-grow-1">&nbsp;</div>
+    <!-- <ng-template [appHasPermission]="'SETTINGS'" [action]="'edit'"> -->
+      <div class="nav-controls">
+        <div class="position-relative d-inline-block" *ngIf="!_isEdit && !_spin">
+          <button aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-icon" [tooltip]="'APP.TOOLTIP.EditTemplate' | translate" (click)="_editTemplate()" placement="left">
+            <i class="bi bi-pencil"></i>
+          </button>
+        </div>
+        <!-- <ng-template [appHasPermission]="'SETTINGS'" [action]="'delete'"> -->
+          <!-- <div role="group" class="btn-group- ms-1 d-inline-block" *ngIf="!_isEdit && !_spin">
+            <div class="dropdown b-dropdown gl-new-dropdown btn-group" id="actions">
+              <button aria-haspopup="true" aria-expanded="false" type="button" class="btn dropdown-toggle btn-default btn-md gl-button gl-dropdown-toggle btn-default-tertiary dropdown-icon-only dropdown-toggle-no-caret" data-bs-toggle="dropdown" data-bs-display="static" id="other_actions">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul role="menu" tabindex="-1" class="dropdown-menu dropdown-menu-end" aria-labelledby="sort_toggle">
+                <div class="gl-new-dropdown-inner">
+                  <div class="gl-new-dropdown-contents">
+                    <li role="presentation" class="gl-new-dropdown-item">
+                      <button role="menuitem" type="button" class="dropdown-item" (click)="_deleteTemplate()">
+                        <div class="gl-icon s16 gl-new-dropdown-item-check-icon gl-mt-3 gl-align-self-start">
+                          <i class="bi bi-trash text-danger"></i>
+                        </div>
+                        <div class="gl-new-dropdown-item-text-wrapper">
+                          <p class="gl-new-dropdown-item-text-primary">{{ 'APP.MENU.DeleteTemplate' | translate }}</p>
+                        </div>
+                      </button>
+                    </li>
+                  </div>
+                </div>
+              </ul>
+            </div>
+          </div> -->
+        <!-- </ng-template> -->
+        <div role="group" class="gl-w-full btn-group- position-relative" *ngIf="_isEdit && !_spin">
+          <button aria-haspopup="true" aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-default-tertiary ms-2" [tooltip]="(_isNew ? 'APP.TOOLTIP.CancelNew' : 'APP.TOOLTIP.CancelEdit') | translate" (click)="_onCancelEdit()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+    <!-- </ng-template> -->
+  </div>
+  <section class="container-fluid container-limited limit-container-width container-scroller container-scroller-no-search">
+    <ui-box-spinner [color]="'accent'" [diameter]="48" [strokeWidth]="4" *ngIf="_spin && !_isNew"></ui-box-spinner>
+    <ui-box-message *ngIf="!template && !_spin && !_isNew"
+      [image]="'./assets/images/illustrations/no-data.svg'"
+      [message]="'APP.MESSAGE.NoData' | translate"
+      [subMessage]="'APP.MESSAGE.NoDataHelp' | translate">
+    </ui-box-message>
+
+    <div class="settings" *ngIf="(template && !_spin) || _isNew">
+      <div class="settings-content">
+        <div class="gl-alert gl-alert-danger col-md-12 mb-5" *ngIf="!_isEdit && _error">
+          {{ _errorMsg }}
+        </div>
+        <div class="edit-form">
+          <form novalidate class="issue-form common-note-form mt-3 gl-show-field-errors gfm-form" [class.form-readonly]="!_isEdit" [formGroup]="_formGroup" (submit)="_onSubmit(_formGroup.value)">
+            <div class="row gl-mt-3">
+              <div class="col-lg-4 mb-4">
+                <h4 class="gl-mt-0 text-break">{{ 'APP.TEMPLATES.TITLE.GeneralInformations' | translate }}</h4>
+                <div class="text-break" markdown>{{ 'APP.TEMPLATES.TITLE.GeneralInformations_sub' | translate }}</div>
+              </div>
+              <div class="col-lg-8">
+                <div class="form-group name">
+                  <label class="label-bold" for="name">{{ 'APP.LABEL.Name' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'name'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <input aria-required="true" autofocus="autofocus" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('name')" type="text" name="name" id="name" formControlName="name">
+                    <p *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['name'].errors && f['name'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                      <span *ngIf="f['name'].errors && f['name'].errors['maxlength']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.NameMaxLength' | translate: { length: f['name'].errors['maxlength'].requiredLength } }}</span>
+                    </p>
+                    <ui-input-help field="name" context="TEMPLATE"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input type="text" readonly class="form-control-plaintext" id="name" [value]="template.name">
+                  </div>
+                </div>
+                <div class="form-group description">
+                  <label class="label-bold" for="description">{{ 'APP.LABEL.Description' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'description'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <input aria-required="true" autofocus="autofocus" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('description')" type="text" name="description" id="description" formControlName="description">
+                    <p *ngIf="f['description'].invalid && (f['description'].dirty || f['description'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['description'].errors && f['description'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                      <span *ngIf="f['description'].errors && f['description'].errors['pattern']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Templatedescription' | translate }}</span>
+                    </p>
+                    <ui-input-help field="description" context="TEMPLATE"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input type="text" readonly class="form-control-plaintext" id="description" [value]="template.description">
+                  </div>
+                </div>
+                <div class="form-group subject">
+                  <label class="label-bold" for="subject">{{ 'APP.LABEL.Subject' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'subject'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <input aria-required="true" autofocus="autofocus" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('subject')" type="text" name="subject" id="subject" formControlName="subject">
+                    <p *ngIf="f['subject'].invalid && (f['subject'].dirty || f['subject'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['subject'].errors && f['subject'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                    </p>
+                    <ui-input-help field="subject" context="TEMPLATE"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input type="text" readonly class="form-control-plaintext" id="subject" [value]="template.subject">
+                  </div>
+                </div>
+                <div class="form-group message_body">
+                  <label class="label-bold" for="message_body">{{ 'APP.LABEL.MessageBody' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'message_body'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <textarea aria-required="true" autofocus="autofocus" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('message_body')" type="text" name="message_body" id="message_body" formControlName="message_body" rows="9"></textarea>
+                    <p *ngIf="f['message_body'].invalid && (f['message_body'].dirty || f['message_body'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['message_body'].errors && f['message_body'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                    </p>
+                    <ui-input-help field="message_body" context="TEMPLATE"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <textarea type="text" readonly class="form-control-plaintext" id="message_body" [value]="template.message_body" rows="9"></textarea>
+                  </div>
+                </div>
+                <div class="row mt-5 has_payment has_due_date">
+                  <div class="col-md-6">
+                    <div class="" *ngIf="_isEdit">
+                      <div class="gl-form-checkbox custom-control custom-checkbox has_payment">
+                        <input autofocus="autofocus" class="custom-control-input" type="checkbox" name="has_payment" id="has_payment" formControlName="has_payment">
+                        <label class="custom-control-label" for="has_payment">
+                          <span>{{ 'APP.LABEL.HasPayment' | translate }}</span> <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'has_payment'" *ngIf="_isEdit"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="" *ngIf="!_isEdit">
+                      <div class="gl-form-checkbox custom-control custom-checkbox has_payment">
+                        <input autofocus="autofocus" class="custom-control-input" type="checkbox" name="has_payment" id="has_payment" [checked]="template.has_payment" disabled>
+                        <label class="custom-control-label text-dark" for="has_payment">
+                          <span>{{ 'APP.LABEL.HasPayment' | translate }}</span> 
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="" *ngIf="_isEdit">
+                      <div class="gl-form-checkbox custom-control custom-checkbox has_due_date">
+                        <input autofocus="autofocus" class="custom-control-input" type="checkbox" name="has_due_date" id="has_due_date" formControlName="has_due_date">
+                        <label class="custom-control-label" for="has_due_date">
+                          <span>{{ 'APP.LABEL.HasDueDate' | translate }}</span> <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'HasDueDate'" *ngIf="_isEdit"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="" *ngIf="!_isEdit">
+                      <div class="gl-form-checkbox custom-control custom-checkbox has_due_date">
+                        <input autofocus="autofocus" class="custom-control-input" type="checkbox" name="has_due_date" id="has_due_date" [checked]="template.has_due_date" disabled>
+                        <label class="custom-control-label text-dark" for="has_due_date">
+                          <span>{{ 'APP.LABEL.HasDueDate' | translate }}</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gl-alert gl-alert-danger col-md-12 mt-3" *ngIf="_isEdit && _error">
+              {{ _errorMsg }}
+            </div>
+
+            <div class="row-content-block footer-block" *ngIf="_isEdit">
+              <button aria-label="Save" type="submit" class="gl-button btn btn-confirm gl-mr-2" [disabled]="_formGroup.invalid">
+                {{ 'APP.BUTTON.Save' | translate }}
+              </button>
+              <button aria-label="Cancel" type="button" class="btn gl-button btn-default" (click)="_onCancelEdit()">
+                {{ 'APP.BUTTON.Cancel' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="settings border-top mt-3" *ngIf="!_isNew">
+        <div class="row gl-mt-5 PLACEHOLDERS">
+          <div class="col-lg-4 mb-4">
+            <h4 class="gl-mt-0 text-break">{{ 'APP.TEMPLATES.TITLE.Placeholders' | translate }}</h4>
+            <div class="text-break" markdown>{{ 'APP.TEMPLATES.TITLE.Placeholders_sub' | translate }}</div>
+          </div>
+          <div class="col-lg-8">
+            <app-template-placeholders [id]="id"></app-template-placeholders>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

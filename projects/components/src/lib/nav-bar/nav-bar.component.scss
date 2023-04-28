@@ -1,0 +1,103 @@
+// dense
+:host {
+  display: block;
+  position: relative;
+  // padding: .7rem 0;
+  // min-height: 4rem;
+  color: var(--app-bar-color, #000);
+  background-color: var(--app-bar-background-color, #aaa);
+}
+
+:host(.contextual) {
+  color: var(--contextual-bar-color, #fff);
+  background-color: var(--contextual-bar-background-color, #000);
+}
+
+:host link-fab-extended.action-bar {
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  z-index: 3;
+}
+
+@media (min-width: 576px) {
+  :host link-fab-extended.action-bar {
+    position: absolute;
+    bottom: -24px;
+    left: 15px;
+    right: auto;
+  }
+}
+
+:host(.prominent) {
+  padding: .75rem 0 0 0;
+}
+
+.nav-toolbar h2,
+.nav-toolbar .second-row h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  white-space: normal;
+  max-height: 4.5rem;
+  overflow: hidden;
+}
+
+.nav-toolbar .second-row h2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.nav-toolbar h2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nav-toolbar .second-row {
+  padding: 0 0 3rem 5.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.context-bar {
+  padding: .25rem 1rem;
+  color: var(--context-bar-color, #fff);
+  background-color: var(--context-bar-background-color, #000);
+}
+
+.context-message {
+  position: relative;
+  bottom: -.83125rem;
+  padding: 1.5rem 1rem;
+  background-color: var(--context-message-bar-background-color, #fff);
+}
+
+.context-message p,
+.context-message .material-icons {
+  color: var(--context-message-bar-color, #000);
+}
+
+.action-menu-item.divider:nth-child(n) + .action-menu-item.divider:nth-child(n+1),
+.action-menu-item:last-of-type > .mat-divider,
+.action-menu-item:first-of-type > .mat-divider {
+  display: none;
+}
+
+.context-bar mat-chip[type=button][disabled=true] {
+  cursor: default;
+}
+
+.context-bar mat-chip.mat-chip.mat-standard-chip.mat-chip-selected.mat-accent {
+  background-color: var(--twin-context-action-color, #ccc);
+  color: var(--context-message-bar-color, #000);
+}
+
+.context-bar mat-chip.mat-chip.mat-standard-chip::after {
+  background: var(--twin-context-action-color, #ccc);
+}
+.context-bar mat-chip.mat-chip.mat-standard-chip:not(.mat-chip-disabled):active {
+  box-shadow: none;
+}

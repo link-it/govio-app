@@ -1,0 +1,19 @@
+@import 'app-material-variables-link';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+$custom-typography: mat-typography-config(
+  $font-family: '"Titillium Web", sans-serif',
+  $title: mat-typography-level(24px, 24px, normal, '"Titillium Web", sans-serif'),
+  $subheading-2: mat-typography-level(18px, 20px, normal),
+  $button: mat-typography-level(14px, 18px, normal, '"Titillium Web", sans-serif'),
+  $body-1: mat-typography-level(14px, 18px, 400),
+  $input: mat-typography-level(inherit, 1.6, 400)
+);
+@include mat-core($custom-typography);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($link-theme);

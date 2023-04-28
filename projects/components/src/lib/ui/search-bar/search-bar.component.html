@@ -1,0 +1,327 @@
+<div class="filtered-search-bar-container gl-md-display-flex gl-flex-grow-1 gl-border-t-none row-content-block {{ classBlock }}">
+  <div class="gl-search-box-by-click flex-grow-1 filtered-search-input" *ngIf="showSearch">
+    <div role="group" class="input-group">
+      <div class="" [class.input-group-prepend]="showHistory" *ngIf="showHistory">
+        <div class="dropdown b-dropdown gl-new-dropdown gl-search-box-by-click-history btn-group" id="history">
+          <button id="history_toggle" aria-haspopup="true" aria-expanded="false" type="button" data-bs-toggle="dropdown" data-bs-display="static" class="btn dropdown-toggle btn-default btn-md gl-button gl-dropdown-toggle btn-default-secondary">
+            <mat-icon fontSet="material-icons-outlined">history</mat-icon>
+            <mat-icon fontSet="material-icons-outlined">expand_more</mat-icon>
+            <span class="gl-sr-only">Toggle history</span>
+          </button>
+          <ul role="menu" tabindex="-1" class="dropdown-menu gl-search-box-by-click-menu" aria-labelledby="history_toggle">
+            <div class="gl-new-dropdown-inner">
+              <div class="gl-new-dropdown-contents">
+                <li role="presentation" class="gl-new-dropdown-text gl-search-box-by-click-history-header">
+                  <p class="b-dropdown-text">
+                    Recent searches
+                    <button title="Close" aria-label="Close" name="close" type="button" class="btn btn-sm gl-search-box-by-click-close-history-button btn-default btn-md gl-button btn-default-tertiary btn-icon">
+                      <mat-icon fontSet="material-icons-outlined" class="fs-6">close</mat-icon>
+                    </button>
+                  </p>
+                </li>
+                <li role="presentation" class="gl-new-dropdown-divider">
+                  <hr role="separator" aria-orientation="horizontal" class="dropdown-divider">
+                </li>
+                <li role="presentation" class="gl-new-dropdown-item gl-search-box-by-click-history-item">
+                  <button role="menuitem" type="button" class="dropdown-item">
+                    <div class="gl-new-dropdown-item-text-wrapper">
+                      <p class="gl-new-dropdown-item-text-primary">
+                        <span class="gl-px-1"><strong>Vista</strong></span>
+                        <span class="gl-px-1"><strong></strong></span>
+                      </p>
+                    </div>
+                  </button></li>
+                <li role="presentation" class="gl-new-dropdown-item gl-search-box-by-click-history-item"><button
+                    role="menuitem" type="button" class="dropdown-item">
+                    <div class="gl-new-dropdown-item-text-wrapper">
+                      <p class="gl-new-dropdown-item-text-primary">
+                        <span class="gl-px-1">
+                          <span>Confidential :=</span><strong>Yes</strong>
+                        </span>
+                        <span class="gl-px-1">
+                          <span>Author :=</span><strong>fonzo</strong></span><span class="gl-px-1"><strong></strong>
+                        </span>
+                      </p>
+                    </div>
+                  </button></li>
+                <li role="presentation" class="gl-new-dropdown-divider">
+                  <hr role="separator" aria-orientation="horizontal" class="dropdown-divider">
+                </li>
+                <li role="presentation" class="gl-new-dropdown-item">
+                  <button role="menuitem" type="button" class="dropdown-item">
+                    <div class="gl-new-dropdown-item-text-wrapper">
+                      <p class="gl-new-dropdown-item-text-primary">Clear recent searches</p>
+                    </div>
+                  </button>
+                </li>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div class="gl-filtered-search-scrollable">
+        <div class="gl-filtered-search-token gl-filtered-search-item d-none" cursor-position="end" index="0">
+          <div class="gl-filtered-search-token-segment">
+            <span class="gl-filtered-search-token-type gl-token gl-token-default-variant gl-token-view-only gl-cursor-pointer">
+              <span class="gl-token-content">Assignee</span>
+            </span>
+          </div>
+          <div class="gl-filtered-search-token-segment">
+            <span class="gl-filtered-search-token-operator gl-token gl-token-search-value-variant gl-token-view-only gl-cursor-pointer">
+              <span class="gl-token-content">=</span>
+            </span>
+          </div>
+          <div class="gl-filtered-search-token-segment">
+            <span class="gl-filtered-search-token-data gl-token gl-token-search-value-variant gl-cursor-pointer">
+              <span class="gl-token-content">
+                <span class="gl-filtered-search-token-data-content">
+                  <img src="https://ui-avatars.com/api/?name=A+T&background=0D8ABC&color=fff" alt="avatar" class="gl-mr-2 gl-avatar gl-avatar-circle gl-avatar-s16">Alfonso Tatarelli
+                </span>
+                <button aria-label="Close" type="button" class="btn gl-token-close gl-close-btn-color-inherit btn-default btn-sm gl-button btn-default-tertiary btn-icon">
+                  <mat-icon fontSet="material-icons-outlined">close</mat-icon>
+                </button>
+              </span>
+            </span>
+          </div>
+        </div>
+        <div data-testid="filtered-search-term" class="gl-h-auto gl-filtered-search-term gl-filtered-search-item gl-filtered-search-last-item">
+          <div class="gl-filtered-search-token-segment gl-filtered-search-term-token gl-w-full">
+            <input [placeholder]="placeholder" [attr.aria-label]="placeholder" class="gl-filtered-search-term-input">
+          </div>
+        </div>
+      </div>
+      <button name="clear" title="Clear" aria-label="Clear" type="button" class="btn gl-clear-icon-button gl-search-box-by-click-icon-button gl-search-box-by-click-clear-button gl-clear-icon-button btn-default btn-sm gl-button btn-default-tertiary btn-icon d-none" (click)="_clearSearch()">
+        <div aria-hidden="true" class="gl-button-icon gl-icon s16">
+          <mat-icon fontSet="material-icons-outlined">cancel</mat-icon>
+        </div>
+      </button>
+      <div class="input-group-append">
+        <button aria-label="Search" type="button" class="btn gl-search-box-by-click-search-button btn-default btn-md gl-button btn-icon">
+          <mat-icon fontSet="material-icons-outlined">search</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div role="group" class="sort-dropdown-container d-flex btn-group" *ngIf="showSorting && sortFields?.length">
+    <div class="dropdown b-dropdown gl-new-dropdown w-100 btn-group" id="sort">
+      <button aria-haspopup="true" aria-expanded="false" type="button" class="btn dropdown-toggle btn-default btn-md gl-button gl-dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" id="sort_toggle">
+        <span class="gl-new-dropdown-button-text">{{ _getSortLabel(sortField) }}</span> <mat-icon fontSet="material-icons-outlined">expand_more</mat-icon>
+      </button>
+      <ul role="menu" tabindex="-1" class="dropdown-menu dropdown-menu-end" aria-labelledby="sort_toggle">
+        <div class="gl-new-dropdown-inner">
+          <div class="gl-new-dropdown-contents">
+            <li role="presentation" class="gl-new-dropdown-item" *ngFor="let field of sortFields">
+              <button role="menuitem" type="button" class="dropdown-item" (click)="_selectSort(field)">
+                <div class="gl-icon s16 gl-new-dropdown-item-check-icon gl-visibility-hidden gl-mt-3 gl-align-self-start">
+                  <mat-icon fontSet="material-icons-outlined" class="fs-6" *ngIf="field.field == sortField">check</mat-icon>
+                </div>
+                <div class="gl-new-dropdown-item-text-wrapper">
+                  <p class="gl-new-dropdown-item-text-primary">{{ field.label }}</p>
+                </div>
+              </button>
+            </li>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <button title="Sort direction: Descending" aria-label="Sort direction: Descending" type="button" class="btn flex-shrink-1 btn-default btn-md gl-button btn-icon" (click)="_toggleSortBy()" >
+      <mat-icon [svgIcon]="_isAscending() ? 'sort_ascending' : 'sort_descending'"></mat-icon>
+    </button>
+  </div>
+  <div class="d-flex flex-direction-column flex-direction-lg-row justify-content-between" *ngIf="showDataRange">
+    <div></div>
+    <div class="d-flex flex-direction-column flex-direction-lg-row">
+      <div class="d-flex flex-direction-column flex-direction-lg-row align-items-center justify-content-end js-daterange-picker">
+        <div class="daterange-picker d-flex flex-column flex-lg-row">
+          <div class="js-daterange-picker-from d-flex flex-direction-column flex-direction-lg-row align-items-center me-lg--3 mb-2 mb-lg-0">
+            <label class="mb-2 mb-lg-0">From</label>
+            <div class="datepicker d-inline-block">
+              <div class="position-relative">
+                <input type="text" placeholder="YYYY-MM-DD" class="form-input datepicker-input form-control pe-7!" data-testid="datepicker-input" aria-label="Enter date">
+                <div class="gl-datepicker-actions">
+                  <button aria-label="Open datepicker" type="button" class="btn btn-default btn-sm gl-button btn-default-tertiary btn-icon">
+                    <svg data-testid="calendar-icon" role="img" aria-hidden="true" class="gl-button-icon gl-icon s16">
+                      <use href="/assets/icons-5c01dc437925087e93b0195377a8db1030cb718c444d940346bb17723df00fd2.svg#calendar"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="pika-single datepicker-theme position-absolute animate-picker is-hidden is-bound" style="position: static; left: auto; top: auto;"></div>
+            </div>
+          </div>
+          <div class="js-daterange-picker-to d-flex flex-column flex-lg-row align-items-center mb-2 mb-lg-0">
+            <label class="mb-2 mb-lg-0">To</label>
+            <div class="datepicker d-inline-block">
+              <div class="position-relative">
+                <input type="text" placeholder="YYYY-MM-DD" class="form-input datepicker-input form-control pe-7!" data-testid="datepicker-input" aria-label="Enter date">
+                <div class="gl-datepicker-actions">
+                  <button aria-label="Open datepicker" type="button" class="btn btn-default btn-sm gl-button btn-default-tertiary btn-icon">
+                    <svg data-testid="calendar-icon" role="img" aria-hidden="true" class="gl-button-icon gl-icon s16">
+                      <use href="/assets/icons-5c01dc437925087e93b0195377a8db1030cb718c444d940346bb17723df00fd2.svg#calendar"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="pika-single datepicker-theme position-absolute animate-picker is-hidden is-bound" style="position: static; left: auto; top: auto;"></div>
+            </div>
+          </div>
+          <div data-testid="daterange-picker-indicator" class="d-flex flex-direction-row align-items-center text-gray-500 ms-2">30 days selected
+            <svg data-testid="information-o-icon" role="img" aria-hidden="true" class="ms-2 gl-icon s16" title="Showing data for workflow items created in this date range. Date range limited to 180 days.">
+              <use href="/assets/icons-5c01dc437925087e93b0195377a8db1030cb718c444d940346bb17723df00fd2.svg#information-o"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #dummy>
+  <div class="gl-filtered-search-scrollable">
+    <div data-testid="filtered-search-token" class="gl-filtered-search-token gl-filtered-search-item" cursor-position="end" available-tokens="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" current-value="[object Object],[object Object]" index="0" search-input-attributes="[object Object]">
+      <div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment">
+        <span class="gl-filtered-search-token-type gl-token gl-token-default-variant gl-token-view-only gl-cursor-pointer">
+          <span class="gl-token-content">Assignee</span>
+        </span>
+      </div>
+      <div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment">
+        <span class="gl-filtered-search-token-operator gl-token gl-token-search-value-variant gl-token-view-only gl-cursor-pointer">
+          <span class="gl-token-content">=</span>
+        </span>
+      </div>
+      <div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment">
+        <span class="gl-filtered-search-token-data gl-token gl-token-search-value-variant gl-cursor-pointer">
+          <span class="gl-token-content">
+            <span class="gl-filtered-search-token-data-content">
+              <img src="/uploads/-/system/user/avatar/27/avatar.png" alt="avatar" class="gl-mr-2 gl-avatar gl-avatar-circle gl-avatar-s16">Alfonso Tatarelli
+            </span>
+            <button aria-label="Close" type="button" class="btn gl-token-close gl-close-btn-color-inherit btn-default btn-sm gl-button btn-default-tertiary btn-icon">
+              <svg data-testid="close-icon" role="img" aria-hidden="true" class="gl-button-icon gl-icon s16"><use href="/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#close"></use>
+              </svg>
+            </button>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div data-testid="filtered-search-token" class="gl-filtered-search-token gl-filtered-search-item" cursor-position="end" available-tokens="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" current-value="[object Object],[object Object],[object Object]" index="1" search-input-attributes="[object Object]"><div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment"><span class="gl-filtered-search-token-type gl-token gl-token-default-variant gl-token-view-only gl-cursor-pointer"><span class="gl-token-content">
+          Milestone
+        <!----></span></span></div> <div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment"><span class="gl-filtered-search-token-operator gl-token gl-token-search-value-variant gl-token-view-only gl-cursor-pointer"><span class="gl-token-content">
+          =
+        <!----></span></span></div> <div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment"><span class="gl-filtered-search-token-data gl-token gl-token-search-value-variant gl-cursor-pointer"><span class="gl-token-content"><span class="gl-filtered-search-token-data-content">
+      %Any
+    </span> <button aria-label="Close" type="button" class="btn gl-token-close gl-close-btn-color-inherit btn-default btn-sm gl-button btn-default-tertiary btn-icon"><!----> <svg data-testid="close-icon" role="img" aria-hidden="true" class="gl-button-icon gl-icon s16"><use href="/assets/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#close"></use></svg>  <!----></button></span></span></div></div><div data-testid="filtered-search-token" class="gl-filtered-search-token gl-filtered-search-item" cursor-position="end" available-tokens="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" current-value="[object Object],[object Object],[object Object],[object Object]" index="2" search-input-attributes="[object Object]"><div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment"><span class="gl-filtered-search-token-type gl-token gl-token-default-variant gl-token-view-only gl-cursor-pointer"><span class="gl-token-content">
+          Author
+        <!----></span></span></div> <div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment"><span class="gl-filtered-search-token-operator gl-token gl-token-search-value-variant gl-token-view-only gl-cursor-pointer"><span class="gl-token-content">
+          =
+        <!----></span></span></div> <div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment"><span class="gl-filtered-search-token-data gl-token gl-token-search-value-variant gl-cursor-pointer"><span class="gl-token-content"><span class="gl-filtered-search-token-data-content"><img src="/uploads/-/system/user/avatar/27/avatar.png" alt="avatar" class="gl-mr-2 gl-avatar gl-avatar-circle gl-avatar-s16">
+      Alfonso Tatarelli
+    </span> <button aria-label="Close" type="button" class="btn gl-token-close gl-close-btn-color-inherit btn-default btn-sm gl-button btn-default-tertiary btn-icon"><!----> <svg data-testid="close-icon" role="img" aria-hidden="true" class="gl-button-icon gl-icon s16"><use href="/assets/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#close"></use></svg>  <!----></button></span></span></div></div><div data-testid="filtered-search-token" class="gl-filtered-search-token gl-filtered-search-item" cursor-position="end" available-tokens="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" current-value="[object Object],[object Object],[object Object],[object Object],[object Object]" index="3" search-input-attributes="[object Object]"><div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment"><span class="gl-filtered-search-token-type gl-token gl-token-default-variant gl-token-view-only gl-cursor-pointer"><span class="gl-token-content">
+          Milestone
+        <!----></span></span></div> <div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment"><span class="gl-filtered-search-token-operator gl-token gl-token-search-value-variant gl-token-view-only gl-cursor-pointer"><span class="gl-token-content">
+          !=
+        <!----></span></span></div> <div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment"><span class="gl-filtered-search-token-data gl-token gl-token-search-value-variant gl-cursor-pointer"><span class="gl-token-content"><span class="gl-filtered-search-token-data-content">
+      %Started
+    </span> <button aria-label="Close" type="button" class="btn gl-token-close gl-close-btn-color-inherit btn-default btn-sm gl-button btn-default-tertiary btn-icon"><!----> <svg data-testid="close-icon" role="img" aria-hidden="true" class="gl-button-icon gl-icon s16"><use href="/assets/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#close"></use></svg>  <!----></button></span></span></div></div><div data-testid="filtered-search-term" class="gl-h-auto gl-filtered-search-term gl-filtered-search-item gl-filtered-search-last-item"><div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment gl-filtered-search-term-token"></div></div></div>
+
+
+
+    <ul class="dropdown-menu gl-filtered-search-suggestion-list" style="transform: translateX(483px);">
+      <li role="presentation"
+        class="gl-new-dropdown-item gl-filtered-search-suggestion gl-filtered-search-suggestion-active"><a
+          data-testid="filtered-search-suggestion" role="menuitem" href="#" target="_self" class="dropdown-item">
+          <!----> <svg data-testid="pencil-icon" role="img" aria-hidden="true"
+            class="gl-icon s16 gl-new-dropdown-item-icon gl-text-gray-700">
+            <use href="/assets/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#pencil"></use>
+          </svg>
+          <!---->
+          <div class="gl-new-dropdown-item-text-wrapper">
+            <p class="gl-new-dropdown-item-text-primary"> Author </p>
+            <!---->
+          </div>
+          <!---->
+        </a></li>
+      <li role="presentation" class="gl-new-dropdown-item gl-filtered-search-suggestion"><a
+          data-testid="filtered-search-suggestion" role="menuitem" href="#" target="_self" class="dropdown-item">
+          <!----> <svg data-testid="eye-slash-icon" role="img" aria-hidden="true"
+            class="gl-icon s16 gl-new-dropdown-item-icon gl-text-gray-700">
+            <use href="/assets/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#eye-slash"></use>
+          </svg>
+          <!---->
+          <div class="gl-new-dropdown-item-text-wrapper">
+            <p class="gl-new-dropdown-item-text-primary"> Confidential </p>
+            <!---->
+          </div>
+          <!---->
+        </a></li>
+      <li role="presentation" class="gl-new-dropdown-item gl-filtered-search-suggestion"><a
+          data-testid="filtered-search-suggestion" role="menuitem" href="#" target="_self" class="dropdown-item">
+          <!----> <svg data-testid="labels-icon" role="img" aria-hidden="true"
+            class="gl-icon s16 gl-new-dropdown-item-icon gl-text-gray-700">
+            <use href="/assets/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#labels"></use>
+          </svg>
+          <!---->
+          <div class="gl-new-dropdown-item-text-wrapper">
+            <p class="gl-new-dropdown-item-text-primary"> Label </p>
+            <!---->
+          </div>
+          <!---->
+        </a></li>
+      <li role="presentation" class="gl-new-dropdown-item gl-filtered-search-suggestion"><a
+          data-testid="filtered-search-suggestion" role="menuitem" href="#" target="_self" class="dropdown-item">
+          <!----> <svg data-testid="clock-icon" role="img" aria-hidden="true"
+            class="gl-icon s16 gl-new-dropdown-item-icon gl-text-gray-700">
+            <use href="/assets/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#clock"></use>
+          </svg>
+          <!---->
+          <div class="gl-new-dropdown-item-text-wrapper">
+            <p class="gl-new-dropdown-item-text-primary"> Milestone </p>
+            <!---->
+          </div>
+          <!---->
+        </a></li>
+      <li role="presentation" class="gl-new-dropdown-item gl-filtered-search-suggestion"><a
+          data-testid="filtered-search-suggestion" role="menuitem" href="#" target="_self" class="dropdown-item">
+          <!----> <svg data-testid="thumb-up-icon" role="img" aria-hidden="true"
+            class="gl-icon s16 gl-new-dropdown-item-icon gl-text-gray-700">
+            <use href="/assets/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#thumb-up"></use>
+          </svg>
+          <!---->
+          <div class="gl-new-dropdown-item-text-wrapper">
+            <p class="gl-new-dropdown-item-text-primary"> My-Reaction </p>
+            <!---->
+          </div>
+          <!---->
+        </a></li>
+      <li role="presentation" class="gl-new-dropdown-item gl-filtered-search-suggestion"><a
+          data-testid="filtered-search-suggestion" role="menuitem" href="#" target="_self" class="dropdown-item">
+          <!----> <svg data-testid="rocket-icon" role="img" aria-hidden="true"
+            class="gl-icon s16 gl-new-dropdown-item-icon gl-text-gray-700">
+            <use href="/assets/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#rocket"></use>
+          </svg>
+          <!---->
+          <div class="gl-new-dropdown-item-text-wrapper">
+            <p class="gl-new-dropdown-item-text-primary"> Release </p>
+            <!---->
+          </div>
+          <!---->
+        </a></li>
+      <li role="presentation" class="gl-new-dropdown-item gl-filtered-search-suggestion"><a
+          data-testid="filtered-search-suggestion" role="menuitem" href="#" target="_self" class="dropdown-item">
+          <!----> <svg data-testid="issues-icon" role="img" aria-hidden="true"
+            class="gl-icon s16 gl-new-dropdown-item-icon gl-text-gray-700">
+            <use href="/assets/icons-f305926186cfc3bb530f27269d545937c385578ba62adb0088d74f0d2d02cb56.svg#issues"></use>
+          </svg>
+          <!---->
+          <div class="gl-new-dropdown-item-text-wrapper">
+            <p class="gl-new-dropdown-item-text-primary"> Type </p>
+            <!---->
+          </div>
+          <!---->
+        </a></li>
+    </ul>
+</ng-template>
+
+<!-- <div data-testid="filtered-search-token-segment" class="gl-filtered-search-token-segment gl-filtered-search-term-token gl-filtered-search-token-segment-active">
+  <input aria-label="Search" class="gl-filtered-search-token-segment-input">
+  <div class="v-portal" style="display: none;"></div>
+</div> -->
