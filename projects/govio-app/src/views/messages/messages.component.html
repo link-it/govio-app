@@ -38,31 +38,94 @@
             <form class="row" [formGroup]="_formGroup" (submit)="_onSubmit(_formGroup.value)">
               <fieldset>
                 <div class="row">
-                  <div class="form-group col-md-4 mb-2">
+                  <div class="form-group col-6 col-lg-4  mb-2">
                     <label class="label-bold mb-0" for="scheduled_expedition_date_from">{{ 'APP.LABEL.DateFrom' | translate }}</label>
                     <input class="form-control form-control-sm gl-form-input" id="scheduled_expedition_date_from" type="date" formControlName="scheduled_expedition_date_from" autocomplete="off">
                   </div>
-                  <div class="form-group col-md-4 mb-2">
+                  <div class="form-group col-6 col-lg-4 mb-2">
                     <label class="label-bold mb-0" for="scheduled_expedition_date_to">{{ 'APP.LABEL.DateTo' | translate }}</label>
                     <input class="form-control form-control-sm gl-form-input" id="scheduled_expedition_date_to" type="date" formControlName="scheduled_expedition_date_to" autocomplete="off">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group col-md-4 mb-2">
+                  <div class="form-group col-6 col-lg-4 mb-2">
                     <label class="label-bold mb-0" for="tax_code">{{ 'APP.LABEL.TaxCode' | translate }}</label>
                     <input class="form-control form-control-sm gl-form-input" id="tax_code" type="text" formControlName="tax_code" autocomplete="off">
                   </div>
-                  <div class="form-group col-md-4 mb-2">
+                  <div class="form-group col-6 col-lg-4 mb-2">
+                    <label class="label-bold mb-0" for="organization">{{ 'APP.LABEL.Organization' | translate }}</label>
+                    <ng-select class="" (click)="onSelectedSearchDropdwon($event)"
+                      [items]="organizations$ | async"
+                      [trackByFn]="trackBySelectFn"
+                      [typeahead]="organizationsInput$"
+                      [minTermLength]="minLengthTerm" 
+                      [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+                      [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{ lengthTerm: minLengthTerm }"
+                      labelForId="organization"
+                      [editableSearchTerm]="true"
+                      appendTo="body"
+                      formControlName="organization"
+                      (change)="onChangeSearchDropdwon($event)">
+                      <ng-template ng-label-tmp let-item="item">
+                        <div class="d-flex flex-row align-items-center">
+                          <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _orgLogoBackground"></div>
+                          <span class="flex-shrink-1 ms-3">{{ item.legal_name }}</span>
+                        </div>
+                      </ng-template>
+                      <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                        <div class="d-flex flex-row align-items-center">
+                          <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _orgLogoBackground"></div>
+                          <span class="flex-shrink-1 ms-3">{{ item.legal_name }}</span>
+                        </div>
+                      </ng-template>
+                    </ng-select>
+                  </div>
+                  <!-- <div class="form-group col-6 col-lg-4 mb-2">
                     <label class="label-bold mb-0" for="organization_q">{{ 'APP.LABEL.Organization' | translate }}</label>
                     <input class="form-control form-control-sm gl-form-input" id="organization_q" type="text" formControlName="organization_q" autocomplete="off">
-                  </div>
+                  </div> -->
                 </div>
                 <div class="row">
-                  <div class="form-group col-md-4 mb-2">
+                  <div class="form-group col-6 col-lg-4 mb-2">
+                    <label class="label-bold mb-0" for="service">{{ 'APP.LABEL.ServiceName' | translate }}</label>
+                    <ng-select class="" (click)="onSelectedSearchDropdwon($event)"
+                      [items]="services$ | async"
+                      [trackByFn]="trackBySelectFn"
+                      [typeahead]="servicesInput$"
+                      [minTermLength]="minLengthTerm" 
+                      [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+                      [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{ lengthTerm: minLengthTerm }"
+                      labelForId="service"
+                      [editableSearchTerm]="true"
+                      appendTo="body"
+                      formControlName="service"
+                      (selected)="onChangeSearchDropdwon($event)">
+                      <ng-template ng-label-tmp let-item="item">
+                        <div class="d-flex flex-row align-items-center">
+                          <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _serviceLogoBackground"></div>
+                          <span class="flex-shrink-1 ms-3">{{ item.service_name }}</span>
+                        </div>
+                      </ng-template>
+                      <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                        <div class="d-flex flex-row align-items-center">
+                          <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _serviceLogoBackground"></div>
+                          <span class="flex-shrink-1 ms-3">{{ item.service_name }}</span>
+                        </div>
+                      </ng-template>
+                    </ng-select>
+                  </div>
+                  <!-- <div class="form-group col-6 col-lg-4 mb-2">
                     <label class="label-bold mb-0" for="service_q">{{ 'APP.LABEL.ServiceName' | translate }}</label>
                     <input class="form-control form-control-sm gl-form-input" id="service_q" type="text" formControlName="service_q" autocomplete="off">
+                  </div> -->
+                  <div class="form-group col-6 col-lg-4 mb-2">
+                    <label class="label-bold mb-0" for="status">{{ 'APP.LABEL.Status' | translate }}</label>
+                    <select class="form-control form-control-sm" id="status" formControlName="status">
+                      <option value="">{{ 'APP.LABEL.All' | translate }}</option>
+                      <option *ngFor="let s of statusList" [value]="s.value">{{ s.label | translate }}</option>
+                    </select>
                   </div>
-                </div>
+              </div>
                 <button type="submit" class="d-none">hidden submit</button>
               </fieldset>
             </form>

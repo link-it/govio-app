@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
-import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -50,19 +49,17 @@ export class SearchBarFormComponent implements OnInit, OnChanges, AfterViewInit 
   config: any;
 
   _clickInside: boolean = false;
+  _notCloseForm: boolean = false;
 
   query: string = '';
 
   constructor(
-    private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     private translate: TranslateService,
     private configService: ConfigService
   ) {
     this.config = this.configService.getConfiguration();
     this._historyCount = this.config.AppConfig.Search.HistoryCount || this._historyCount;
-
-    // this._addIconsSvg();
   }
 
   ngOnInit() {
@@ -93,7 +90,7 @@ export class SearchBarFormComponent implements OnInit, OnChanges, AfterViewInit 
   @HostListener("document:click")
   clickedOut() {
     if (!this._clickInside) {
-      if (this._isOpen) {
+      if (this._isOpen && !this._notCloseForm) {
         this._isOpen = false;
         $("#form_toggle").dropdown('hide');
         // this._onSearch();
@@ -102,17 +99,8 @@ export class SearchBarFormComponent implements OnInit, OnChanges, AfterViewInit 
     this._clickInside = false;
   }
 
-  _addIconsSvg() {
-    const _svgIcons = [
-      { label: 'sort_ascending', icon: 'sort_ascending.svg' },
-      { label: 'sort_descending', icon: 'sort_descending.svg' }
-    ];
-    _svgIcons.forEach(item => {
-      this.matIconRegistry.addSvgIcon(
-        item.label,
-        this.domSanitizer.bypassSecurityTrustResourceUrl(`./assets/images/icons/${item.icon}`)
-      );
-    });
+  setNotCloseForm(value: boolean) {
+    this._notCloseForm = value;
   }
 
   _selectSort(item: any) {
@@ -141,7 +129,6 @@ export class SearchBarFormComponent implements OnInit, OnChanges, AfterViewInit 
       const _oldValues = this._currentValues;
       this._currentValues = this.formGroup.value;
       this._tokens = this.__createTokens();
-      this.onSearch.emit(this._currentValues);
       if (_oldValues !== this._currentValues) {
         if (!this.__isEmptyValues(this._currentValues) && save) {
           this._addHistory(this._currentValues);
@@ -151,6 +138,7 @@ export class SearchBarFormComponent implements OnInit, OnChanges, AfterViewInit 
           this._pinLastSearch();
         }
       }
+      this.onSearch.emit(this._currentValues);
       if (this._tokens.length > 0) { this._placeholder = ''; }
       if (this._isOpen && close) {
         this._closeSearchDropDpwn(null);
@@ -241,6 +229,9 @@ export class SearchBarFormComponent implements OnInit, OnChanges, AfterViewInit 
         break;
       case 'date':
         _value = moment(value.valueOf()).format(_field.format);
+        break;
+      case 'object':
+        _value = value[_field.data.label];
         break;
       default:
         break;

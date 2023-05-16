@@ -15,6 +15,9 @@ import { OpenAPIService } from 'projects/govio-app/src/services/openAPI.service'
 
 import { SearchBarFormComponent } from 'projects/components/src/lib/ui/search-bar-form/search-bar-form.component';
 
+import { concat, Observable, of, Subject, throwError } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, map, mergeMap, startWith, switchMap, tap } from 'rxjs/operators';
+
 import moment from 'moment';
 
 @Component({
@@ -42,7 +45,7 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
 
   _hasFilter: boolean = true;
   _formGroup: UntypedFormGroup = new UntypedFormGroup({});
-  _filterData: any[] = [];
+  _filterData: any = {};
 
   _preventMultiCall: boolean = false;
 
@@ -76,12 +79,69 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
     { field: 'scheduled_expedition_date_to', label: 'APP.LABEL.ScheduledExpeditionDate', type: 'date', condition: 'lt', format: 'DD/MM/YYYY' },
     { field: 'tax_code', label: 'APP.LABEL.TaxCode', type: 'string', condition: 'like' },
     { field: 'organization_q', label: 'APP.LABEL.Organization', type: 'string', condition: 'like' },
-    { field: 'service_q', label: 'APP.LABEL.ServiceName', type: 'text', condition: 'like' }
+    { field: 'service_q', label: 'APP.LABEL.ServiceName', type: 'text', condition: 'like' },
+    { field: 'organization_id', label: 'APP.LABEL.Organization', type: 'text', condition: 'equal' },
+    { field: 'organization', label: 'APP.LABEL.Organization', type: 'object', condition: 'equal',
+      data: { value: 'id', label: 'legal_name' }
+    },
+    { field: 'service_id', label: 'APP.LABEL.ServiceName', type: 'text', condition: 'equal' },
+    { field: 'service', label: 'APP.LABEL.ServiceName', type: 'object', condition: 'equal',
+      data: { value: 'id', label: 'service_name' }
+    },
+    { field: 'status', label: 'APP.LABEL.Status', type: 'enum', condition: 'equal',
+      enumValues: { 
+        'SCHEDULED': 'APP.STATUS.SCHEDULED',
+        'PROCESSED': 'APP.STATUS.PROCESSED',
+        'THROTTLED': 'APP.STATUS.THROTTLED',
+        'RECIPIENT_ALLOWED': 'APP.STATUS.RECIPIENT_ALLOWED',
+        'SENT': 'APP.STATUS.SENT',
+        'CREATED': 'APP.STATUS.CREATED',
+        'PROFILE_NOT_EXISTS': 'APP.STATUS.PROFILE_NOT_EXISTS',
+        'SENDER_NOT_ALLOWED': 'APP.STATUS.SENDER_NOT_ALLOWED',
+        'FORBIDDEN': 'APP.STATUS.FORBIDDEN',
+        'REJECTED': 'APP.STATUS.REJECTED',
+        'PROCESSING': 'APP.STATUS.PROCESSING',
+        'DENIED': 'APP.STATUS.DENIED',
+        'BAD_REQUEST': 'APP.STATUS.BAD_REQUEST'
+      }
+    }
   ];
 
   breadcrumbs: any[] = [
     { label: 'APP.TITLE.Messages', url: '', type: 'title', iconBs: 'send' }
   ];
+
+  statusList: any = [
+    { label: 'APP.STATUS.SCHEDULED', value: 'SCHEDULED', order: 1 },
+    { label: 'APP.STATUS.PROCESSED', value: 'PROCESSED', order: 2 },
+    { label: 'APP.STATUS.THROTTLED', value: 'THROTTLED', order: 3 },
+    { label: 'APP.STATUS.RECIPIENT_ALLOWED', value: 'RECIPIENT_ALLOWED', order: 4 },
+    { label: 'APP.STATUS.SENT', value: 'SENT', order: 5 },
+    { label: 'APP.STATUS.CREATED', value: 'CREATED', order: 5 },
+    { label: 'APP.STATUS.PROFILE_NOT_EXISTS', value: 'PROFILE_NOT_EXISTS', order: 7 },
+    { label: 'APP.STATUS.SENDER_NOT_ALLOWED', value: 'SENDER_NOT_ALLOWED', order: 8 },
+    { label: 'APP.STATUS.FORBIDDEN', value: 'FORBIDDEN', order: 9 },
+    { label: 'APP.STATUS.REJECTED', value: 'REJECTED', order: 10 },
+    { label: 'APP.STATUS.PROCESSING', value: 'PROCESSING', order: 11 },
+    { label: 'APP.STATUS.DENIED', value: 'DENIED', order: 12 },
+    { label: 'APP.STATUS.BAD_REQUEST', value: 'BAD_REQUEST', order: 13 }
+  ];
+
+  _organization: any = null;
+  _service: any = null;
+
+  minLengthTerm = 1;
+
+  organizations$!: Observable<any[]>;
+  organizationsInput$ = new Subject<string>();
+  organizationsLoading: boolean = false;
+
+  services$!: Observable<any[]>;
+  servicesInput$ = new Subject<string>();
+  servicesLoading: boolean = false;
+
+  _organizationLogoPlaceholder: string = './assets/images/organization-placeholder.png';
+  _serviceLogoPlaceholder: string = './assets/images/service-placeholder.png';
 
   constructor(
     private route: ActivatedRoute,
@@ -107,6 +167,8 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
     this.configService.getConfig('messages').subscribe(
       (config: any) => {
         this.messagesConfig = config;
+        this._initOrganizationsSelect([]);
+        this._initServicesSelect([]);
       }
     );
   }
@@ -115,6 +177,7 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
 
   ngAfterViewInit() {
     if (!(this.searchBarForm && this.searchBarForm._isPinned())) {
+      // this.searchBarForm.setNotCloseForm(true)
       setTimeout(() => {
         this._loadMessages();
       }, 100);
@@ -143,6 +206,11 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
       'tax_code': new UntypedFormControl(''),
       'organization_q': new UntypedFormControl(''),
       'service_q': new UntypedFormControl(''),
+      status: new UntypedFormControl(''),
+      organization_id: new UntypedFormControl(null),
+      organization: new UntypedFormControl(null),
+      service_id: new UntypedFormControl(null),
+      service: new UntypedFormControl(null)
     });
   }
 
@@ -300,11 +368,19 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
 
   _onSearch(values: any) {
     this._filterData = values;
+    if (this._filterData.organization) {
+      this._filterData.organization_id = this._filterData.organization.id;
+      delete this._filterData.organization;
+    }
+    if (this._filterData.service) {
+      this._filterData.service_id = this._filterData.service.id;
+      delete this._filterData.service;
+    }
     this._loadMessages(this._filterData);
   }
 
   _resetForm() {
-    this._filterData = [];
+    this._filterData = {};
     this._loadMessages(this._filterData);
   }
 
@@ -328,5 +404,112 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
 
   trackByFn(index: number, item: any): number {
     return item.id;
+  }
+
+  _orgLogo = (item: any): string => {
+    let logoUrl = this._organizationLogoPlaceholder;
+    if (item._links && item._links['logo-miniature']) {
+      logoUrl = item._links['logo-miniature'].href;
+    }
+    return logoUrl;
+  };
+
+  _orgLogoBackground = (item: any): string => {
+    let logoUrl = this._organizationLogoPlaceholder;
+    if (item._links && item._links['logo-miniature']) {
+      logoUrl = item._links['logo-miniature'].href;
+    }
+    return `url(${logoUrl})`;
+  };
+
+  _serviceLogoBackground = (item: any): string => {
+    let logoUrl = this._serviceLogoPlaceholder;
+    if (item && item._links && item._links['logo-miniature']) {
+      logoUrl = item._links['logo-miniature'].href;
+    }
+    return `url(${logoUrl})`;
+  };
+
+  trackBySelectFn(item: any) {
+    return item.id;
+  }
+
+  _initOrganizationsSelect(defaultValue: any[] = []) {
+    this.organizations$ = concat(
+      of(defaultValue),
+      this.organizationsInput$.pipe(
+        // filter(res => {
+        //   return res !== null && res.length >= this.minLengthTerm
+        // }),
+        startWith(''),
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap(() => this.organizationsLoading = true),
+        switchMap((term: any) => {
+          return this.getData('organizations', term).pipe(
+            catchError(() => of([])), // empty list on error
+            tap(() => this.organizationsLoading = false)
+          )
+        })
+      )
+    );
+  }
+
+  _initServicesSelect(defaultValue: any[] = []) {
+    this.services$ = concat(
+      of(defaultValue),
+      this.servicesInput$.pipe(
+        // filter(res => {
+        //   return res !== null && res.length >= this.minLengthTerm
+        // }),
+        startWith(''),
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap(() => this.servicesLoading = true),
+        switchMap((term: any) => {
+          return this.getData('services', term).pipe(
+            catchError(() => of([])), // empty list on error
+            tap(() => this.servicesLoading = false)
+          )
+        })
+      )
+    );
+  }
+
+  getData(model: string, term: any = null): Observable<any> {
+    let _options: any = { params: { limit: 100 } };
+    if (term) {
+      if (typeof term === 'string' ) {
+        _options.params =  { ..._options.params, q: term };
+      }
+      if (typeof term === 'object' ) {
+        _options.params =  { ..._options.params, ...term };
+      }
+    }
+
+    return this.apiService.getList(model, _options)
+      .pipe(map(resp => {
+        if (resp.Error) {
+          throwError(resp.Error);
+        } else {
+          const _items = resp.items.map((item: any) => {
+            // item.disabled = _.findIndex(this._toExcluded, (excluded) => excluded.name === item.name) !== -1;
+            return item;
+          });
+          return _items;
+        }
+      })
+      );
+  }
+
+  onSelectedSearchDropdwon($event: Event){
+    this.searchBarForm.setNotCloseForm(true)
+    $event.stopPropagation();
+  }
+
+  onChangeSearchDropdwon(event: any){
+    setTimeout(() => {      
+      this.searchBarForm.setNotCloseForm(false)
+    }, 200);
   }
 }
