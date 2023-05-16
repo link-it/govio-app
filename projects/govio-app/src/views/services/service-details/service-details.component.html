@@ -112,7 +112,6 @@
                     </ng-select>
                     <p *ngIf="f['organization_id'].invalid && (f['organization_id'].dirty || f['organization_id'].touched)" class="form-text text-danger">
                       <span *ngIf="f['organization_id'].errors && f['organization_id'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
-                      <span *ngIf="f['organization_id'].errors && f['organization_id'].errors['pattern']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Serviceorganization_id' | translate }}</span>
                     </p>
                     <ui-input-help field="organization_id" context="SERVICE"></ui-input-help>
                   </div>
@@ -196,7 +195,6 @@
                     </ng-select>
                     <p *ngIf="f['template_id'].invalid && (f['template_id'].dirty || f['template_id'].touched)" class="form-text text-danger">
                       <span *ngIf="f['template_id'].errors && f['template_id'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
-                      <span *ngIf="f['template_id'].errors && f['template_id'].errors['pattern']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Servicetemplate_id' | translate }}</span>
                     </p>
                     <ui-input-help field="template_id" context="SERVICE"></ui-input-help>
                   </div>
@@ -204,13 +202,25 @@
                     <input type="text" readonly class="form-control-plaintext" id="template_id" [value]="service.template?.name">
                   </div>
                 </div>
-                <div class="form-group mt-5">
+                <div class="form-group mt-5-">
+                  <label class="label-bold" for="io_service_id">{{ 'APP.LABEL.IoServiceId' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'io_service_id'" *ngIf="_isEdit"></span></label>
+                  <div class="" *ngIf="_isEdit">
+                    <input aria-required="true" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('io_service_id')" type="text" name="io_service_id" id="io_service_id" formControlName="io_service_id">
+                    <p *ngIf="f['io_service_id'].invalid && (f['io_service_id'].dirty || f['io_service_id'].touched)" class="form-text text-danger">
+                      <span *ngIf="f['io_service_id'].errors && f['io_service_id'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                    </p>
+                    <ui-input-help field="io_service_id" context="SERVICE"></ui-input-help>
+                  </div>
+                  <div class="" *ngIf="!_isEdit">
+                    <input type="text" readonly class="form-control-plaintext" id="io_service_id" [value]="service.io_service_id || '-'">
+                  </div>
+                </div>
+                <div class="form-group mt-5-">
                   <label class="label-bold" for="apiKey">{{ 'APP.LABEL.ApiKey' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'apiKey'" *ngIf="_isEdit"></span></label>
                   <div class="" *ngIf="_isEdit">
                     <input aria-required="true" autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('apiKey')" type="text" name="apiKey" id="apiKey" formControlName="apiKey">
                     <p *ngIf="f['apiKey'].invalid && (f['apiKey'].dirty || f['apiKey'].touched)" class="form-text text-danger">
                       <span *ngIf="f['apiKey'].errors && f['apiKey'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
-                      <span *ngIf="f['apiKey'].errors && f['apiKey'].errors['pattern']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.ServiceapiKey' | translate }}</span>
                     </p>
                     <ui-input-help field="apiKey" context="SERVICE"></ui-input-help>
                   </div>

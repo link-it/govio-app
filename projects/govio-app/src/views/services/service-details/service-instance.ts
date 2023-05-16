@@ -8,6 +8,7 @@ export class ServiceInstance {
   template_id: number | null = null;
   apiKey: string | null = null;
   enabled: boolean = false;
+  io_service_id: string | null = null;
 
   constructor(_data?: any) {
     if (_data) {

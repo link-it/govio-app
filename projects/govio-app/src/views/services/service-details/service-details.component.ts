@@ -199,6 +199,7 @@ export class ServiceDetailsComponent implements OnInit, OnChanges, AfterContentC
             value = data[key] ? data[key] : null;
             _group[key] = new UntypedFormControl({value: value, disabled: !this._isNew}, [Validators.required]);
             break;
+          case 'io_service_id':
           case 'apiKey':
             value = data[key] ? data[key] : null;
             _group[key] = new UntypedFormControl(value, [Validators.required]);
@@ -344,6 +345,7 @@ export class ServiceDetailsComponent implements OnInit, OnChanges, AfterContentC
       template_id: service.template_id,
       apiKey: service.apiKey,
       enabled: service.enabled,
+      io_service_id: service.io_service_id,
 
       organization: {
         id: service._embedded.organization.id,

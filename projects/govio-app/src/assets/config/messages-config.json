@@ -45,20 +45,20 @@
       "label": "APP.LABEL.Status",
       "small": true,
       "values": {
-        "scheduled": { "label": "APP.STATUS.SCHEDULED", "background": "#9E9E9E", "border": "#9E9E9E", "color": "#ffffff" },
-        "processed": { "label": "APP.STATUS.PROCESSED", "background": "#8BC34A", "border": "#326C1A", "color": "#ffffff" },
-        "accepeted": { "label": "APP.STATUS.ACCEPTED", "background": "#8BC34A", "border": "#8BC34A", "color": "#1f1f1f" },
-        "throttled": { "label": "APP.STATUS.THROTTLED", "background": "#8BC34A", "border": "#8BC34A", "color": "#1f1f1f" },
-        "recipient_allowed": { "label": "APP.STATUS.RECIPIENT_ALLOWED", "background": "#8BC34A", "border": "#8BC34A", "color": "#1f1f1f" },
-        "sent": { "label": "APP.STATUS.SENT", "background": "#8BC34A", "border": "#8BC34A", "color": "#1f1f1f" },
-        "created": { "label": "APP.STATUS.CREATED", "background": "#9E9E9E", "border": "#9E9E9E", "color": "#ffffff" },
-        "profile_not_exists": { "label": "APP.STATUS.PROFILE_NOT_EXISTS", "background": "#FFAB40", "border": "#FFAB40", "color": "#1f1f1f" },
-        "sender_not_allowed": { "label": "APP.STATUS.SENDER_NOT_ALLOWED", "background": "#FFAB40", "border": "#FFAB40", "color": "#1f1f1f" },
-        "forbidden": { "label": "APP.STATUS.FORBIDDEN", "background": "#F44336", "border": "#F44336", "color": "#ffffff" },
-        "rejected": { "label": "APP.STATUS.REJECTED", "background": "#FFAB40", "border": "#FFAB40", "color": "#1f1f1f" },
-        "processing": { "label": "APP.STATUS.PROCESSING", "background": "#9E9E9E", "border": "#9E9E9E", "color": "#ffffff" },
-        "denied": { "label": "APP.STATUS.DENIED", "background": "#F44336", "border": "#F44336", "color": "#ffffff" },
-        "bad_request": { "label": "APP.STATUS.BAD_REQUEST", "background": "#F44336", "border": "#F44336", "color": "#ffffff" }
+        "SCHEDULED": { "label": "APP.STATUS.SCHEDULED", "background": "#9E9E9E", "border": "#9E9E9E", "color": "#ffffff" },
+        "PROCESSED": { "label": "APP.STATUS.PROCESSED", "background": "#8BC34A", "border": "#326C1A", "color": "#ffffff" },
+        "ACCEPETED": { "label": "APP.STATUS.ACCEPTED", "background": "#8BC34A", "border": "#8BC34A", "color": "#1f1f1f" },
+        "THROTTLED": { "label": "APP.STATUS.THROTTLED", "background": "#8BC34A", "border": "#8BC34A", "color": "#1f1f1f" },
+        "RECIPIENT_ALLOWED": { "label": "APP.STATUS.RECIPIENT_ALLOWED", "background": "#8BC34A", "border": "#8BC34A", "color": "#1f1f1f" },
+        "SENT": { "label": "APP.STATUS.SENT", "background": "#8BC34A", "border": "#8BC34A", "color": "#1f1f1f" },
+        "CREATED": { "label": "APP.STATUS.CREATED", "background": "#9E9E9E", "border": "#9E9E9E", "color": "#ffffff" },
+        "PROFILE_NOT_EXISTS": { "label": "APP.STATUS.PROFILE_NOT_EXISTS", "background": "#FFAB40", "border": "#FFAB40", "color": "#1f1f1f" },
+        "SENDER_NOT_ALLOWED": { "label": "APP.STATUS.SENDER_NOT_ALLOWED", "background": "#FFAB40", "border": "#FFAB40", "color": "#1f1f1f" },
+        "FORBIDDEN": { "label": "APP.STATUS.FORBIDDEN", "background": "#F44336", "border": "#F44336", "color": "#ffffff" },
+        "REJECTED": { "label": "APP.STATUS.REJECTED", "background": "#FFAB40", "border": "#FFAB40", "color": "#1f1f1f" },
+        "PROCESSING": { "label": "APP.STATUS.PROCESSING", "background": "#9E9E9E", "border": "#9E9E9E", "color": "#ffffff" },
+        "DENIED": { "label": "APP.STATUS.DENIED", "background": "#F44336", "border": "#F44336", "color": "#ffffff" },
+        "BAD_REQUEST": { "label": "APP.STATUS.BAD_REQUEST", "background": "#F44336", "border": "#F44336", "color": "#ffffff" }
       }
     }
   }
