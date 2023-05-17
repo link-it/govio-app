@@ -259,9 +259,10 @@ export class ServiceDetailsComponent implements OnInit, OnChanges, AfterContentC
       this.apiService.updateElement(this.model, id, _bodyPatch).subscribe(
         (response: any) => {
           this._isEdit = !this._closeEdit;
-          this.service = new ServiceInstance({ ...response });
-          this._service = new ServiceInstance({ ...response });
-          this.id = this.service.id;
+          // this.service = new ServiceInstance({ ...response });
+          // this._service = new ServiceInstance({ ...response });
+          // this.id = this.service.id;
+          this._loadService();
           this.save.emit({ id: this.id, payment: response, update: true });
         },
         (error: any) => {
