@@ -446,7 +446,7 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
         distinctUntilChanged(),
         tap(() => this.organizationsLoading = true),
         switchMap((term: any) => {
-          return this.getData('organizations', term).pipe(
+          return this.getData('organizations', term, 'legal_name', 'asc').pipe(
             catchError(() => of([])), // empty list on error
             tap(() => this.organizationsLoading = false)
           )
@@ -467,7 +467,7 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
         distinctUntilChanged(),
         tap(() => this.servicesLoading = true),
         switchMap((term: any) => {
-          return this.getData('services', term).pipe(
+          return this.getData('services', term, 'service_name', 'asc').pipe(
             catchError(() => of([])), // empty list on error
             tap(() => this.servicesLoading = false)
           )
@@ -476,8 +476,8 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
     );
   }
 
-  getData(model: string, term: any = null): Observable<any> {
-    let _options: any = { params: { limit: 100 } };
+  getData(model: string, term: any = null, sort: string = 'id', sort_direction: string = 'desc'): Observable<any> {
+    let _options: any = { params: { limit: 100, sort: sort, sort_direction: 'asc' } };
     if (term) {
       if (typeof term === 'string' ) {
         _options.params =  { ..._options.params, q: term };
