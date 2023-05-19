@@ -607,6 +607,10 @@ export class ServiceDetailsComponent implements OnInit, OnChanges, AfterContentC
     let logoUrl = this._organizationLogoPlaceholder;
     if (item && item._links && item._links['logo-miniature']) {
       logoUrl = item._links['logo-miniature'].href;
+    } else {
+      if (item && item.logo_small) {
+        logoUrl = item.logo_small;
+      }
     }
     return `url(${logoUrl})`;
   };
@@ -615,6 +619,10 @@ export class ServiceDetailsComponent implements OnInit, OnChanges, AfterContentC
     let logoUrl = this._serviceLogoPlaceholder;
     if (item && item._links && item._links['logo-miniature']) {
       logoUrl = item._links['logo-miniature'].href;
+    } else {
+      if (item && item.logo_small) {
+        logoUrl = item.logo_small;
+      }
     }
     return `url(${logoUrl})`;
   };
