@@ -1,0 +1,387 @@
+<div id="route-section" class="">
+  <div class="alert-wrapper gp-force-block-formatting-context">
+    <ui-breadcrumb [breadcrumbs]="breadcrumbs" [classContainer]="'limit-container-width'" (onClick)="onBreadcrumb($event)"></ui-breadcrumb>
+  </div>
+  <div class="top-area container-fluid container-limited limit-container-width px-0">
+    <h3 class="page-title">{{ 'APP.TITLE.NewMessage' | translate }}</h3>
+    <div class="d-flex flex-grow-1">&nbsp;</div>
+    <!-- <ng-template [appHasPermission]="'SETTINGS'" [action]="'edit'"> -->
+      <div class="nav-controls">
+        <div role="group" class="gl-w-full btn-group- position-relative" *ngIf="!_spin">
+          <button aria-haspopup="true" aria-expanded="false" type="button" class="btn btn-default btn-md gl-button btn-default-tertiary ms-2" [tooltip]="'APP.TOOLTIP.CancelNew' | translate" (click)="_onCancelSend()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+    <!-- </ng-template> -->
+  </div>
+  <section class="container-fluid container-limited limit-container-width container-scroller container-scroller-no-search">
+    <ui-box-spinner [color]="'accent'" [diameter]="48" [strokeWidth]="4" *ngIf="_spin"></ui-box-spinner>
+
+    <div class="settings" *ngIf="!_spin">
+      <div class="settings-content">
+        <div class="edit-form" *ngIf="!_sending">
+          <form novalidate class="issue-form common-note-form mt-3 gl-show-field-errors gfm-form" [formGroup]="_formGroup" (submit)="_onSend(_formGroup.value)">
+            <div class="row gl-mt-3 justify-content-center">
+              <!-- <div class="col-lg-4 mb-4">
+                <h4 class="gl-mt-0 text-break">{{ 'APP.FILES.TITLE.GeneralInformations' | translate }}</h4>
+                <div class="text-break" markdown>{{ 'APP.FILES.TITLE.GeneralInformations_sub' | translate }}</div>
+              </div> -->
+              <div class="col-lg-8">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group organization">
+                      <label class="label-bold" for="organization_id">{{ 'APP.LABEL.Organization' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'organization_id'" *ngIf="_markAsteriskUpdated"></span></label>
+                      <div class="">
+                        <ng-select class="" [class.gl-field-error-outline]="_hasControlError('organization_id')" autocomplete="off"
+                          [items]="organizations$ | async"
+                          [trackByFn]="trackByFn"
+                          [typeahead]="organizationsInput$"
+                          [minTermLength]="minLengthTerm" 
+                          [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+                          [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{ lengthTerm: minLengthTerm }"
+                          bindValue="id"
+                          labelForId="organization_id"
+                          [editableSearchTerm]="true"
+                          (change)="onChangeOrganization($event)"
+                          formControlName="organization_id">
+                          <ng-template ng-label-tmp let-item="item">
+                            <div class="d-flex flex-row align-items-center">
+                              <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _orgLogoBackground"></div>
+                              <span class="flex-shrink-1 ms-3">{{item.legal_name}}</span>
+                            </div>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                            <div class="d-flex flex-row align-items-center">
+                              <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _orgLogoBackground"></div>
+                              <span class="flex-shrink-1 ms-3">{{item.legal_name}}</span>
+                            </div>
+                          </ng-template>
+                        </ng-select>
+                        <p *ngIf="f['organization_id'].invalid && (f['organization_id'].dirty || f['organization_id'].touched)" class="form-text text-danger">
+                          <span *ngIf="f['organization_id'].errors && f['organization_id'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                          <span *ngIf="f['organization_id'].errors && f['organization_id'].errors['pattern']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Serviceorganization_id' | translate }}</span>
+                        </p>
+                        <ui-input-help field="organization_id" context="MESSAGE"></ui-input-help>
+                      </div>
+                    </div>
+                    <div class="form-group service">
+                      <label class="label-bold" for="service_id">{{ 'APP.LABEL.ServiceName' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'service_id'" *ngIf="_markAsteriskUpdated"></span></label>
+                      <div class="">
+                        <ng-select class="" [class.gl-field-error-outline]="_hasControlError('service_id')" autocomplete="off"
+                          [items]="services$ | async"
+                          [trackByFn]="trackByFn"
+                          [typeahead]="servicesInput$"
+                          [minTermLength]="minLengthTerm" 
+                          [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+                          [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{ lengthTerm: minLengthTerm }"
+                          bindValue="id"
+                          labelForId="service_id"
+                          [editableSearchTerm]="true"
+                          (change)="onChangeService($event)"
+                          formControlName="service_id">
+                          <ng-template ng-label-tmp let-item="item">
+                            <div class="d-flex flex-row align-items-center">
+                              <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _serviceLogoBackground"></div>
+                              <span class="flex-shrink-1 ms-3">{{item.service_name}}</span>
+                            </div>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                            <div class="d-flex flex-row align-items-center">
+                              <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _serviceLogoBackground"></div>
+                              <span class="flex-shrink-1 ms-3">{{item.service_name}}</span>
+                            </div>
+                          </ng-template>
+                        </ng-select>
+                        <p *ngIf="f['service_id'].invalid && (f['service_id'].dirty || f['service_id'].touched)" class="form-text text-danger">
+                          <span *ngIf="f['service_id'].errors && f['service_id'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                        </p>
+                        <ui-input-help field="service_id" context="MESSAGE"></ui-input-help>
+                      </div>
+                    </div>
+                    <div class="form-group service_instance">
+                      <label class="label-bold" for="service_instance">{{ 'APP.LABEL.Template' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'service_instance'" *ngIf="_markAsteriskUpdated"></span><span class="ms-2" (click)="openTemplateInfo()" *ngIf="serviceInstancesSelected$"><i class="bi bi-info-circle"></i></span></label>
+                      <div class="">
+                        <ng-select class="" [class.gl-field-error-outline]="_hasControlError('service_instance')" autocomplete="off"
+                          [items]="serviceInstances$ | async"
+                          [selectOnTab]="true"
+                          [trackByFn]="trackByFn"
+                          [typeahead]="serviceInstancesInput$"
+                          [minTermLength]="minLengthTerm" 
+                          [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+                          [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{ lengthTerm: minLengthTerm }"
+                          bindValue="id"
+                          labelForId="service_instance"
+                          [placeholder]="'APP.PLACEHOLDER.SelectTemplate' | translate"
+                          [notFoundText]="'APP.MESSAGE.NotFoundText' | translate"
+                          [loadingText]="'APP.MESSAGE.LoadingText' | translate"
+                          [editableSearchTerm]="true"
+                          (change)="onChangeServiceInstance($event)"
+                          formControlName="service_instance">
+                          <ng-template ng-label-tmp let-item="item">
+                            <div class="d-flex flex-row align-items-center">
+                              <span class="flex-shrink-1 ms-3-">{{item.label}}</span>
+                            </div>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                            <div class="fw-bold">{{ item.label }}</div>
+                            <div class="">
+                              <span class="small text-muted">{{ item.template_description }}</span>
+                            </div>
+                          </ng-template>
+                        </ng-select>
+                        <p *ngIf="f['service_instance'].invalid && (f['service_instance'].dirty || f['service_instance'].touched)" class="form-text text-danger">
+                          <span *ngIf="f['service_instance'].errors && f['service_instance'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                        </p>
+                        <ui-input-help field="service_instance" context="MESSAGE"></ui-input-help>
+                      </div>
+                    </div>
+                    <div class="form-group taxcode">
+                      <label class="label-bold" for="taxcode">{{ 'APP.LABEL.TaxCode' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'taxcode'" *ngIf="_markAsteriskUpdated"></span></label>
+                      <div class="">
+                        <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('taxcode')" type="text" name="taxcodeg" id="taxcode" formControlName="taxcode">
+                        <p *ngIf="f['taxcode'].invalid && (f['taxcode'].dirty || f['taxcode'].touched)" class="form-text text-danger mb-1">
+                          <span *ngIf="f['taxcode'].errors && f['taxcode'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                        </p>
+                        <ui-input-help field="taxcode" context="MESSAGE"></ui-input-help>
+                      </div>
+                    </div>
+                    <div class="row scheduled_expedition_date due_date">
+                      <div class="col-6 form-group scheduled_expedition_date">
+                        <label class="label-bold" for="scheduled_expedition_date">{{ 'APP.LABEL.ScheduledExpeditionDate' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'scheduled_expedition_date'" *ngIf="_markAsteriskUpdated"></span></label>
+                        <div class="">
+                          <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('scheduled_expedition_date')" type="date" name="scheduled_expedition_date" id="scheduled_expedition_date" formControlName="scheduled_expedition_date">
+                          <p *ngIf="f['scheduled_expedition_date'].invalid && (f['scheduled_expedition_date'].dirty || f['scheduled_expedition_date'].touched)" class="form-text text-danger">
+                            <span *ngIf="f['scheduled_expedition_date'].errors && f['scheduled_expedition_date'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                          </p>
+                          <ui-input-help field="name" context="MESSAGE"></ui-input-help>
+                        </div>
+                      </div>
+                      <div class="col-6 form-group due_date">
+                        <label class="label-bold" for="due_date">{{ 'APP.LABEL.DueDate' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'due_date'" *ngIf="_markAsteriskUpdated"></span></label>
+                        <div class="">
+                          <input class="form-control" [class.gl-field-error-outline]="_hasControlError('due_date')" type="date" name="due_date" id="due_date" formControlName="due_date">
+                          <p *ngIf="f['due_date'].invalid && (f['due_date'].dirty || f['due_date'].touched)" class="form-text text-danger">
+                            <span *ngIf="f['due_date'].errors && f['due_date'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                          </p>
+                          <ui-input-help field="due_date" context="MESSAGE"></ui-input-help>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row notice_number amount" *ngIf="serviceInstancesSelected$?.template?.has_payment">
+                      <div class="col-6 form-group notice_number">
+                        <label class="label-bold" for="notice_number">{{ 'APP.LABEL.NoticeNumber' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'notice_number'" *ngIf="_markAsteriskUpdated"></span></label>
+                        <div class="">
+                          <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('notice_number')" type="text" name="notice_numberg" id="notice_number" formControlName="notice_number">
+                          <p *ngIf="f['notice_number'].invalid && (f['notice_number'].dirty || f['notice_number'].touched)" class="form-text text-danger">
+                            <span *ngIf="f['notice_number'].errors && f['notice_number'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                          </p>
+                          <ui-input-help field="notice_number" context="MESSAGE"></ui-input-help>
+                        </div>
+                      </div>
+                      <div class="col-6 form-group amount">
+                        <label class="label-bold" for="amount">{{ 'APP.LABEL.Amount' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'amount'" *ngIf="_markAsteriskUpdated"></span></label>
+                        <div class="">
+                          <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('amount')" type="number" name="amountg" id="amount" formControlName="amount">
+                          <p *ngIf="f['amount'].invalid && (f['amount'].dirty || f['amount'].touched)" class="form-text text-danger">
+                            <span *ngIf="f['amount'].errors && f['amount'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                          </p>
+                          <ui-input-help field="amount" context="MESSAGE"></ui-input-help>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row gl-mt-3 justify-content-center" *ngIf="serviceInstancesSelected$">
+              <div class="col-lg-4 my-3">
+                <h4 class="gl-mt-0 text-break">{{ 'APP.FILES.TITLE.Placeholders' | translate }}</h4>
+                <div class="text-break" markdown>{{ 'APP.FILES.TITLE.Placeholders_sub' | translate }}</div>
+              </div>
+              <div class="col-lg-8">
+                <div class="row table" *ngIf="false">
+                  <div class="col-12" *ngIf="_loadingTemplatePlacehoder">
+                    <span class="spinner-border spinner-border-sm"></span>
+                  </div>
+                  <div class="col-lg-12" *ngIf="!_loadingTemplatePlacehoder">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Position</th>
+                          <th class="text-center" scope="col">Id</th>
+                          <th scope="col">Nome</th>
+                          <th class="text-center" scope="col">Type</th>
+                          <th class="text-center" scope="col">Mandatory</th>
+                          <th scope="col">Label</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngIf="_templatePlaceholders.length == 0">
+                          <th class="text-center py-3" colspan="5">{{ 'APP.MESSAGE.NoData' | translate }}</th>
+                        </tr>
+                        <tr *ngFor="let ph of _templatePlaceholders | orderBy : ['position']">
+                          <td scope="row">{{ ph.position }}</td>
+                          <th class="text-center">{{ ph.id }}</th>
+                          <td>{{ ph.name }}</td>
+                          <td class="text-center">{{ ph.type }}</td>
+                          <td class="text-center">{{ ph.mandatory ? '√' : '-' }}</td>
+                          <td>{{ ph.description }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- <pre>{{ serviceInstancesSelected$._embedded.template | json }}</pre> -->
+                  </div>
+                </div>
+                <div class="row placeholders-fields">
+                  <div class="col-12 form-group" *ngFor="let ph of _templatePlaceholders | orderBy : ['position']">
+                    <label class="label-bold" [for]="ph.name">{{ ph.description }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="ph.name" *ngIf="_markAsteriskUpdated"></span></label>
+                    <div class="">
+                      <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError(ph.name)" [type]="ph.type" [name]="ph.name" [id]="ph.name" [formControlName]="ph.name">
+                      <p *ngIf="f[ph.name].invalid && (f[ph.name].dirty || f[ph.name].touched)" class="form-text text-danger">
+                        <span *ngIf="f[ph.name].errors && f[ph.name].errors?.required" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                        <span *ngIf="f[ph.name].errors && f[ph.name].errors?.pattern" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Pattern' | translate:{pattern: ph.pattern } }}</span>
+                      </p>
+                      <p class="form-text text-muted">Esempio: {{ ph.example }}<span class="ms-2" *ngIf="ph.pattern">({{ ph.pattern}})</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gl-alert gl-alert-danger col-md-12 mt-3" *ngIf="_error">
+              {{ _errorMsg }}
+            </div>
+
+            <div class="row-content-block footer-block">
+              <button aria-label="Send" type="submit" class="gl-button btn btn-confirm gl-mr-2" [disabled]="_formGroup.invalid">
+                {{ 'APP.BUTTON.Send' | translate }}
+              </button>
+              <button aria-label="Cancel" type="button" class="btn gl-button btn-default" (click)="_onCancelSend()">
+                {{ 'APP.BUTTON.Cancel' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="report-sending" *ngIf="_sending">
+          <div class="my-3 recipients" *ngIf="false">
+            <h4 class="text-break mb-3">{{ 'APP.FILES.TITLE.Recipients' | translate }}</h4>
+            <ng-container *ngFor="let _recipient of _recipients">
+              <div class="d-flex justify-content-between gl-vertical-align-middle border p-2">
+                <div>
+                  <div class="mb-1">
+                    <span class="fw-bold">{{ _recipient.taxcode }}</span>
+                    <span class="ms-2">[{{ _recipient.service_instance }}] [{{ _recipient.idempotency_key }}]</span>
+                  </div>
+                  <div>{{ _recipient.data | json }}</div>
+                </div>
+                <div class="ps-3">
+                  <span class="text-success" *ngIf="_recipient.valid"><i class="bi bi-check-circle"></i></span>
+                  <span class="text-danger" *ngIf="!_recipient.valid">
+                    <i class="bi bi-x-circle"></i><br>
+                    <span>{{ _recipient.error }}</span>
+                  </span>
+                </div>
+                <div class="ps-3">
+                  <button type="button" class="gl-button btn btn-default" (click)="_sendMessage(_recipient)" *ngIf="_recipient.valid">
+                    {{ 'APP.BUTTON.Send' | translate }}
+                  </button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div class="my-3 report">
+            <h4 class="text-break mb-3">{{ 'APP.FILES.TITLE.Report' | translate }}</h4>
+            <div class="progress-report my-3">
+              <p class="text-break mb-1" *ngIf="_progressCount !== _recipientsCount">{{ 'APP.MESSAGE.Sending' | translate }}</p>
+              <p class="text-break mb-1" *ngIf="_progressCount === _recipientsCount">
+                <span><span class="fw-bold">{{ 'APP.MESSAGE.Sended' | translate }}</span>: {{ _sendedMessagesCount }}</span>
+                <span class="ms-3"><span class="fw-bold">{{ 'APP.MESSAGE.Invalid' | translate }}</span>: {{ _recipientsInvalidCount }}</span>
+                <span class="ms-3"><span class="fw-bold">{{ 'APP.MESSAGE.Errors' | translate }}</span>: {{ _errorMessagesCount }}</span>
+              </p>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="progress bg-light w-100">
+                  <div class="progress-bar bg-info" [class.progress-bar-striped]="_progressCount !== _recipientsCount" [class.progress-bar-animated]="_progressCount !== _recipientsCount" role="progressbar" [attr.aria-valuenow]="_progressCount" aria-valuemin="0" [attr.aria-valuemax]="_recipientsCount" [ngStyle]="{'width.%': (_progressCount * 100) / _recipientsCount}"></div>
+                </div>
+                <div class="text-center px-5 fw-bold progress-count">{{ _progressCount }}</div>
+              </div>
+            </div>
+            <div class="overflow-auto border" style="height: 500px;;">
+              <ng-container *ngFor="let _message of _sendingReport;let index = index;">
+                <div class="d-flex justify-content-between gl-vertical-align-middle border-bottom p-2">
+                  <div class="pe-3">{{ index + 1 }}</div>
+                  <div>
+                    <div class="mb-1">
+                      <span class="fw-bold">{{ _message.taxcode }}</span>
+                      <span class="ms-2">[{{ _message.service_instance }}] [{{ _message.idempotency_key }}]</span>
+                    </div>
+                    <div>{{ _message.data | json }}</div>
+                  </div>
+                  <div class="ps-3">
+                    <span class="text-success" *ngIf="_message.valid"><i class="bi bi-check-circle"></i></span>
+                    <span class="text-danger" *ngIf="!_message.valid">
+                      <i class="bi bi-x-circle"></i><br>
+                      <span>{{ _message.error }}</span>
+                    </span>
+                  </div>
+                  <div class="ps-3">
+                    <button type="button" class="gl-button btn btn-default" (click)="_sendMessage(_message)" *ngIf="_message.valid && !_message.sended">
+                      {{ 'APP.BUTTON.Send' | translate }}
+                    </button>
+                    <button type="button" class="gl-button btn btn-success" *ngIf="_message.sended" disabled>
+                      {{ 'APP.BUTTON.Sended' | translate }}
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="gl-alert gl-alert-danger col-md-12 mt-3 px-3" *ngIf="_errorSending">
+            <ng-container *ngFor="let error of _errorsSendingMsg;let index = index;">
+              <div class="d-flex justify-content-between gl-vertical-align-middle border p-2">
+                <div class="pe-3">{{ index + 1 }}</div>
+                <div><pre>{{ error.body | json }}</pre></div>
+                <div class="text-break ps-3">{{ error.message }}</div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="row-content-block footer-block">
+            <button aria-label="Export" type="button" class="gl-button btn btn-confirm gl-mr-2" (click)="_exportReport()" [disabled]="_progressCount !== _recipientsCount">
+              {{ 'APP.BUTTON.Export' | translate }}
+            </button>
+            <!-- <button aria-label="Cancel" type="button" class="btn gl-button btn-default gl-mr-2" (click)="_sending = false;">
+              {{ 'APP.BUTTON.BackToSend' | translate }}
+            </button> -->
+            <button aria-label="Close" type="button" class="btn gl-button btn-default" (click)="_onCancelSend()">
+              {{ 'APP.BUTTON.Close' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<ng-template #templateInfo>
+  <div class="modal-content">
+    <div class="modal-header pb-2">
+      <h5 class="modal-title pull-left">{{ 'APP.TITLE.Template' | translate }}</h5>
+      <button type="button" class="btn btn-default btn-md gl-tertiary pull-right p-0" aria-label="Close" (click)="closeModal()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="p-3">
+        <div class="view-template" style="min-height: 150px;">
+          <app-template-view
+            [id]="serviceInstancesSelected$.template_id"
+            [config]="templateConfig">
+          </app-template-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

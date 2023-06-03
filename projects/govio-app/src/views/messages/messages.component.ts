@@ -356,10 +356,6 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
     this._isEdit = false;
   }
 
-  _dummyAction(event: any, param: any) {
-    console.log(event, param);
-  }
-
   _onSubmit(form: any) {
     if (this.searchBarForm) {
       this.searchBarForm._onSearch();
@@ -511,5 +507,9 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
     setTimeout(() => {      
       this.searchBarForm.setNotCloseForm(false)
     }, 200);
+  }
+
+  _sendMessages() {
+    this.router.navigate(['messages', 'send']);
   }
 }

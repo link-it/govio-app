@@ -15,6 +15,13 @@
       </div>
     </div>
     <div class="nav-controls">
+      <div role="group" class="gl-w-full btn-group-">
+        <!-- <ng-template [appHasPermission]="'SETTINGS'" [action]="'create'"> -->
+          <button aria-label="Add payment" type="button" class="btn btn-confirm btn-md gl-button btn-icon" (click)="_sendMessages()">
+            <mat-icon fontSet="material-icons-outlined">add</mat-icon> <span class="ms-2">{{ 'APP.BUTTON.AddMessage' | translate }}</span>
+          </button>
+        <!-- </ng-template> -->
+      </div>
     </div>
   </div>
   <section class="search-bar container-fluid px-0" *ngIf="_hasFilter">
