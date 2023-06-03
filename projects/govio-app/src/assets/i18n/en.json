@@ -147,7 +147,7 @@
 		"LABEL_HELP": {
 			"All": "",
 			"MESSAGE": {
-				"tax_code": "Multiple tax codes can be entered separated by a comma (,)."
+				"taxcode": "Multiple tax codes can be entered separated by a comma (,)."
 			}
 		},
 		"MENU": {
