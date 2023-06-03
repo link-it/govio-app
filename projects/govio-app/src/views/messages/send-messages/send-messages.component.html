@@ -195,7 +195,7 @@
               </div>
             </div>
             <div class="row gl-mt-3 justify-content-center" *ngIf="serviceInstancesSelected$">
-              <div class="col-lg-4 my-3">
+              <div class="col-lg-8 mt-3 mb-4">
                 <h4 class="gl-mt-0 text-break">{{ 'APP.FILES.TITLE.Placeholders' | translate }}</h4>
                 <div class="text-break" markdown>{{ 'APP.FILES.TITLE.Placeholders_sub' | translate }}</div>
               </div>
@@ -233,16 +233,16 @@
                     <!-- <pre>{{ serviceInstancesSelected$._embedded.template | json }}</pre> -->
                   </div>
                 </div>
-                <div class="row placeholders-fields">
+                <div formGroupName="placeholders" class="row placeholders-fields" *ngIf="!_loadingTemplatePlacehoder">
                   <div class="col-12 form-group" *ngFor="let ph of _templatePlaceholders | orderBy : ['position']">
-                    <label class="label-bold" [for]="ph.name">{{ ph.description }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="ph.name" *ngIf="_markAsteriskUpdated"></span></label>
+                    <label class="label-bold" [for]="ph.name">{{ ph.description }} <span appMarkAsterisk [formGroup]="_placeholdersFormGroup" [controlName]="ph.name" *ngIf="_markAsteriskUpdated"></span></label>
                     <div class="">
-                      <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError(ph.name)" [type]="ph.type" [name]="ph.name" [id]="ph.name" [formControlName]="ph.name">
-                      <p *ngIf="f[ph.name].invalid && (f[ph.name].dirty || f[ph.name].touched)" class="form-text text-danger">
-                        <span *ngIf="f[ph.name].errors && f[ph.name].errors?.required" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
-                        <span *ngIf="f[ph.name].errors && f[ph.name].errors?.pattern" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Pattern' | translate:{pattern: ph.pattern } }}</span>
+                      <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlPlaceholdersError(ph.name)" [type]="ph.type" [name]="ph.name" [id]="ph.name" [formControlName]="ph.name">
+                      <p *ngIf="fp[ph.name].invalid && (fp[ph.name].dirty || fp[ph.name].touched)" class="form-text text-danger">
+                        <span *ngIf="fp[ph.name].errors && fp[ph.name].errors?.required" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                        <span *ngIf="fp[ph.name].errors && fp[ph.name].errors?.pattern" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Pattern' | translate:{pattern: ph.pattern } }}</span>
                       </p>
-                      <p class="form-text text-muted">Esempio: {{ ph.example }}<span class="ms-2" *ngIf="ph.pattern">({{ ph.pattern}})</span></p>
+                      <p class="form-text text-muted">Esempio: {{ ph.example }}<span class="ms-2 d-none" *ngIf="ph.pattern">({{ ph.pattern}})</span></p>
                     </div>
                   </div>
                 </div>
@@ -284,7 +284,7 @@
                   </span>
                 </div>
                 <div class="ps-3">
-                  <button type="button" class="gl-button btn btn-default" (click)="_sendMessage(_recipient)" *ngIf="_recipient.valid">
+                  <button type="button" class="gl-button btn btn-default" (click)="_sendMessage(_recipient, true)" *ngIf="_recipient.valid">
                     {{ 'APP.BUTTON.Send' | translate }}
                   </button>
                 </div>
@@ -309,24 +309,24 @@
             </div>
             <div class="overflow-auto border" style="height: 500px;;">
               <ng-container *ngFor="let _message of _sendingReport;let index = index;">
-                <div class="d-flex justify-content-between gl-vertical-align-middle border-bottom p-2">
+                <div class="d-flex gl-vertical-align-middle border-bottom p-2">
                   <div class="pe-3">{{ index + 1 }}</div>
-                  <div>
+                  <div class="flex-grow-1">
                     <div class="mb-1">
                       <span class="fw-bold">{{ _message.taxcode }}</span>
                       <span class="ms-2">[{{ _message.service_instance }}] [{{ _message.idempotency_key }}]</span>
                     </div>
-                    <div>{{ _message.data | json }}</div>
+                    <!-- <div>{{ _message.data | json }}</div> -->
                   </div>
-                  <div class="ps-3">
+                  <div class="ps-3 text-end">
                     <span class="text-success" *ngIf="_message.valid"><i class="bi bi-check-circle"></i></span>
                     <span class="text-danger" *ngIf="!_message.valid">
                       <i class="bi bi-x-circle"></i><br>
                       <span>{{ _message.error }}</span>
                     </span>
                   </div>
-                  <div class="ps-3">
-                    <button type="button" class="gl-button btn btn-default" (click)="_sendMessage(_message)" *ngIf="_message.valid && !_message.sended">
+                  <div class="ps-3 text-end">
+                    <button type="button" class="gl-button btn btn-default" (click)="_sendMessage(_message, true)" *ngIf="_message.valid && !_message.sended">
                       {{ 'APP.BUTTON.Send' | translate }}
                     </button>
                     <button type="button" class="gl-button btn btn-success" *ngIf="_message.sended" disabled>

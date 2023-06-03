@@ -1,6 +1,6 @@
 import { AfterContentChecked, Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AbstractControl, FormControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -37,6 +37,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
   appConfig: any;
 
   _formGroup: UntypedFormGroup = new UntypedFormGroup({});
+  _placeholdersFormGroup: UntypedFormGroup = new UntypedFormGroup({});
   _message: SendMessage = new SendMessage({});
 
   _error: boolean = false;
@@ -104,6 +105,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
+    private formBuilder: FormBuilder,
     private modalService: BsModalService,
     private configService: ConfigService,
     private tools: Tools,
@@ -179,6 +181,18 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
     return this._formGroup.controls;
   }
 
+  _hasControlPlaceholdersError(name: string) {
+    return (this.fp[name].errors && this.fp[name].touched);
+  }
+
+  _hasControlPlaceholdersValue(name: string) {
+    return (this.fp[name] && this.fp[name].value);
+  }
+
+  get fp(): { [key: string]: AbstractControl } {
+    return this._placeholdersFormGroup.controls;
+  }
+
   _initForm(data: any = null) {
     if (data) {
       let _group: any = {};
@@ -243,7 +257,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
     this._templatePlaceholders.forEach((item: any) => {
       _body.placeholders.push({
           name: item.name,
-          value: this._formGroup.controls[item.name].value
+          value: this._placeholdersFormGroup.controls[item.name].value
         });
     });
 
@@ -493,17 +507,19 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
           }
           this._formGroup.controls['amount'].updateValueAndValidity();
   
+          const _bf: any = {};
           this._templatePlaceholders.forEach((item: any) => {
-            let dCtrl = new FormControl(item.name);
-            this._formGroup.addControl(item.name, dCtrl);
-            dCtrl.setValue('');
             const _validators = [];
             if (item.mandatory) { _validators.push(Validators.required); }
             if (item.pattern) { _validators.push(Validators.pattern(item.pattern)); }
-            dCtrl.setValidators(_validators);
-            dCtrl.updateValueAndValidity();
+            _bf[item.name] = ['', [..._validators] ];
           });
+          
+          this._placeholdersFormGroup = this.formBuilder.group(_bf)
+
+          this._formGroup.addControl('placeholders', this._placeholdersFormGroup);
           this._formGroup.updateValueAndValidity();
+
           this._loadingTemplatePlacehoder = false;
           this._markAsteriskUpdated = true;
         },
@@ -524,10 +540,9 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
   }
 
   _removeControls() {
-    this._templatePlaceholders.forEach((item: any) => {
-      this._formGroup.removeControl(item.nome);
-    });
+    this._formGroup.removeControl('placeholders');
     this._formGroup.updateValueAndValidity();
+
     this._templatePlaceholders = [];
   }
 
@@ -551,16 +566,16 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
         idempotency_key: item.idempotency_key,
         valid: item.valid,
         sended: item.sended,
-        message_id: item.sended ? item.response.id : null,
-        subject: item.sended ? item.response.subject : null,
-        messaggio: item.sended ? item.response.markdown : null,
+        message_id: (item.sended && item.response) ? item.response.id : null,
+        subject: (item.sended && item.response) ? item.response.subject : null,
+        messaggio: (item.sended && item.response) ? item.response.markdown : null,
         error: item.error,
       };
     });
     Tools.DownloadCSVFile(_reportArr, 'ReportSpedizioneMessaggi');
   }
 
-  _sendMessage(data: any) {
+  _sendMessage(data: any, single: boolean = false) {
     const _body = { ...data.data };
 
     this._sendLoading = true;
@@ -576,7 +591,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
           data.error = null;
           data.response = response;
           this._sendingReport.push(data);
-          this._sendMessages(this._progressCount + 1);
+          if (!single) { this._sendMessages(this._progressCount + 1); }
         }
       },
       (error: any) => {
@@ -587,7 +602,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
         data.sended = false;
         data.error = Tools.GetErrorMsg(error);
         this._sendingReport.push(data);
-        this._sendMessages(this._progressCount + 1);
+        if (!single) { this._sendMessages(this._progressCount + 1); }
       }
     );
   }

@@ -147,7 +147,7 @@
 		"LABEL_HELP": {
 			"All": "",
 			"MESSAGE": {
-				"tax_code": "È possibile inserire più codici fiscali separati da una virgola (,)."
+				"taxcode": "È possibile inserire più codici fiscali separati da una virgola (,)."
 			}
 		},
 		"MENU": {

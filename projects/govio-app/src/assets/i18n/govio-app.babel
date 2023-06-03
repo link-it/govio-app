@@ -2079,7 +2079,7 @@
 										<name>MESSAGE</name>
 										<children>
 											<concept_node>
-												<name>tax_code</name>
+												<name>taxcode</name>
 												<description/>
 												<comment/>
 												<default_text/>
