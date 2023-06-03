@@ -2,11 +2,13 @@
 	"APP": {
 		"BUTTON": {
 			"AddFile": "Add file",
+			"AddMessage": "Add message",
 			"AddPlaceholder": "Add placeholder",
 			"AddService": "Add service",
 			"AddTemplate": "Add template",
 			"AlertAction": "Close",
 			"AssignPlaceholder": "Assign placeholder",
+			"BackToSend": "Back to send",
 			"Cancel": "Cancel",
 			"Clear": "Clear",
 			"Close": "Close",
@@ -28,6 +30,9 @@
 			"Save": "Save",
 			"SaveNewPlaceholder": "Save new placeholder",
 			"Search": "Search",
+			"Send": "Send",
+			"Sended": "Sended",
+			"SendMessages": "Send messages",
 			"UploadFile": "Upload file"
 		},
 		"ENUM": {
@@ -50,6 +55,10 @@
 				"FileMessages_sub": "Export error messages to csv file",
 				"GeneralInformations": "General informations",
 				"GeneralInformations_sub": "",
+				"Placeholders": "Placeholders",
+				"Placeholders_sub": "",
+				"Recipients": "Recipients",
+				"Report": "Report",
 				"ShowMessages": "Messages",
 				"ShowMessages_sub": ""
 			}
@@ -80,6 +89,7 @@
 		"LABEL": {
 			"AcquiredMessages": "Acquired messages",
 			"All": "All",
+			"Amount": "Amount",
 			"ApiKey": "Api Key",
 			"AppioMessageId": "AppIO Message Id",
 			"AvailabilityDate": "Availability date",
@@ -115,6 +125,7 @@
 			"Message": "Message",
 			"MessageBody": "Message body",
 			"Name": "Name",
+			"NoticeNumber": "Notice number",
 			"Organization": "Organization",
 			"Password": "Password",
 			"Pattern": "Pattern",
@@ -134,7 +145,10 @@
 			"UserFullName": "User full name"
 		},
 		"LABEL_HELP": {
-			"All": ""
+			"All": "",
+			"MESSAGE": {
+				"tax_code": "Multiple tax codes can be entered separated by a comma (,)."
+			}
 		},
 		"MENU": {
 			"Configurations": "Configurations",
@@ -163,6 +177,7 @@
 				"Unauthorized": "Unauthorized",
 				"Unprocessable Entity": "Unprocessable Entity"
 			},
+			"Errors": "Errors",
 			"EsportingFile": "Exporting File…",
 			"Files_Results": {
 				"none": "No files found",
@@ -170,6 +185,7 @@
 				"singular": "There is only one file"
 			},
 			"InsertNotice": "Enter the notice number and press the search button …",
+			"Invalid": "Invalid",
 			"LOGIN": {
 				"login_400": "Username o password errati. Controlla la corretta scrittura dei dati.",
 				"login_401": "Username o password errati. Controlla la corretta scrittura dei dati.",
@@ -194,6 +210,8 @@
 			"NotFoundText": "Not found text",
 			"PageNumber": "Page {{page}} of {{total}}",
 			"PleaseEnterMin": "Please enter {{lengthTerm}} or more characters",
+			"Sended": "Sended",
+			"Sending": "Sending ...",
 			"Sign_in_message": "Sign in with your account",
 			"Unimplemented": "Unimplemented yet",
 			"VALIDATION": {
@@ -209,6 +227,7 @@
 				"Number": "The value must be a number",
 				"OneOfLength": "The length must be one of the following values",
 				"OrganizationTaxCode": "The tax code must be numeric and 11 digits",
+				"Pattern": "The field must satisfy the following pattern \"{{pattern}}\"",
 				"Range": "The amount must have a value between {{min}} and {{max}}",
 				"Taxcode": "Wrong taxcode",
 				"TaxcodeVat": "Wrong taxcode or VAT number"
@@ -327,12 +346,14 @@
 			"Messages": "Messages",
 			"New": "New",
 			"NewFile": "New file",
+			"NewMessage": "New message",
 			"NewPlaceholder": "New placeholder",
 			"NewService": "New service",
 			"NewServiceInstance": "New service instance",
 			"NewTemplate": "New template",
 			"Organization": "Organization",
 			"Placeholders": "Placeholders",
+			"SendMessages": "Send messages",
 			"Service": "Service",
 			"ServiceInstance": "Service instance",
 			"ServiceInstances": "Service instances",
@@ -347,6 +368,7 @@
 			"AddPlaceholder": "Add placeholder",
 			"CancelEdit": "Cancel edit",
 			"CancelNew": "Cancel add",
+			"CancelSend": "Cancel send",
 			"EditFile": "Edit file",
 			"EditPlaceholder": "Edit placeholder",
 			"EditPlaceholders": "Edit placeholders",

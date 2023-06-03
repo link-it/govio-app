@@ -2,11 +2,13 @@
 	"APP": {
 		"BUTTON": {
 			"AddFile": "Aggiungi tracciato",
+			"AddMessage": "Aggiungi messaggio",
 			"AddPlaceholder": "Aggiungi segnaposto",
 			"AddService": "Aggiungi servizio",
 			"AddTemplate": "Aggiungi modello",
 			"AlertAction": "Chiudi",
 			"AssignPlaceholder": "Assegna segnaposto",
+			"BackToSend": "Torna all'invio",
 			"Cancel": "Annulla",
 			"Clear": "Pulisci",
 			"Close": "Chiudi",
@@ -28,6 +30,9 @@
 			"Save": "Salva",
 			"SaveNewPlaceholder": "Salva nuovo segnaposto",
 			"Search": "Cerca",
+			"Send": "Invia",
+			"Sended": "Inviato",
+			"SendMessages": "Invia messaggi",
 			"UploadFile": "Carica tracciato"
 		},
 		"ENUM": {
@@ -50,6 +55,10 @@
 				"FileMessages_sub": "Esporta i messaggi di errore in un file csv",
 				"GeneralInformations": "Informazioni generali",
 				"GeneralInformations_sub": "",
+				"Placeholders": "Segnaposto",
+				"Placeholders_sub": "",
+				"Recipients": "Destinatari",
+				"Report": "Rapporto",
 				"ShowMessages": "Messaggi",
 				"ShowMessages_sub": ""
 			}
@@ -80,6 +89,7 @@
 		"LABEL": {
 			"AcquiredMessages": "Messaggi acquisiti",
 			"All": "Tutti",
+			"Amount": "Importo",
 			"ApiKey": "Api Key",
 			"AppioMessageId": "AppIO Message Id",
 			"AvailabilityDate": "Data di disponibilità",
@@ -115,6 +125,7 @@
 			"Message": "Messaggio",
 			"MessageBody": "Corpo del messaggio",
 			"Name": "Nome",
+			"NoticeNumber": "Numero di avviso",
 			"Organization": "Organizzazione",
 			"Password": "Password",
 			"Pattern": "Pattern",
@@ -134,7 +145,10 @@
 			"UserFullName": "Nome utente"
 		},
 		"LABEL_HELP": {
-			"All": ""
+			"All": "",
+			"MESSAGE": {
+				"tax_code": "È possibile inserire più codici fiscali separati da una virgola (,)."
+			}
 		},
 		"MENU": {
 			"Configurations": "Configurazioni",
@@ -163,6 +177,7 @@
 				"Unauthorized": "Non autorizzato",
 				"Unprocessable Entity": "Entità non elaborabile"
 			},
+			"Errors": "Errori",
 			"EsportingFile": "Sto esportando il documento…",
 			"Files_Results": {
 				"none": "Nessun file trovato",
@@ -170,6 +185,7 @@
 				"singular": "C'è un solo un tracciato"
 			},
 			"InsertNotice": "Inserisci il numero dell'avviso e premi il pulsante di ricerca …",
+			"Invalid": "Invalidi",
 			"LOGIN": {
 				"login_400": "Username o password errati. Controlla la corretta scrittura dei dati.",
 				"login_401": "Username o password errati. Oppure non sei autorizzato ad accedere.",
@@ -194,6 +210,8 @@
 			"NotFoundText": "Testo non trovato",
 			"PageNumber": "Pagina {{page}} di {{total}}",
 			"PleaseEnterMin": "Inserisci {{lengthTerm}} o più caratteri",
+			"Sended": "Inviati",
+			"Sending": "Sto inviando ...",
 			"Sign_in_message": "Accedi con il tuo account",
 			"Unimplemented": "Funzionalità attualmente non disponibile",
 			"VALIDATION": {
@@ -209,6 +227,7 @@
 				"Number": "Il valore deve essere un numero",
 				"OneOfLength": "La lunghezza deve essere uno dei seguenti valori",
 				"OrganizationTaxCode": "Il codice fiscale deve essere numerico e di 11 cifre",
+				"Pattern": "Il campo deve soddisfare il seguente pattern \"{{pattern}}\"",
 				"Range": "L'importo deve avere un valore compreso tra {{min}} e {{max}}",
 				"Taxcode": "Codice fiscale errato",
 				"TaxcodeVat": "Codice fiscale o partita IVA errati"
@@ -327,12 +346,14 @@
 			"Messages": "Messaggi",
 			"New": "Nuovo",
 			"NewFile": "Nuovo tracciato",
+			"NewMessage": "Nuovo messaggio",
 			"NewPlaceholder": "Nuovo segnaposto",
 			"NewService": "Nuovo servizio",
 			"NewServiceInstance": "Nuova istanza di servizio",
 			"NewTemplate": "Nuovo modello",
 			"Organization": "Organizzazione",
 			"Placeholders": "Segnaposto",
+			"SendMessages": "Invia messaggi",
 			"Service": "Servizio",
 			"ServiceInstance": "Istanza di servizio",
 			"ServiceInstances": "Istanze di servizio",
@@ -347,6 +368,7 @@
 			"AddPlaceholder": "Aggiungi segnaposto",
 			"CancelEdit": "Annulla modifica",
 			"CancelNew": "Annulla inserimento",
+			"CancelSend": "Annulla invio",
 			"EditFile": "Modifica tracciato",
 			"EditPlaceholder": "Modifica segnaposto",
 			"EditPlaceholders": "Modifica i segnaposto",

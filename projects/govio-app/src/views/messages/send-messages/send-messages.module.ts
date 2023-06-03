@@ -9,10 +9,9 @@ import { ComponentsModule } from 'projects/components/src/lib/components.module'
 import { LinkLabModule } from 'projects/link-lab/src/lib/link-lab.module';
 import { HasPermissionModule } from '@app/directives/has-permission/has-permission.module';
 
-import { MessagesComponent } from './messages.component';
-import { MessagesRoutingModule } from './messages-routing.module';
-import { MessageDetailsModule } from './message-details/message-details.module';
-import { SendMessagesModule } from './send-messages/send-messages.module';
+import { SendMessagesComponent } from './send-messages.component';
+import { SendMessagesRoutingModule } from './send-messages-routing.module';
+import { TemplateViewModule } from '../../templates/template-view/template-view.module';
 
 @NgModule({
   imports: [
@@ -23,14 +22,14 @@ import { SendMessagesModule } from './send-messages/send-messages.module';
     ComponentsModule,
     LinkLabModule,
     HasPermissionModule,
-    MessagesRoutingModule,
-    MessageDetailsModule,
-    SendMessagesModule
+    SendMessagesRoutingModule,
+    TemplateViewModule
   ],
   declarations: [
-    MessagesComponent
+    SendMessagesComponent
   ],
+  exports: [SendMessagesComponent],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class MessagesModule { }
+export class SendMessagesModule { }
