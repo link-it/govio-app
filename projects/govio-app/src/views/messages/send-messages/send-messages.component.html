@@ -150,17 +150,17 @@
                       <div class="col-6 form-group scheduled_expedition_date">
                         <label class="label-bold" for="scheduled_expedition_date">{{ 'APP.LABEL.ScheduledExpeditionDate' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'scheduled_expedition_date'" *ngIf="_markAsteriskUpdated"></span></label>
                         <div class="">
-                          <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('scheduled_expedition_date')" type="date" name="scheduled_expedition_date" id="scheduled_expedition_date" formControlName="scheduled_expedition_date">
+                          <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('scheduled_expedition_date')" type="datetime-local" name="scheduled_expedition_date" id="scheduled_expedition_date" formControlName="scheduled_expedition_date">
                           <p *ngIf="f['scheduled_expedition_date'].invalid && (f['scheduled_expedition_date'].dirty || f['scheduled_expedition_date'].touched)" class="form-text text-danger">
                             <span *ngIf="f['scheduled_expedition_date'].errors && f['scheduled_expedition_date'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
                           </p>
                           <ui-input-help field="name" context="MESSAGE"></ui-input-help>
                         </div>
                       </div>
-                      <div class="col-6 form-group due_date">
+                      <div class="col-6 form-group due_date" *ngIf="serviceInstancesSelected$?.template?.has_due_date">
                         <label class="label-bold" for="due_date">{{ 'APP.LABEL.DueDate' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'due_date'" *ngIf="_markAsteriskUpdated"></span></label>
                         <div class="">
-                          <input class="form-control" [class.gl-field-error-outline]="_hasControlError('due_date')" type="date" name="due_date" id="due_date" formControlName="due_date">
+                          <input class="form-control" [class.gl-field-error-outline]="_hasControlError('due_date')" type="datetime-local" name="due_date" id="due_date" formControlName="due_date">
                           <p *ngIf="f['due_date'].invalid && (f['due_date'].dirty || f['due_date'].touched)" class="form-text text-danger">
                             <span *ngIf="f['due_date'].errors && f['due_date'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
                           </p>
