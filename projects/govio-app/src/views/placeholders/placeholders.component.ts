@@ -52,10 +52,10 @@ export class PlaceholdersComponent implements OnInit, AfterViewInit, AfterConten
 
   _materialAppearance: MatFormFieldAppearance = 'fill';
 
-  _placeholder: string = 'APP.PLACEHOLDER.NoResults';
-  _placeholderHelp: string = 'APP.PLACEHOLDER.NoResultsHelp';
-  _placeholderUnimplemented: string = 'APP.PLACEHOLDER.Unimplemented';
-  _placeholderNoResponseUnimplemented: string = 'APP.PLACEHOLDER.NoResponseUnimplemented';
+  _message: string = 'APP.MESSAGE.NoResults';
+  _messageHelp: string = 'APP.MESSAGE.NoResultsHelp';
+  _messageUnimplemented: string = 'APP.MESSAGE.Unimplemented';
+  _messageNoResponseUnimplemented: string = 'APP.MESSAGE.NoResponseUnimplemented';
 
   _error: boolean = false;
 
@@ -118,11 +118,11 @@ export class PlaceholdersComponent implements OnInit, AfterViewInit, AfterConten
   _setErrorPlaceholders(error: boolean) {
     this._error = error;
     if (this._error) {
-      this._placeholder = 'APP.PLACEHOLDER.ERROR.Default';
-      this._placeholderHelp = 'APP.PLACEHOLDER.ERROR.DefaultHelp';
+      this._message = 'APP.MESSAGE.ERROR.Default';
+      this._messageHelp = 'APP.MESSAGE.ERROR.DefaultHelp';
     } else {
-      this._placeholder = 'APP.PLACEHOLDER.NoResults';
-      this._placeholderHelp = 'APP.PLACEHOLDER.NoResultsHelp';
+      this._message = 'APP.MESSAGE.NoResults';
+      this._messageHelp = 'APP.MESSAGE.NoResultsHelp';
     }
   }
 
