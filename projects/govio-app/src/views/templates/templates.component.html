@@ -61,13 +61,13 @@
     (scrolled)="__loadMoreData()"
     [scrollWindow]="false">
 
-    <ui-box-template *ngIf="templates.length == 0 && !_spin"
+    <ui-box-message *ngIf="templates.length == 0 && !_spin"
       [size]="64"
       [icon]="'report_problem'"
       [image]="'./assets/images/illustrations/templates.svg'"
-      [template]="_template | translate"
-      [subTemplate]="_templateHelp | translate">
-    </ui-box-template>
+      [message]="_message | translate"
+      [subMessage]="_messageHelp | translate">
+    </ui-box-message>
 
     <div class="row">
       <div class="col-12">
