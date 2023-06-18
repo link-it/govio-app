@@ -410,6 +410,22 @@
 										</translations>
 									</concept_node>
 									<concept_node>
+										<name>OAuth2GitLabLogin</name>
+										<description/>
+										<comment/>
+										<default_text/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>it-IT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
 										<name>Remove</name>
 										<description/>
 										<comment/>
