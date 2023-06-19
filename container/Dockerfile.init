@@ -1,0 +1,3 @@
+FROM busybox
+ADD govio-app/ /tmp/
+CMD sh -c '[ -d /volume_data/govio-app/assets ] || {  mkdir -p /volume_data/govio-app; /bin/cp -rf /tmp/assets /volume_data/govio-app ; }' 
