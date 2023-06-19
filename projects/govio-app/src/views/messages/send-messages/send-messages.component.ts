@@ -234,7 +234,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
     this._recipientsInvalidCount = 0;
 
     const _scheduled_expedition_date = moment(body.scheduled_expedition_date.valueOf()).utc().format();
-    const _due_date = moment(body.due_date.valueOf()).utc().format();
+    const _due_date = body.due_date ? moment(body.due_date.valueOf()).utc().format() : null;
 
     const _body: any = {
       taxcode: '',
@@ -535,7 +535,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
       this._formGroup.controls['amount'].removeValidators([]);
       this._formGroup.controls['due_date'].updateValueAndValidity();
       this._formGroup.controls['notice_number'].updateValueAndValidity();
-      this._formGroup.controls['due_date'].updateValueAndValidity();
+      this._formGroup.controls['amount'].updateValueAndValidity();
     }
   }
 

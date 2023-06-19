@@ -52,10 +52,10 @@ export class TemplatesComponent implements OnInit, AfterViewInit, AfterContentCh
 
   _materialAppearance: MatFormFieldAppearance = 'fill';
 
-  _template: string = 'APP.TEMPLATE.NoResults';
-  _templateHelp: string = 'APP.TEMPLATE.NoResultsHelp';
-  _templateUnimplemented: string = 'APP.TEMPLATE.Unimplemented';
-  _templateNoResponseUnimplemented: string = 'APP.TEMPLATE.NoResponseUnimplemented';
+  _message: string = 'APP.MESSAGE.NoResults';
+  _messageHelp: string = 'APP.MESSAGE.NoResultsHelp';
+  _messageUnimplemented: string = 'APP.MESSAGE.Unimplemented';
+  _messageNoResponseUnimplemented: string = 'APP.MESSAGE.NoResponseUnimplemented';
 
   _error: boolean = false;
 
@@ -118,11 +118,11 @@ export class TemplatesComponent implements OnInit, AfterViewInit, AfterContentCh
   _setErrorTemplates(error: boolean) {
     this._error = error;
     if (this._error) {
-      this._template = 'APP.TEMPLATE.ERROR.Default';
-      this._templateHelp = 'APP.TEMPLATE.ERROR.DefaultHelp';
+      this._message = 'APP.MESSAGE.ERROR.Default';
+      this._messageHelp = 'APP.MESSAGE.ERROR.DefaultHelp';
     } else {
-      this._template = 'APP.TEMPLATE.NoResults';
-      this._templateHelp = 'APP.TEMPLATE.NoResultsHelp';
+      this._message = 'APP.MESSAGE.NoResults';
+      this._messageHelp = 'APP.MESSAGE.NoResultsHelp';
     }
   }
 
