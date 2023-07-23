@@ -1,6 +1,7 @@
 // ui-item-row | ui-item-type
 
-ui-item-row {
+ui-item-row,
+.ui-item-row {
   ui-item-type {
     &:nth-child(n) {
       &::after {
