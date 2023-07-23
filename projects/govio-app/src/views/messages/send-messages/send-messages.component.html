@@ -139,7 +139,7 @@
                     <div class="form-group taxcode">
                       <label class="label-bold" for="taxcode">{{ 'APP.LABEL.TaxCode' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'taxcode'" *ngIf="_markAsteriskUpdated"></span></label>
                       <div class="">
-                        <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('taxcode')" type="text" name="taxcodeg" id="taxcode" formControlName="taxcode">
+                        <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('taxcode')" type="text" name="taxcodeg" id="taxcode" formControlName="taxcode" appTextUppercase>
                         <p *ngIf="f['taxcode'].invalid && (f['taxcode'].dirty || f['taxcode'].touched)" class="form-text text-danger mb-1">
                           <span *ngIf="f['taxcode'].errors && f['taxcode'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
                         </p>
