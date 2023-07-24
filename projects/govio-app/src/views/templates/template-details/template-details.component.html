@@ -118,7 +118,8 @@
                     <ui-input-help field="message_body" context="TEMPLATE"></ui-input-help>
                   </div>
                   <div class="" *ngIf="!_isEdit">
-                    <textarea type="text" readonly class="form-control-plaintext" id="message_body" [value]="template.message_body" rows="9"></textarea>
+                    <!-- <textarea type="text" readonly class="form-control-plaintext" id="message_body" [value]="template.message_body"></textarea> -->
+                    <p class="mt-1" style="white-space: pre-wrap;">{{ template.message_body || '-' }}</p>
                   </div>
                 </div>
                 <div class="row mt-5 has_payment has_due_date">
