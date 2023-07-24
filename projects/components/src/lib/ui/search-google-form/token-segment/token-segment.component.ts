@@ -66,20 +66,18 @@ export class TokenSegmentComponent implements OnInit, OnChanges {
 
   _onAction(event: any) {
     event.stopPropagation();
-    console.log('_onAction', event);
     this.onAction.emit(this.token);
   }
   
   _removeToken(event: any) {
     event.stopPropagation();
-    console.log('_removeToken', event);
     this.onRemove.emit({ token: this.token, index: this.index });
   }
 
   _getData(endPoint: string) {
     this.data$ = this.http.get(`${endPoint}`, {})
       .pipe(
-        map((data: any) => (Array.isArray(data.content)) ? data.content[0] : data )
+        map((data: any) => (Array.isArray(data.items)) ? data.items[0] : data )
       );
   }
 }

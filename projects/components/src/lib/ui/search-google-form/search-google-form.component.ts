@@ -39,6 +39,7 @@ export class SearchGoogleFormComponent implements OnInit, OnChanges, AfterViewIn
   @Input() hideClose: boolean = true;
   @Input() maxWidth: string = 'none';
   @Input() searchAppend: boolean = false;
+  @Input() freeSearch: boolean = true;
 
   @Output() onSearch: EventEmitter<any> = new EventEmitter();
   @Output() onSort: EventEmitter<any> = new EventEmitter();
@@ -319,8 +320,20 @@ export class SearchGoogleFormComponent implements OnInit, OnChanges, AfterViewIn
   }
 
   _closeSearchDropDpwn(event: any) {
-    this._isOpen = false;
-    $("#form_toggle").dropdown('hide');
+    if (!this.simple) {
+      this._isOpen = false;
+      $("#form_toggle").dropdown('hide');
+    }
+  }
+
+  _onClickSearchInput(event: any) {
+    if (!this.simple) {
+      if (!this.freeSearch) {
+        this._openSearch(event);
+      } else {
+        this._closeSearchDropDpwn(event);
+      }
+    }
   }
 
   // History

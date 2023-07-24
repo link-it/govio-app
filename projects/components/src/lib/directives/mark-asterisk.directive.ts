@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 
 @Directive({
   selector: '[appMarkAsterisk]'
@@ -12,7 +12,7 @@ export class MarkAsteriskDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    const isRequired = this.formGroup.controls[this.controlName]?.errors?.required;
+    const isRequired = this.formGroup.controls[this.controlName]?.hasValidator(Validators.required);
     if (isRequired) {
       this.elementRef.nativeElement.innerHTML = '*';
     }else{
