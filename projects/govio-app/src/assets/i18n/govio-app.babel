@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<babeledit_project be_version="4.1.0" version="1.3">
+<babeledit_project be_version="5.0.0" version="1.3">
 	<!--
 
     BabelEdit project file
@@ -29,7 +29,6 @@
 										<name>AddFile</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -45,7 +44,6 @@
 										<name>AddMessage</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -61,7 +59,6 @@
 										<name>AddPlaceholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -77,7 +74,6 @@
 										<name>AddService</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -93,7 +89,6 @@
 										<name>AddTemplate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -109,7 +104,6 @@
 										<name>AlertAction</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -125,7 +119,6 @@
 										<name>AssignPlaceholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -141,7 +134,6 @@
 										<name>BackToSend</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -157,7 +149,6 @@
 										<name>Cancel</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -173,7 +164,6 @@
 										<name>Clear</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -189,7 +179,6 @@
 										<name>Close</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -205,7 +194,6 @@
 										<name>CloseSidebar</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -221,7 +209,6 @@
 										<name>Collapse</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -237,7 +224,6 @@
 										<name>CollapseSidebar</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -253,7 +239,6 @@
 										<name>Confirm</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -269,7 +254,6 @@
 										<name>Continue</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -285,7 +269,6 @@
 										<name>CreateNewPlaceholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -301,7 +284,6 @@
 										<name>Download</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -317,7 +299,6 @@
 										<name>Entra</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -333,7 +314,6 @@
 										<name>Expand</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -349,7 +329,6 @@
 										<name>Export</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -365,7 +344,6 @@
 										<name>Go</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -381,7 +359,6 @@
 										<name>Login</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -397,7 +374,21 @@
 										<name>MoreInfo</name>
 										<description/>
 										<comment/>
-										<default_text/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>it-IT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>OAuth2GitLabLogin</name>
+										<description/>
+										<comment/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -413,7 +404,6 @@
 										<name>Remove</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -429,7 +419,6 @@
 										<name>Report</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -445,7 +434,6 @@
 										<name>Save</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -461,7 +449,6 @@
 										<name>SaveNewPlaceholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -477,7 +464,6 @@
 										<name>Search</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -493,7 +479,6 @@
 										<name>Send</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -509,7 +494,6 @@
 										<name>Sended</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -525,7 +509,6 @@
 										<name>SendMessages</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -541,7 +524,6 @@
 										<name>UploadFile</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -562,7 +544,6 @@
 										<name>COMPLETATO</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -578,7 +559,6 @@
 										<name>ELABORAZIONE</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -594,7 +574,6 @@
 										<name>NUOVO</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -610,7 +589,6 @@
 										<name>SCARTATO</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -634,7 +612,6 @@
 												<name>All</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -650,7 +627,6 @@
 												<name>Closed</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -666,7 +642,6 @@
 												<name>Found</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -682,7 +657,6 @@
 												<name>Open</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -703,7 +677,6 @@
 												<name>ContentFile</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -719,7 +692,6 @@
 												<name>ContentFile_sub</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -735,7 +707,6 @@
 												<name>FileMessages</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -751,7 +722,6 @@
 												<name>FileMessages_sub</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -767,7 +737,6 @@
 												<name>GeneralInformations</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -783,7 +752,6 @@
 												<name>GeneralInformations_sub</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -799,7 +767,6 @@
 												<name>Placeholders</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -815,7 +782,6 @@
 												<name>Placeholders_sub</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -831,7 +797,6 @@
 												<name>Recipients</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -847,7 +812,6 @@
 												<name>Report</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -863,7 +827,6 @@
 												<name>ShowMessages</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -879,7 +842,6 @@
 												<name>ShowMessages_sub</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -902,7 +864,6 @@
 										<name>All</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -918,7 +879,6 @@
 										<name>Closed</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -934,7 +894,6 @@
 										<name>Found</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -950,7 +909,6 @@
 										<name>Open</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -971,7 +929,6 @@
 										<name>CodeException</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -987,7 +944,6 @@
 										<name>Default</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1009,7 +965,6 @@
 														<name>Match</name>
 														<description/>
 														<comment/>
-														<default_text/>
 														<translations>
 															<translation>
 																<language>en-US</language>
@@ -1025,7 +980,6 @@
 														<name>Message</name>
 														<description/>
 														<comment/>
-														<default_text/>
 														<translations>
 															<translation>
 																<language>en-US</language>
@@ -1045,7 +999,6 @@
 										<name>Status400</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1061,7 +1014,6 @@
 										<name>Status401</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1077,7 +1029,6 @@
 										<name>Status403</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1093,7 +1044,6 @@
 										<name>Status404</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1109,7 +1059,6 @@
 										<name>Status422</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1125,7 +1074,6 @@
 										<name>Status500</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1141,7 +1089,6 @@
 										<name>Status504</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1162,7 +1109,6 @@
 										<name>AcquiredMessages</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1178,7 +1124,6 @@
 										<name>All</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1194,7 +1139,6 @@
 										<name>Amount</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1210,7 +1154,6 @@
 										<name>ApiKey</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1226,7 +1169,6 @@
 										<name>AppioMessageId</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1242,7 +1184,6 @@
 										<name>AvailabilityDate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1258,7 +1199,6 @@
 										<name>Content</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1274,7 +1214,6 @@
 										<name>CreationDate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1290,7 +1229,6 @@
 										<name>CreationDateFrom</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1306,7 +1244,6 @@
 										<name>CreationDateTo</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1322,7 +1259,6 @@
 										<name>Date</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1338,7 +1274,6 @@
 										<name>DateFrom</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1354,7 +1289,6 @@
 										<name>DateTo</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1370,7 +1304,6 @@
 										<name>Description</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1386,7 +1319,6 @@
 										<name>DueDate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1402,7 +1334,6 @@
 										<name>Email</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1418,7 +1349,6 @@
 										<name>Enabled</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1434,7 +1364,6 @@
 										<name>ErrorMessages</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1450,7 +1379,6 @@
 										<name>Example</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1466,7 +1394,6 @@
 										<name>ExpeditionDate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1482,7 +1409,6 @@
 										<name>File</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1498,7 +1424,6 @@
 										<name>Filename</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1514,7 +1439,21 @@
 										<name>FileName</name>
 										<description/>
 										<comment/>
-										<default_text/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>it-IT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>FreeSearch</name>
+										<description/>
+										<comment/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1530,7 +1469,6 @@
 										<name>FullName</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1546,7 +1484,6 @@
 										<name>HasDueDate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1562,7 +1499,6 @@
 										<name>HasPayment</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1578,7 +1514,6 @@
 										<name>Id</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1594,7 +1529,6 @@
 										<name>Index</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1610,7 +1544,6 @@
 										<name>IoServiceId</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1626,7 +1559,6 @@
 										<name>LastUpdateDate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1642,7 +1574,6 @@
 										<name>LastUpdateStatus</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1658,7 +1589,6 @@
 										<name>LegalName</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1674,7 +1604,6 @@
 										<name>Logo</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1690,7 +1619,6 @@
 										<name>Mandatory</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1706,7 +1634,6 @@
 										<name>Markdown</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1722,7 +1649,6 @@
 										<name>Message</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1738,7 +1664,6 @@
 										<name>MessageBody</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1754,7 +1679,6 @@
 										<name>Name</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1770,7 +1694,6 @@
 										<name>NoticeNumber</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1786,7 +1709,6 @@
 										<name>Organization</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1802,7 +1724,6 @@
 										<name>Password</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1818,7 +1739,6 @@
 										<name>Pattern</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1834,7 +1754,6 @@
 										<name>Placeholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1850,7 +1769,6 @@
 										<name>Position</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1866,7 +1784,6 @@
 										<name>Principal</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1882,7 +1799,6 @@
 										<name>ScheduledExpeditionDate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1898,7 +1814,6 @@
 										<name>Service</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1914,7 +1829,6 @@
 										<name>ServiceInstance</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1930,7 +1844,6 @@
 										<name>ServiceName</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1946,7 +1859,6 @@
 										<name>Status</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1962,7 +1874,6 @@
 										<name>Subject</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1978,7 +1889,6 @@
 										<name>TaxCode</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -1994,7 +1904,6 @@
 										<name>Template</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2010,7 +1919,6 @@
 										<name>Type</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2026,7 +1934,6 @@
 										<name>User</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2042,7 +1949,6 @@
 										<name>UserFullName</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2063,7 +1969,6 @@
 										<name>All</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2082,7 +1987,6 @@
 												<name>taxcode</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2105,7 +2009,6 @@
 										<name>Configurations</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2121,7 +2024,6 @@
 										<name>Dashboard</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2137,7 +2039,6 @@
 										<name>DeleteFile</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2153,7 +2054,6 @@
 										<name>DeletePlaceholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2169,7 +2069,6 @@
 										<name>DeleteService</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2185,7 +2084,6 @@
 										<name>DeleteTemplate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2201,7 +2099,6 @@
 										<name>ExportCSV</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2217,7 +2114,6 @@
 										<name>ExportPDF</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2233,7 +2129,6 @@
 										<name>Files</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2249,7 +2144,6 @@
 										<name>Home</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2265,7 +2159,6 @@
 										<name>Logout</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2281,7 +2174,6 @@
 										<name>Messages</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2297,7 +2189,6 @@
 										<name>Placeholders</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2313,7 +2204,6 @@
 										<name>ServiceInstances</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2329,7 +2219,6 @@
 										<name>Services</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2345,7 +2234,6 @@
 										<name>Templates</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2366,7 +2254,6 @@
 										<name>AreYouSure</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2385,7 +2272,6 @@
 												<name>Default</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2401,7 +2287,6 @@
 												<name>DefaultHelp</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2417,7 +2302,6 @@
 												<name>TimeoutError</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2433,7 +2317,6 @@
 												<name>Unauthorized</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2449,7 +2332,6 @@
 												<name>Unprocessable Entity</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2467,7 +2349,6 @@
 										<name>Errors</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2483,7 +2364,6 @@
 										<name>EsportingFile</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2502,7 +2382,6 @@
 												<name>none</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2518,7 +2397,6 @@
 												<name>plural</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2534,7 +2412,6 @@
 												<name>singular</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2552,7 +2429,6 @@
 										<name>InsertNotice</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2568,7 +2444,6 @@
 										<name>Invalid</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2587,7 +2462,6 @@
 												<name>login_400</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2603,7 +2477,6 @@
 												<name>login_401</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2619,7 +2492,6 @@
 												<name>login_403</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2635,7 +2507,6 @@
 												<name>login_404</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2651,7 +2522,6 @@
 												<name>login_422</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2667,7 +2537,6 @@
 												<name>PasswordRequired</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2683,7 +2552,6 @@
 												<name>UsernameRequired</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2699,7 +2567,6 @@
 												<name>valid_email</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2715,7 +2582,6 @@
 												<name>wrong_username_password</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -2733,7 +2599,6 @@
 										<name>NoData</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2749,7 +2614,6 @@
 										<name>NoDataHelp</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2765,7 +2629,6 @@
 										<name>NoItem</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2781,7 +2644,6 @@
 										<name>NoPlaceholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2797,7 +2659,6 @@
 										<name>NoResponse</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2813,7 +2674,6 @@
 										<name>NoResponseUnimplemented</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2829,7 +2689,6 @@
 										<name>NoResults</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2845,7 +2704,6 @@
 										<name>NoResultsHelp</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2861,7 +2719,6 @@
 										<name>NoTemplateSelected</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2877,7 +2734,6 @@
 										<name>NotFoundItem</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2893,7 +2749,6 @@
 										<name>NotFoundText</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2909,7 +2764,6 @@
 										<name>PageNumber</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2925,7 +2779,6 @@
 										<name>PleaseEnterMin</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2941,7 +2794,6 @@
 										<name>Sended</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2957,7 +2809,6 @@
 										<name>Sending</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2973,7 +2824,6 @@
 										<name>Sign_in_message</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -2989,7 +2839,6 @@
 										<name>Unimplemented</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3008,7 +2857,6 @@
 												<name>Email</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3024,7 +2872,6 @@
 												<name>FieldRequired</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3040,7 +2887,6 @@
 												<name>GreaterThanEqual</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3056,7 +2902,6 @@
 												<name>GreaterThanZero</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3072,7 +2917,6 @@
 												<name>LessThanEqual</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3088,7 +2932,6 @@
 												<name>MaxAmount</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3104,7 +2947,6 @@
 												<name>MinAmount</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3120,7 +2962,6 @@
 												<name>NameMaxLength</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3136,7 +2977,6 @@
 												<name>NoticeLenght</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3152,7 +2992,6 @@
 												<name>Number</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3168,7 +3007,6 @@
 												<name>OneOfLength</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3184,7 +3022,6 @@
 												<name>OrganizationTaxCode</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3200,7 +3037,6 @@
 												<name>Pattern</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3216,7 +3052,6 @@
 												<name>Range</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3232,7 +3067,6 @@
 												<name>Taxcode</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3248,7 +3082,6 @@
 												<name>TaxcodeVat</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3274,7 +3107,6 @@
 												<name>All</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3290,7 +3122,6 @@
 												<name>Closed</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3306,7 +3137,6 @@
 												<name>Found</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3322,7 +3152,6 @@
 												<name>Open</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3343,7 +3172,6 @@
 												<name>GeneralInformations</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3359,7 +3187,6 @@
 												<name>GeneralInformations_sub</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3382,7 +3209,6 @@
 										<name>PAGE_NUMBER</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3403,7 +3229,6 @@
 										<name>Search</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3419,7 +3244,6 @@
 										<name>SelectOrganization</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3435,7 +3259,6 @@
 										<name>SelectService</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3451,7 +3274,6 @@
 										<name>SelectServiceInstance</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3467,7 +3289,6 @@
 										<name>SelectTemplate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3491,7 +3312,6 @@
 												<name>All</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3507,7 +3327,6 @@
 												<name>Closed</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3523,7 +3342,6 @@
 												<name>Found</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3539,7 +3357,6 @@
 												<name>Open</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3560,7 +3377,6 @@
 												<name>GeneralInformations</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3576,7 +3392,6 @@
 												<name>GeneralInformations_sub</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3599,7 +3414,6 @@
 										<name>ClearRecentSearches</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3615,7 +3429,6 @@
 										<name>NoRecentSearches</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3631,7 +3444,6 @@
 										<name>RecentSearches</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3647,7 +3459,6 @@
 										<name>View</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3671,7 +3482,6 @@
 												<name>All</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3687,7 +3497,6 @@
 												<name>Closed</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3703,7 +3512,6 @@
 												<name>Found</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3719,7 +3527,6 @@
 												<name>Open</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3740,7 +3547,6 @@
 												<name>GeneralInformations</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3756,7 +3562,6 @@
 												<name>GeneralInformations_sub</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -3779,7 +3584,6 @@
 										<name>Title</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3800,7 +3604,6 @@
 										<name>ACCEPTED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3816,7 +3619,6 @@
 										<name>BAD_REQUEST</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3832,7 +3634,6 @@
 										<name>CREATED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3848,7 +3649,6 @@
 										<name>DENIED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3864,7 +3664,6 @@
 										<name>DISABLED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3880,7 +3679,6 @@
 										<name>ENABLED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3896,7 +3694,6 @@
 										<name>ERRORE</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3912,7 +3709,6 @@
 										<name>FORBIDDEN</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3928,7 +3724,6 @@
 										<name>PROCESSED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3944,7 +3739,6 @@
 										<name>PROCESSING</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3960,7 +3754,6 @@
 										<name>PROFILE_NOT_EXISTS</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3976,7 +3769,6 @@
 										<name>RECIPIENT_ALLOWED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -3992,7 +3784,6 @@
 										<name>REJECTED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4008,7 +3799,6 @@
 										<name>SCHEDULED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4024,7 +3814,6 @@
 										<name>SENDER_NOT_ALLOWED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4040,7 +3829,6 @@
 										<name>SENT</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4056,7 +3844,6 @@
 										<name>THROTTLED</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4077,7 +3864,6 @@
 										<name>Content</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4093,7 +3879,6 @@
 										<name>Details</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4114,7 +3899,6 @@
 										<name>Description</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4130,7 +3914,6 @@
 										<name>Status</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4154,7 +3937,6 @@
 												<name>All</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -4170,7 +3952,6 @@
 												<name>Closed</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -4186,7 +3967,6 @@
 												<name>Found</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -4202,7 +3982,6 @@
 												<name>Open</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -4223,7 +4002,6 @@
 												<name>GeneralInformations</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -4239,7 +4017,6 @@
 												<name>GeneralInformations_sub</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -4255,7 +4032,6 @@
 												<name>Placeholders</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -4271,7 +4047,6 @@
 												<name>Placeholders_sub</name>
 												<description/>
 												<comment/>
-												<default_text/>
 												<translations>
 													<translation>
 														<language>en-US</language>
@@ -4294,7 +4069,6 @@
 										<name>Attention</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4310,7 +4084,6 @@
 										<name>Configurations</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4326,7 +4099,6 @@
 										<name>Dashboard</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4342,7 +4114,6 @@
 										<name>EditFiles</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4358,7 +4129,6 @@
 										<name>EditPlaceholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4374,7 +4144,6 @@
 										<name>EditService</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4390,7 +4159,6 @@
 										<name>EditServiceInstance</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4406,7 +4174,6 @@
 										<name>EditTemplate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4422,7 +4189,6 @@
 										<name>File</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4438,7 +4204,6 @@
 										<name>Files</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4454,7 +4219,6 @@
 										<name>GeneralInformations</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4470,7 +4234,6 @@
 										<name>Home</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4486,7 +4249,6 @@
 										<name>Login</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4502,7 +4264,6 @@
 										<name>Messages</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4518,7 +4279,6 @@
 										<name>New</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4534,7 +4294,6 @@
 										<name>NewFile</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4550,7 +4309,6 @@
 										<name>NewMessage</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4566,7 +4324,6 @@
 										<name>NewPlaceholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4582,7 +4339,6 @@
 										<name>NewService</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4598,7 +4354,6 @@
 										<name>NewServiceInstance</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4614,7 +4369,6 @@
 										<name>NewTemplate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4630,7 +4384,6 @@
 										<name>Organization</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4646,7 +4399,6 @@
 										<name>Placeholders</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4662,7 +4414,6 @@
 										<name>SendMessages</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4678,7 +4429,6 @@
 										<name>Service</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4694,7 +4444,6 @@
 										<name>ServiceInstance</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4710,7 +4459,6 @@
 										<name>ServiceInstances</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4726,7 +4474,6 @@
 										<name>Services</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4742,7 +4489,6 @@
 										<name>Template</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4758,7 +4504,6 @@
 										<name>Templates</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4774,7 +4519,6 @@
 										<name>Watermark</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4795,7 +4539,6 @@
 										<name>AcquiredMessages</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4811,7 +4554,6 @@
 										<name>Add</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4827,7 +4569,6 @@
 										<name>AddPlaceholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4843,7 +4584,6 @@
 										<name>CancelEdit</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4859,7 +4599,6 @@
 										<name>CancelNew</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4875,7 +4614,6 @@
 										<name>CancelSend</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4891,7 +4629,6 @@
 										<name>EditFile</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4907,7 +4644,6 @@
 										<name>EditPlaceholder</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4923,7 +4659,6 @@
 										<name>EditPlaceholders</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4939,7 +4674,6 @@
 										<name>EditService</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4955,7 +4689,6 @@
 										<name>EditTemplate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4971,7 +4704,6 @@
 										<name>ErrorMessages</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -4987,7 +4719,6 @@
 										<name>Export</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -5003,7 +4734,6 @@
 										<name>ExportCSV</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -5019,7 +4749,6 @@
 										<name>ExportPDF</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -5035,7 +4764,6 @@
 										<name>Mandatory</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -5051,7 +4779,6 @@
 										<name>Position</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -5067,7 +4794,6 @@
 										<name>Preview</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -5083,7 +4809,6 @@
 										<name>Remove</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -5099,7 +4824,6 @@
 										<name>ScheduledExpeditionDate</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -5120,7 +4844,6 @@
 										<name>DATE</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -5136,7 +4859,6 @@
 										<name>MANUALE</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>
@@ -5152,7 +4874,6 @@
 										<name>STRING</name>
 										<description/>
 										<comment/>
-										<default_text/>
 										<translations>
 											<translation>
 												<language>en-US</language>

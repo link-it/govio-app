@@ -3,8 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 
-import { MatFormFieldAppearance } from '@angular/material/form-field';
-
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService } from 'projects/tools/src/lib/config.service';
@@ -13,7 +11,7 @@ import { EventsManagerService } from 'projects/tools/src/lib/eventsmanager.servi
 import { PageloaderService } from 'projects/tools/src/lib/pageloader.service';
 import { OpenAPIService } from 'projects/govio-app/src/services/openAPI.service';
 
-import { SearchBarFormComponent } from 'projects/components/src/lib/ui/search-bar-form/search-bar-form.component';
+import { SearchGoogleFormComponent } from 'projects/components/src/lib/ui/search-google-form/search-google-form.component';
 
 import { concat, Observable, of, Subject, throwError } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, filter, map, mergeMap, startWith, switchMap, tap } from 'rxjs/operators';
@@ -29,7 +27,7 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
   static readonly Name = 'MessagesComponent';
   readonly model: string = 'messages';
 
-  @ViewChild('searchBarForm') searchBarForm!: SearchBarFormComponent;
+  @ViewChild('searchGoogleForm') searchGoogleForm!: SearchGoogleFormComponent;
 
   Tools = Tools;
 
@@ -54,8 +52,6 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
 
   _useRoute : boolean = true;
 
-  _materialAppearance: MatFormFieldAppearance = 'fill';
-
   _message: string = 'APP.MESSAGE.NoResults';
   _messageHelp: string = 'APP.MESSAGE.NoResultsHelp';
   _messageUnimplemented: string = 'APP.MESSAGE.Unimplemented';
@@ -63,7 +59,7 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
 
   _error: boolean = false;
 
-  showHistory: boolean = true;
+  showHistory: boolean = false;
   showSearch: boolean = true;
   showSorting: boolean = true;
 
@@ -75,19 +71,20 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
   ];
 
   searchFields: any[] = [
+    { field: 'service_q', label: 'APP.LABEL.FreeSearch', type: 'text', condition: 'like' },
     { field: 'scheduled_expedition_date_from', label: 'APP.LABEL.ScheduledExpeditionDate', type: 'date', condition: 'gt', format: 'DD/MM/YYYY' },
     { field: 'scheduled_expedition_date_to', label: 'APP.LABEL.ScheduledExpeditionDate', type: 'date', condition: 'lt', format: 'DD/MM/YYYY' },
-    { field: 'tax_code', label: 'APP.LABEL.TaxCode', type: 'string', condition: 'like' },
-    { field: 'organization_q', label: 'APP.LABEL.Organization', type: 'string', condition: 'like' },
-    { field: 'service_q', label: 'APP.LABEL.ServiceName', type: 'text', condition: 'like' },
-    { field: 'organization_id', label: 'APP.LABEL.Organization', type: 'text', condition: 'equal' },
-    { field: 'organization', label: 'APP.LABEL.Organization', type: 'object', condition: 'equal',
-      data: { value: 'id', label: 'legal_name' }
-    },
-    { field: 'service_id', label: 'APP.LABEL.ServiceName', type: 'text', condition: 'equal' },
-    { field: 'service', label: 'APP.LABEL.ServiceName', type: 'object', condition: 'equal',
-      data: { value: 'id', label: 'service_name' }
-    },
+    { field: 'tax_code', label: 'APP.LABEL.TaxCode', type: 'text', condition: 'like' },
+    // { field: 'organization_q', label: 'APP.LABEL.Organization', type: 'string', condition: 'like' },
+    // { field: 'service_q', label: 'APP.LABEL.ServiceName', type: 'text', condition: 'like' },
+    { field: 'organization_id', label: 'APP.LABEL.Organization', type: 'text', condition: 'equal', params: { resource: 'organizations', field: 'legal_name' } },
+    // { field: 'organization', label: 'APP.LABEL.Organization', type: 'object', condition: 'equal',
+    //   data: { value: 'id', label: 'legal_name' }
+    // },
+    { field: 'service_id', label: 'APP.LABEL.ServiceName', type: 'text', condition: 'equal', params: { resource: 'services', field: 'service_name' } },
+    // { field: 'service', label: 'APP.LABEL.ServiceName', type: 'object', condition: 'equal',
+    //   data: { value: 'id', label: 'service_name' }
+    // },
     { field: 'status', label: 'APP.LABEL.Status', type: 'enum', condition: 'equal',
       enumValues: { 
         'SCHEDULED': 'APP.STATUS.SCHEDULED',
@@ -106,6 +103,8 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
       }
     }
   ];
+  useCondition: boolean = true;
+  _useNewSearchUI : boolean = true;
 
   breadcrumbs: any[] = [
     { label: 'APP.TITLE.Messages', url: '', type: 'title', iconBs: 'send' }
@@ -154,7 +153,6 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
     public apiService: OpenAPIService
   ) {
     this.config = this.configService.getConfiguration();
-    this._materialAppearance = this.config.materialAppearance;
 
     this._initSearchForm();
   }
@@ -176,8 +174,8 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
   ngOnDestroy() {}
 
   ngAfterViewInit() {
-    if (!(this.searchBarForm && this.searchBarForm._isPinned())) {
-      // this.searchBarForm.setNotCloseForm(true)
+    if (!(this.searchGoogleForm && this.searchGoogleForm._isPinned())) {
+      // this.searchGoogleForm.setNotCloseForm(true)
       setTimeout(() => {
         this._loadMessages();
       }, 100);
@@ -201,16 +199,17 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
 
   _initSearchForm() {
     this._formGroup = new UntypedFormGroup({
+      q: new UntypedFormControl(''),
       scheduled_expedition_date_from: new UntypedFormControl(''),
       scheduled_expedition_date_to: new UntypedFormControl(''),
       'tax_code': new UntypedFormControl(''),
-      'organization_q': new UntypedFormControl(''),
-      'service_q': new UntypedFormControl(''),
+      // 'organization_q': new UntypedFormControl(''),
+      // 'service_q': new UntypedFormControl(''),
       status: new UntypedFormControl(''),
       organization_id: new UntypedFormControl(null),
-      organization: new UntypedFormControl(null),
+      // organization: new UntypedFormControl(null),
       service_id: new UntypedFormControl(null),
-      service: new UntypedFormControl(null)
+      // service: new UntypedFormControl(null)
     });
   }
 
@@ -342,8 +341,8 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
 
   _onEdit(event: any, param: any) {
     if (this._useRoute) {
-      if (this.searchBarForm) {
-        this.searchBarForm._pinLastSearch();
+      if (this.searchGoogleForm) {
+        this.searchGoogleForm._pinLastSearch();
       }
       this.router.navigate(['messages', param.id]);
     } else {
@@ -357,8 +356,8 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
   }
 
   _onSubmit(form: any) {
-    if (this.searchBarForm) {
-      this.searchBarForm._onSearch();
+    if (this.searchGoogleForm) {
+      this.searchGoogleForm._onSearch();
     }
   }
 
@@ -499,13 +498,13 @@ export class MessagesComponent implements OnInit, AfterViewInit, AfterContentChe
   }
 
   onSelectedSearchDropdwon($event: Event){
-    this.searchBarForm.setNotCloseForm(true)
+    this.searchGoogleForm.setNotCloseForm(true)
     $event.stopPropagation();
   }
 
   onChangeSearchDropdwon(event: any){
-    setTimeout(() => {      
-      this.searchBarForm.setNotCloseForm(false)
+    setTimeout(() => {
+      this.searchGoogleForm.setNotCloseForm(false)
     }, 200);
   }
 

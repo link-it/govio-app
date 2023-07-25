@@ -27,31 +27,116 @@
   <section class="search-bar container-fluid px-0" *ngIf="_hasFilter">
     <div class="row align-items-center">
       <div class="col-12">
-        <ui-search-bar-form #searchBarForm
-          [classBlock]="''"
+        <ui-search-google-form #searchGoogleForm
+          [classBlock]="'custom-search-token'"
           [placeholder]="'APP.PLACEHOLDER.Search' | translate"
+          [template]="'APP.TEMPLATE.Search' | translate"
           [showHistory]="showHistory"
           [historyStore]="'services'"
           [showSearch]="showSearch"
           [searchFields]="searchFields"
+          [useCondition]="useCondition"
           [showSorting]="showSorting"
           [sortField]="sortField"
           [sortDirection]="sortDirection"
           [sortFields]="sortFields"
           [formGroup]="_formGroup"
-          [simple]="true"
+          [simple]="false"
           (onSearch)="_onSearch($event)"
           (onSort)="_onSort($event)">
-          <div form-search>
+          <div form-search class="" [class.search-material-custom]="_useNewSearchUI">
             <form class="row" [formGroup]="_formGroup" (submit)="_onSubmit(_formGroup.value)">
               <fieldset>
-                <div class="row">
+                <div class="row mb-1">
+                  <div class="col-sm-2">
+                    <label class="col-form-label col-form-label-fix" for="q">{{ 'APP.LABEL.FreeSearch' | translate }}</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control form-control-sm" id="q" formControlName="q">
+                  </div>
                 </div>
-                <button type="submit" class="d-none">hidden submit</button>
+                <div class="row">
+                  <div class="col-sm-12 col-md-6">
+                    <div class="row mb-1">
+                      <div class="col-sm-4">
+                        <label class="col-form-label col-form-label-fix" for="organization_id">{{ 'APP.LABEL.Organization' | translate }}</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <ng-select class="" (click)="onSelectedSearchDropdwon($event)"
+                          [items]="organizations$ | async"
+                          [trackByFn]="trackBySelectFn"
+                          [typeahead]="organizationsInput$"
+                          [minTermLength]="minLengthTerm" 
+                          [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+                          [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{ lengthTerm: minLengthTerm }"
+                          bindValue="id"
+                          labelForId="organization_id"
+                          [editableSearchTerm]="true"
+                          appendTo="body"
+                          formControlName="organization_id"
+                          (change)="onChangeSearchDropdwon($event)">
+                          <ng-template ng-label-tmp let-item="item">
+                            <div class="d-flex flex-row align-items-center" *ngIf="item.legal_name">
+                              <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _orgLogoBackground"></div>
+                              <span class="flex-shrink-1 ms-3">{{ item.legal_name }}</span>
+                            </div>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                            <div class="d-flex flex-row align-items-center">
+                              <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _orgLogoBackground"></div>
+                              <span class="flex-shrink-1 ms-3">{{ item.legal_name }}</span>
+                            </div>
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <div class="row mb-1">
+                      <div class="col-sm-4">
+                        <label class="col-form-label col-form-label-fix" for="service_id">{{ 'APP.LABEL.ServiceName' | translate }}</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <ng-select class="" (click)="onSelectedSearchDropdwon($event)"
+                          [items]="services$ | async"
+                          [trackByFn]="trackBySelectFn"
+                          [typeahead]="servicesInput$"
+                          [minTermLength]="minLengthTerm" 
+                          [notFoundText]="'APP.MESSAGE.NotFoundItem' | translate"
+                          [typeToSearchText]="'APP.MESSAGE.PleaseEnterMin' | translate:{ lengthTerm: minLengthTerm }"
+                          bindValue="id"
+                          labelForId="service_id"
+                          [editableSearchTerm]="true"
+                          appendTo="body"
+                          formControlName="service_id"
+                          (selected)="onChangeSearchDropdwon($event)">
+                          <ng-template ng-label-tmp let-item="item">
+                            <div class="d-flex flex-row align-items-center" *ngIf="item.service_name">
+                              <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _serviceLogoBackground"></div>
+                              <span class="flex-shrink-1 ms-3">{{ item.service_name }}</span>
+                            </div>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                            <div class="d-flex flex-row align-items-center">
+                              <div class="flex-shrink-0 menu-logo logo-miniature" [style.backgroundImage]="item | mapper: _serviceLogoBackground"></div>
+                              <span class="flex-shrink-1 ms-3">{{ item.service_name }}</span>
+                            </div>
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-end pt-4" *ngIf="_useNewSearchUI">
+                  <button type="button" class="btn btn-default btn-md gl-button btn-default-tertiary" (click)="searchGoogleForm._closeSearchDropDpwn(null)">{{ 'APP.BUTTON.Close' | translate }}</button>
+                  <button type="submit" class="btn btn-confirm btn-md gl-button ms-2">{{ 'APP.BUTTON.Search' | translate }}</button>
+                </div>
+                <button type="submit" class="d-none" *ngIf="!_useNewSearchUI">hidden submit</button>
               </fieldset>
             </form>
           </div>
-        </ui-search-bar-form>
+        </ui-search-google-form>
       </div>
     </div>
   </section>

@@ -12,7 +12,7 @@ import { Tools } from 'projects/tools/src/lib/tools.service';
 import { EventsManagerService } from 'projects/tools/src/lib/eventsmanager.service';
 import { OpenAPIService } from 'projects/govio-app/src/services/openAPI.service';
 
-import { SearchBarFormComponent } from 'projects/components/src/lib/ui/search-bar-form/search-bar-form.component';
+import { SearchGoogleFormComponent } from 'projects/components/src/lib/ui/search-google-form/search-google-form.component';
 
 import moment from 'moment';
 
@@ -25,7 +25,7 @@ export class TemplatesComponent implements OnInit, AfterViewInit, AfterContentCh
   static readonly Name = 'TemplatesComponent';
   readonly model: string = 'templates';
 
-  @ViewChild('searchBarForm') searchBarForm!: SearchBarFormComponent;
+  @ViewChild('searchGoogleForm') searchGoogleForm!: SearchGoogleFormComponent;
 
   Tools = Tools;
 
@@ -52,14 +52,14 @@ export class TemplatesComponent implements OnInit, AfterViewInit, AfterContentCh
 
   _materialAppearance: MatFormFieldAppearance = 'fill';
 
-  _template: string = 'APP.TEMPLATE.NoResults';
-  _templateHelp: string = 'APP.TEMPLATE.NoResultsHelp';
-  _templateUnimplemented: string = 'APP.TEMPLATE.Unimplemented';
-  _templateNoResponseUnimplemented: string = 'APP.TEMPLATE.NoResponseUnimplemented';
+  _message: string = 'APP.MESSAGE.NoResults';
+  _messageHelp: string = 'APP.MESSAGE.NoResultsHelp';
+  _messageUnimplemented: string = 'APP.MESSAGE.Unimplemented';
+  _messageNoResponseUnimplemented: string = 'APP.MESSAGE.NoResponseUnimplemented';
 
   _error: boolean = false;
 
-  showHistory: boolean = true;
+  showHistory: boolean = false;
   showSearch: boolean = true;
   showSorting: boolean = true;
 
@@ -104,7 +104,7 @@ export class TemplatesComponent implements OnInit, AfterViewInit, AfterContentCh
   ngOnDestroy() {}
 
   ngAfterViewInit() {
-    if (!(this.searchBarForm && this.searchBarForm._isPinned())) {
+    if (!(this.searchGoogleForm && this.searchGoogleForm._isPinned())) {
       setTimeout(() => {
         this._loadTemplates();
       }, 100);
@@ -118,11 +118,11 @@ export class TemplatesComponent implements OnInit, AfterViewInit, AfterContentCh
   _setErrorTemplates(error: boolean) {
     this._error = error;
     if (this._error) {
-      this._template = 'APP.TEMPLATE.ERROR.Default';
-      this._templateHelp = 'APP.TEMPLATE.ERROR.DefaultHelp';
+      this._message = 'APP.MESSAGE.ERROR.Default';
+      this._messageHelp = 'APP.MESSAGE.ERROR.DefaultHelp';
     } else {
-      this._template = 'APP.TEMPLATE.NoResults';
-      this._templateHelp = 'APP.TEMPLATE.NoResultsHelp';
+      this._message = 'APP.MESSAGE.NoResults';
+      this._messageHelp = 'APP.MESSAGE.NoResultsHelp';
     }
   }
 
@@ -210,8 +210,8 @@ export class TemplatesComponent implements OnInit, AfterViewInit, AfterContentCh
 
   _onEdit(event: any, param: any) {
     if (this._useRoute) {
-      if (this.searchBarForm) {
-        this.searchBarForm._pinLastSearch();
+      if (this.searchGoogleForm) {
+        this.searchGoogleForm._pinLastSearch();
       }
       this.router.navigate(['templates', param.id]);
     } else {
@@ -229,8 +229,8 @@ export class TemplatesComponent implements OnInit, AfterViewInit, AfterContentCh
   }
 
   _onSubmit(form: any) {
-    if (this.searchBarForm) {
-      this.searchBarForm._onSearch();
+    if (this.searchGoogleForm) {
+      this.searchGoogleForm._onSearch();
     }
   }
 

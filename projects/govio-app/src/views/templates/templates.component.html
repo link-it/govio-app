@@ -27,8 +27,8 @@
   <section class="search-bar container-fluid px-0" *ngIf="_hasFilter">
     <div class="row align-items-center">
       <div class="col-12">
-        <ui-search-bar-form #searchBarForm
-          [classBlock]="''"
+        <ui-search-google-form #searchGoogleForm
+          [classBlock]="'custom-search-token'"
           [placeholder]="'APP.PLACEHOLDER.Search' | translate"
           [template]="'APP.TEMPLATE.Search' | translate"
           [showHistory]="showHistory"
@@ -50,7 +50,7 @@
               </fieldset>
             </form>
           </div>
-        </ui-search-bar-form>
+        </ui-search-google-form>
       </div>
     </div>
   </section>
@@ -61,13 +61,13 @@
     (scrolled)="__loadMoreData()"
     [scrollWindow]="false">
 
-    <ui-box-template *ngIf="templates.length == 0 && !_spin"
+    <ui-box-message *ngIf="templates.length == 0 && !_spin"
       [size]="64"
       [icon]="'report_problem'"
       [image]="'./assets/images/illustrations/templates.svg'"
-      [template]="_template | translate"
-      [subTemplate]="_templateHelp | translate">
-    </ui-box-template>
+      [message]="_message | translate"
+      [subMessage]="_messageHelp | translate">
+    </ui-box-message>
 
     <div class="row">
       <div class="col-12">

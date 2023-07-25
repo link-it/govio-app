@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
@@ -11,21 +11,24 @@ import { ConfigService } from 'projects/tools/src/lib/config.service';
 import { Tools } from 'projects/tools/src/lib/tools.service';
 import { EventsManagerService } from 'projects/tools/src/lib/eventsmanager.service';
 import { OpenAPIService } from 'projects/govio-app/src/services/openAPI.service';
-import { SearchBarFormComponent } from 'projects/components/src/lib/ui/search-bar-form/search-bar-form.component';
+
+import { SearchGoogleFormComponent } from 'projects/components/src/lib/ui/search-google-form/search-google-form.component';
+
+import { concat, Observable, of, Subject, throwError } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, map, mergeMap, startWith, switchMap, tap } from 'rxjs/operators';
 
 import * as moment from 'moment';
-import * as jsonpatch from 'fast-json-patch';
 
 @Component({
   selector: 'app-services',
   templateUrl: 'services.component.html',
   styleUrls: ['services.component.scss']
 })
-export class ServicesComponent implements OnInit, AfterContentChecked, OnDestroy {
+export class ServicesComponent implements OnInit, AfterViewInit, AfterContentChecked, OnDestroy {
   static readonly Name = 'ServicesComponent';
   readonly model: string = 'service-instances';
 
-  @ViewChild('searchBarForm') searchBarForm!: SearchBarFormComponent;
+  @ViewChild('searchGoogleForm') searchGoogleForm!: SearchGoogleFormComponent;
 
   config: any;
   servicesConfig: any;
@@ -53,17 +56,23 @@ export class ServicesComponent implements OnInit, AfterContentChecked, OnDestroy
 
   _error: boolean = false;
 
-  showHistory: boolean = true;
+  showHistory: boolean = false;
   showSearch: boolean = true;
   showSorting: boolean = true;
 
-  sortField: string = 'legal_name';
+  sortField: string = 'name';
   sortDirection: string = 'asc';
   sortFields: any[] = [
-    { field: 'legal_name', label: 'APP.LABEL.Organization', icon: '' }
+    { field: 'name', label: 'APP.LABEL.Name', icon: '' }
   ];
 
-  searchFields: any[] = [];
+  searchFields: any[] = [
+    { field: 'q', label: 'APP.LABEL.FreeSearch', type: 'text', condition: 'like' },
+    { field: 'organization_id', label: 'APP.LABEL.Organization', type: 'text', condition: 'equal', params: { resource: 'organizations', field: 'legal_name' } },
+    { field: 'service_id', label: 'APP.LABEL.ServiceName', type: 'text', condition: 'equal', params: { resource: 'services', field: 'service_name' } }
+  ];
+  useCondition: boolean = true;
+  _useNewSearchUI : boolean = true;
 
   _useRoute: boolean = true;
 
@@ -75,7 +84,22 @@ export class ServicesComponent implements OnInit, AfterContentChecked, OnDestroy
   _unimplemented: boolean = false;
 
   groupName: string = '';
+
+  _organization: any = null;
+  _service: any = null;
+
+  minLengthTerm = 1;
+
+  organizations$!: Observable<any[]>;
+  organizationsInput$ = new Subject<string>();
+  organizationsLoading: boolean = false;
+
+  services$!: Observable<any[]>;
+  servicesInput$ = new Subject<string>();
+  servicesLoading: boolean = false;
+
   _organizationLogoPlaceholder: string = './assets/images/organization-placeholder.png';
+  _serviceLogoPlaceholder: string = './assets/images/service-placeholder.png';
 
   constructor(
     private route: ActivatedRoute,
@@ -100,13 +124,23 @@ export class ServicesComponent implements OnInit, AfterContentChecked, OnDestroy
     this.configService.getConfig(this.model).subscribe(
       (config: any) => {
         this.servicesConfig = config;
-        this._loadServices();
+        this._initOrganizationsSelect([]);
+        this._initServicesSelect([]);
       }
     );
   }
 
   ngOnDestroy() {
     // this.eventsManagerService.off(EventType.NAVBAR_ACTION);
+  }
+
+  ngAfterViewInit() {
+    if (!(this.searchGoogleForm && this.searchGoogleForm._isPinned())) {
+      // this.searchGoogleForm.setNotCloseForm(true)
+      setTimeout(() => {
+        this._loadServices();
+      }, 100);
+    }
   }
 
   ngAfterContentChecked(): void {
@@ -127,6 +161,8 @@ export class ServicesComponent implements OnInit, AfterContentChecked, OnDestroy
   _initSearchForm() {
     this._formGroup = new UntypedFormGroup({
       q: new UntypedFormControl(''),
+      organization_id: new UntypedFormControl(null),
+      service_id: new UntypedFormControl(null)
     });
   }
 
@@ -245,6 +281,9 @@ export class ServicesComponent implements OnInit, AfterContentChecked, OnDestroy
 
   _onEdit(event: any, param: any) {
     if (this._useRoute) {
+      if (this.searchGoogleForm) {
+        this.searchGoogleForm._pinLastSearch();
+      }
       this.router.navigate([this.model, param.id]);
     } else {
       this._isEdit = true;
@@ -268,8 +307,8 @@ export class ServicesComponent implements OnInit, AfterContentChecked, OnDestroy
   }
 
   _onSubmit(form: any) {
-    if (this.searchBarForm) {
-      this.searchBarForm._onSearch();
+    if (this.searchGoogleForm) {
+      this.searchGoogleForm._onSearch();
     }
   }
 
@@ -299,15 +338,114 @@ export class ServicesComponent implements OnInit, AfterContentChecked, OnDestroy
     Tools.ScrollElement('container-scroller', 0);
   }
 
+  trackByFn(index: number, item: any): number {
+    return item.id;
+  }
+
+  _orgLogo = (item: any): string => {
+    let logoUrl = this._organizationLogoPlaceholder;
+    if (item._links && item._links['logo-miniature']) {
+      logoUrl = item._links['logo-miniature'].href;
+    }
+    return logoUrl;
+  };
+
   _orgLogoBackground = (item: any): string => {
     let logoUrl = this._organizationLogoPlaceholder;
+    if (item._links && item._links['logo-miniature']) {
+      logoUrl = item._links['logo-miniature'].href;
+    }
+    return `url(${logoUrl})`;
+  };
+
+  _serviceLogoBackground = (item: any): string => {
+    let logoUrl = this._serviceLogoPlaceholder;
     if (item && item._links && item._links['logo-miniature']) {
       logoUrl = item._links['logo-miniature'].href;
     }
     return `url(${logoUrl})`;
   };
 
-  trackByFn(index: number, item: any): number {
+  trackBySelectFn(item: any) {
     return item.id;
+  }
+
+  _initOrganizationsSelect(defaultValue: any[] = []) {
+    this.organizations$ = concat(
+      of(defaultValue),
+      this.organizationsInput$.pipe(
+        // filter(res => {
+        //   return res !== null && res.length >= this.minLengthTerm
+        // }),
+        startWith(''),
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap(() => this.organizationsLoading = true),
+        switchMap((term: any) => {
+          return this.getData('organizations', term, 'legal_name', 'asc').pipe(
+            catchError(() => of([])), // empty list on error
+            tap(() => this.organizationsLoading = false)
+          )
+        })
+      )
+    );
+  }
+
+  _initServicesSelect(defaultValue: any[] = []) {
+    this.services$ = concat(
+      of(defaultValue),
+      this.servicesInput$.pipe(
+        // filter(res => {
+        //   return res !== null && res.length >= this.minLengthTerm
+        // }),
+        startWith(''),
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap(() => this.servicesLoading = true),
+        switchMap((term: any) => {
+          return this.getData('services', term, 'service_name', 'asc').pipe(
+            catchError(() => of([])), // empty list on error
+            tap(() => this.servicesLoading = false)
+          )
+        })
+      )
+    );
+  }
+
+  getData(model: string, term: any = null, sort: string = 'id', sort_direction: string = 'desc'): Observable<any> {
+    let _options: any = { params: { limit: 100, sort: sort, sort_direction: 'asc' } };
+    if (term) {
+      if (typeof term === 'string' ) {
+        _options.params =  { ..._options.params, q: term };
+      }
+      if (typeof term === 'object' ) {
+        _options.params =  { ..._options.params, ...term };
+      }
+    }
+
+    return this.apiService.getList(model, _options)
+      .pipe(map(resp => {
+        if (resp.Error) {
+          throwError(resp.Error);
+        } else {
+          const _items = resp.items.map((item: any) => {
+            // item.disabled = _.findIndex(this._toExcluded, (excluded) => excluded.name === item.name) !== -1;
+            return item;
+          });
+          return _items;
+        }
+      })
+      );
+  }
+
+  onSelectedSearchDropdwon($event: Event){
+    this.searchGoogleForm.setNotCloseForm(true)
+    $event.stopPropagation();
+  }
+
+  onChangeSearchDropdwon(event: any){
+    setTimeout(() => {
+      this.searchGoogleForm.setNotCloseForm(false)
+    }, 200);
   }
 }

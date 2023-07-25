@@ -230,6 +230,13 @@ export class Tools {
     MultiSnackbarComponent.DestroyAllStickyMessages();
   }
 
+  public static showMessage(message: string, type: string, action: boolean = false, keep: boolean = false, actionLabel: string | null = null) {
+    const _action: boolean = action;
+    const _keep: boolean = keep;
+    const _actionLabel: string | null = actionLabel;
+    MultiSnackbarComponent.PushMessage(message, _action, _keep, _actionLabel, null, type);
+  }
+  
   /**
    * On error handler
    * @param error
@@ -255,6 +262,17 @@ export class Tools {
     // Tools.Alert(_msg || error.message);
   }
 
+  /**
+   *
+   * Alert messages
+   * @param {string} _message
+   * @param {boolean} _action
+   * @param {boolean} _keep
+   * @param {string} _actionLabel
+   */
+  public static Alert(_message: string, _action: boolean = true, _keep: boolean = false, _actionLabel: string | null = null) {
+    MultiSnackbarComponent.PushMessage(_message, _action, _keep, _actionLabel);
+  }
 
   /**
    * generate groups of 4 random characters
@@ -464,5 +482,62 @@ export class Tools {
       str += line + '\r\n';
     }
     return str;
+  }
+
+  /**
+   * Sort by properties
+   * @param {string[]} properties
+   * @param {boolean} asc
+   * @param {boolean} isDate
+   * @returns {any[]}
+   */
+  static SortBy(properties: string[], asc: boolean = true, isDate: boolean = false) {
+    return ((value1: any, value2: any) => {
+      properties.forEach((p: string)  => {
+        value1 = value1[p] || '';
+        value2 = value2[p] || '';
+      });
+      if (isDate) {
+        value1 = new Date(value1);
+        value2 = new Date(value2);
+      }
+      if (value1 < value2) {
+        return asc?-1:1;
+      }
+      if (value1 > value2) {
+        return asc?1:-1;
+      }
+      return 0;
+    });
+  }
+
+  public static TruncateRows(text: string, rows: number = 2, maxchars: number = 160): string {
+    let split: string[] = [];
+    if (text && text.search(/\r\n|\r|\n/) !== -1) {
+      split = text.split(/\r\n|\r|\n/);
+      text = split.slice(0, Math.min(rows, split.length)).join('\n').trim();
+    }
+    if (text && (text.length > maxchars || rows < split.length)) {
+      return text.substring(0, maxchars).trim() + '...';
+    }
+    return text;
+  }
+
+  public static Trunc(value: number): number {
+    return value < 0 ? Math.ceil(value) : Math.floor(value);
+  }
+
+  public static IsNullOrUndefined<T>(obj: T | null | undefined): obj is null | undefined {
+    return typeof obj === 'undefined' || obj === null;
+  }
+
+  public static DecodeDataOptions(data: any): any {
+    const decodeData = JSON.parse(decodeURI(window.atob(data)));
+    return decodeData;
+  }
+
+  public static EncodeDataOptions(data: any): any {
+    const encodeData = window.btoa(encodeURI(JSON.stringify(data)));
+    return encodeData;
   }
 }
