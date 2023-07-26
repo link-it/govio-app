@@ -26,6 +26,7 @@ import { DataViewModule } from './ui/data-view/data-view.module';
 import { BoxCollapseModule } from './ui/box-collapse/box-collapse.module';
 import { SearchBarModule } from './ui/search-bar/search-bar.module';
 import { SearchBarFormModule } from './ui/search-bar-form/search-bar-form.module';
+import { SearchGoogleFormModule } from './ui/search-google-form/search-google-form.module';
 import { SimpleItemModule } from './ui/simple-item/simple-item.module';
 import { CollapseItemModule } from './ui/collapse-item/collapse-item.module';
 import { ItemTypeModule } from './ui/item-type/item-type.module';
@@ -71,6 +72,7 @@ import { MarkAsteriskModule } from './directives/mark-asterisk.module';
     BoxCollapseModule,
     SearchBarModule,
     SearchBarFormModule,
+    SearchGoogleFormModule,
     SimpleItemModule,
     CollapseItemModule,
     ItemTypeModule,
@@ -124,6 +126,7 @@ import { MarkAsteriskModule } from './directives/mark-asterisk.module';
     BoxCollapseModule,
     SearchBarModule,
     SearchBarFormModule,
+    SearchGoogleFormModule,
     SimpleItemModule,
     CollapseItemModule,
     ItemTypeModule,

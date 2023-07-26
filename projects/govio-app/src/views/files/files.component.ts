@@ -12,7 +12,7 @@ import { Tools } from 'projects/tools/src/lib/tools.service';
 import { EventsManagerService } from 'projects/tools/src/lib/eventsmanager.service';
 import { OpenAPIService } from 'projects/govio-app/src/services/openAPI.service';
 
-import { SearchBarFormComponent } from 'projects/components/src/lib/ui/search-bar-form/search-bar-form.component';
+import { SearchGoogleFormComponent } from 'projects/components/src/lib/ui/search-google-form/search-google-form.component';
 
 import moment from 'moment';
 
@@ -25,7 +25,7 @@ export class FilesComponent implements OnInit, AfterViewInit, AfterContentChecke
   static readonly Name = 'FilesComponent';
   readonly model: string = 'files';
 
-  @ViewChild('searchBarForm') searchBarForm!: SearchBarFormComponent;
+  @ViewChild('searchGoogleForm') searchGoogleForm!: SearchGoogleFormComponent;
 
   Tools = Tools;
 
@@ -59,7 +59,7 @@ export class FilesComponent implements OnInit, AfterViewInit, AfterContentChecke
 
   _error: boolean = false;
 
-  showHistory: boolean = true;
+  showHistory: boolean = false;
   showSearch: boolean = true;
   showSorting: boolean = true;
 
@@ -71,9 +71,10 @@ export class FilesComponent implements OnInit, AfterViewInit, AfterContentChecke
   ];
 
   searchFields: any[] = [
+    { field: 'q', label: 'APP.LABEL.FreeSearch', type: 'text', condition: 'like' },
     { field: 'creation_date_from', label: 'APP.LABEL.Date', type: 'date', condition: 'gt', format: 'DD/MM/YYYY' },
     { field: 'creation_date_to', label: 'APP.LABEL.Date', type: 'date', condition: 'lt', format: 'DD/MM/YYYY' },
-    { field: 'filename', label: 'APP.LABEL.Filename', type: 'string', condition: 'like' },
+    { field: 'filename', label: 'APP.LABEL.Filename', type: 'text', condition: 'like' },
     { field: 'status', label: 'APP.LABEL.Status', type: 'enum', condition: 'equal',
       enumValues: { 
         'CREATED': 'APP.STATUS.CREATED',
@@ -82,6 +83,8 @@ export class FilesComponent implements OnInit, AfterViewInit, AfterContentChecke
       }
     }
   ];
+  useCondition: boolean = true;
+  _useNewSearchUI : boolean = true;
 
   breadcrumbs: any[] = [
     { label: 'APP.TITLE.Files', url: '', type: 'title', icon: 'topic' }
@@ -123,7 +126,7 @@ export class FilesComponent implements OnInit, AfterViewInit, AfterContentChecke
   ngOnDestroy() {}
 
   ngAfterViewInit() {
-    if (!(this.searchBarForm && this.searchBarForm._isPinned())) {
+    if (!(this.searchGoogleForm && this.searchGoogleForm._isPinned())) {
       setTimeout(() => {
         this._loadFiles();
       }, 100);
@@ -147,6 +150,7 @@ export class FilesComponent implements OnInit, AfterViewInit, AfterContentChecke
 
   _initSearchForm() {
     this._formGroup = new UntypedFormGroup({
+      q: new UntypedFormControl(''),
       creation_date_from: new UntypedFormControl(''),
       creation_date_to: new UntypedFormControl(''),
       filename: new UntypedFormControl(''),
@@ -264,8 +268,8 @@ export class FilesComponent implements OnInit, AfterViewInit, AfterContentChecke
 
   _onEdit(event: any, param: any) {
     if (this._useRoute) {
-      if (this.searchBarForm) {
-        this.searchBarForm._pinLastSearch();
+      if (this.searchGoogleForm) {
+        this.searchGoogleForm._pinLastSearch();
       }
       this.router.navigate(['files', param.id]);
     } else {
@@ -283,8 +287,8 @@ export class FilesComponent implements OnInit, AfterViewInit, AfterContentChecke
   }
 
   _onSubmit(form: any) {
-    if (this.searchBarForm) {
-      this.searchBarForm._onSearch();
+    if (this.searchGoogleForm) {
+      this.searchGoogleForm._onSearch();
     }
   }
 

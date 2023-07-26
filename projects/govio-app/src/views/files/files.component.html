@@ -28,51 +28,90 @@
     <section class="search-bar container-fluid px-0" *ngIf="_hasFilter">
       <div class="row align-items-center">
         <div class="col-12">
-          <ui-search-bar-form #searchBarForm
-            [classBlock]="''"
+          <ui-search-google-form #searchGoogleForm
+            [classBlock]="'custom-search-token'"
             [placeholder]="'APP.PLACEHOLDER.Search' | translate"
             [showHistory]="showHistory"
             [historyStore]="'files'"
             [showSearch]="showSearch"
             [searchFields]="searchFields"
+            [useCondition]="useCondition"
             [showSorting]="showSorting"
             [sortField]="sortField"
             [sortDirection]="sortDirection"
             [sortFields]="sortFields"
             [formGroup]="_formGroup"
+            [simple]="false"
             (onSearch)="_onSearch($event)"
             (onSort)="_onSort($event)">
-            <div form-search>
+            <div form-search class="" [class.search-material-custom]="_useNewSearchUI">
               <form class="row" [formGroup]="_formGroup" (submit)="_onSubmit(_formGroup.value)">
                 <fieldset>
-                  <div class="row">
-                    <div class="form-group col-md-4 mb-2">
-                      <label class="label-bold mb-0" for="creation_date_from">{{ 'APP.LABEL.DateFrom' | translate }}</label>
-                      <input class="form-control form-control-sm gl-form-input" id="creation_date_from" type="date" formControlName="creation_date_from" autocomplete="off">
+                  <div class="row mb-1">
+                    <div class="col-sm-2">
+                      <label class="col-form-label col-form-label-fix" for="q">{{ 'APP.LABEL.FreeSearch' | translate }}</label>
                     </div>
-                    <div class="form-group col-md-4 mb-2">
-                      <label class="label-bold mb-0" for="creation_date_to">{{ 'APP.LABEL.DateTo' | translate }}</label>
-                      <input class="form-control form-control-sm gl-form-input" id="creation_date_to" type="date" formControlName="creation_date_to" autocomplete="off">
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control form-control-sm" id="q" formControlName="q">
                     </div>
                   </div>
                   <div class="row">
-                    <div class="form-group col-md-4 mb-2">
-                      <label class="label-bold mb-0" for="filename">{{ 'APP.LABEL.FileName' | translate }}</label>
-                      <input class="form-control form-control-sm gl-form-input" id="filename" type="text" formControlName="filename" autocomplete="off">
+                    <div class="col-sm-12 col-md-6">
+                      <div class="row mb-1">
+                        <div class="col-sm-4">
+                          <label class="col-form-label col-form-label-fix" for="creation_date_from">{{ 'APP.LABEL.DateFrom' | translate }}</label>
+                        </div>
+                        <div class="col-sm-8">
+                          <input class="form-control form-control-sm" id="creation_date_from" type="date" formControlName="creation_date_from" autocomplete="off">
+                        </div>
+                      </div>
                     </div>
-                    <div class="form-group col-md-4 mb-2">
-                      <label class="label-bold mb-0" for="status">{{ 'APP.LABEL.Status' | translate }}</label>
-                      <select class="form-control form-control-sm" id="status" formControlName="status">
-                        <option value="">{{ 'APP.LABEL.All' | translate }}</option>
-                        <option *ngFor="let s of statusList" [value]="s.value">{{ s.label | translate }}</option>
-                      </select>
+                    <div class="col-sm-12 col-md-6">
+                      <div class="row mb-1">
+                        <div class="col-sm-4">
+                          <label class="col-form-label col-form-label-fix" for="creation_date_to">{{ 'APP.LABEL.DateTo' | translate }}</label>
+                        </div>
+                        <div class="col-sm-8">
+                          <input class="form-control form-control-sm" id="creation_date_to" type="date" formControlName="creation_date_to" autocomplete="off">
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <button type="submit" class="d-none">hidden submit</button>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                      <div class="row mb-1">
+                        <div class="col-sm-4">
+                          <label class="col-form-label col-form-label-fix" for="filename">{{ 'APP.LABEL.FileName' | translate }}</label>
+                        </div>
+                        <div class="col-sm-8">
+                          <input class="form-control form-control-sm" id="filename" type="text" formControlName="filename" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <div class="row mb-1">
+                        <div class="col-sm-4">
+                          <label class="col-form-label col-form-label-fix" for="status">{{ 'APP.LABEL.Status' | translate }}</label>
+                        </div>
+                        <div class="col-sm-8">
+                          <select class="form-control form-control-sm" id="status" formControlName="status">
+                            <option value="">{{ 'APP.LABEL.All' | translate }}</option>
+                            <option *ngFor="let s of statusList" [value]="s.value">{{ s.label | translate }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-end pt-4" *ngIf="_useNewSearchUI">
+                    <button type="button" class="btn btn-default btn-md gl-button btn-default-tertiary" (click)="searchGoogleForm._closeSearchDropDpwn(null)">{{ 'APP.BUTTON.Close' | translate }}</button>
+                    <button type="submit" class="btn btn-confirm btn-md gl-button ms-2">{{ 'APP.BUTTON.Search' | translate }}</button>
+                  </div>
+                  <button type="submit" class="d-none" *ngIf="!_useNewSearchUI">hidden submit</button>
                 </fieldset>
               </form>
             </div>
-          </ui-search-bar-form>
+          </ui-search-google-form>
         </div>
       </div>
     </section>

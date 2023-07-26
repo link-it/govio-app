@@ -5,9 +5,9 @@ import { BehaviorSubject } from 'rxjs';
   selector: 'app-multi-snackbar',
   template: `
     <div *ngFor="let snackbar of MSC.MultiSnackbar; let idx = index" [ngClass]="idx !== (MSC.MultiSnackbar.length - 1)?'old-message':''"
-        class="snackbar-message d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
+        class="snackbar-message d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between" [ngStyle]="{ 'background-color': _colors[snackbar.type].background, 'border-color': _colors[snackbar.type].border, 'color': _colors[snackbar.type].color }">
       <p class="m-0">{{ snackbar.message }}</p>
-      <button mat-button *ngIf="snackbar.action" type="button" class="snackbar-action ms-3 text-right text-sm-center" color="accent" (click)="__cleanMessage(idx)">{{ snackbar.action }}</button>
+      <button *ngIf="snackbar.action" type="button" class="btn btn-default btn-md gl-button btn-default-tertiary" [ngStyle]="{ 'border-color': _colors[snackbar.type].border, 'color': _colors[snackbar.type].color }" (click)="__cleanMessage(idx)"><i class="bi bi-x-lg"></i><span class="d-none">{{ snackbar.action }}</span></button>
     </div>
   `,
   styles: [`
@@ -28,7 +28,7 @@ import { BehaviorSubject } from 'rxjs';
       padding: 14px 16px;
       color: hsla(0, 0%, 100%, .7);
       background-color: #323232;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); */
     }
 
     .old-message {
@@ -59,11 +59,19 @@ export class MultiSnackbarComponent implements OnInit, OnDestroy {
 
   MSC = MultiSnackbarComponent;
 
-  public static Duration: number = 10000;
+  public static Duration: number = 5000;
   public static MessageClean: BehaviorSubject<any> = new BehaviorSubject(null);
 
   static MultiSnackbar: any[] = [];
   static _Timer: any;
+
+  _colors: any = {
+    default: { background: '#323232', border: '#323232', color: '#ffffff' },
+    success: { background: '#d1e7dd', border: '#badbcc', color: '#000000' },
+    danger: { background: '#f8d7da', border: '#f5c2c7', color: '#000000' },
+    warning: { background: '#fff3cd', border: '#ffecb5', color: '#000000' },
+    info: { background: '#cff4fc', border: '#b6effb', color: '#000000' }
+  };
 
   constructor() { }
 
@@ -74,14 +82,14 @@ export class MultiSnackbarComponent implements OnInit, OnDestroy {
     clearInterval(MultiSnackbarComponent._Timer);
   }
 
-  public static PushMessage(_message: string, _action: boolean = true, _keep: boolean = false, _actionLabel: string | null = null, _uuid: string | null = null) {
+  public static PushMessage(_message: string, _action: boolean = true, _keep: boolean = false, _actionLabel: string | null = null, _uuid: string | null = null, type: string = 'default') {
     let _actions = null;
     if (_action) {
       _actions = _actionLabel?_actionLabel:'Chiudi';
     }
     if(_message) {
       if (!MultiSnackbarComponent.CheckMultiSnackbar(_uuid)) {
-        MultiSnackbarComponent.MultiSnackbar.push({ message: _message, action: _actions, keep: _keep, time: new Date().getTime(), uuid: _uuid});
+        MultiSnackbarComponent.MultiSnackbar.push({ message: _message, action: _actions, keep: _keep, time: new Date().getTime(), uuid: _uuid, type: type});
         if (!_keep) {
           MultiSnackbarComponent.__CleanMessageInterval();
         }
@@ -139,5 +147,4 @@ export class MultiSnackbarComponent implements OnInit, OnDestroy {
       }
     }, MultiSnackbarComponent.Duration);
   }
-
 }

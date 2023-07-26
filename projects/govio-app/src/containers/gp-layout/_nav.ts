@@ -35,7 +35,7 @@ export const navItemsMainMenu: INavData[] = [
   {
     title: true,
     label: 'APP.MENU.Configurations',
-    path: 'placeholders',
+    path: 'placeholders|templates|service-instances',
     url: '/placeholders',
     iconBs: 'gear',
     permission: 'SETTINGS',
