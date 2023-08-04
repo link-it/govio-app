@@ -33,6 +33,6 @@ export class DataViewComponent implements OnInit {
   }
 
   _showEmpty(field: any) {
-    return (!this._data[field.field] && field.hideEmpty) ? false : true;;
+    return (!this._data[field.field] && field.hideEmpty) ? false : true;
   }
 }

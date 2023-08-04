@@ -237,7 +237,7 @@
                   <div class="col-12 form-group" *ngFor="let ph of _templatePlaceholders | orderBy : ['position']">
                     <label class="label-bold" [for]="ph.name">{{ ph.description }} <span appMarkAsterisk [formGroup]="_placeholdersFormGroup" [controlName]="ph.name" *ngIf="_markAsteriskUpdated"></span></label>
                     <div class="">
-                      <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlPlaceholdersError(ph.name)" [type]="ph.type" [name]="ph.name" [id]="ph.name" [formControlName]="ph.name">
+                      <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlPlaceholdersError(ph.name)" [type]="_convertType(ph.type)" [name]="ph.name" [id]="ph.name" [formControlName]="ph.name">
                       <p *ngIf="fp[ph.name].invalid && (fp[ph.name].dirty || fp[ph.name].touched)" class="form-text text-danger">
                         <span *ngIf="fp[ph.name].errors && fp[ph.name].errors?.required" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
                         <span *ngIf="fp[ph.name].errors && fp[ph.name].errors?.pattern" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Pattern' | translate:{pattern: ph.pattern } }}</span>

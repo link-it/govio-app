@@ -41,6 +41,16 @@ export class UtilsLib {
     return (value / Math.pow(1000, exp)).toFixed(args) + suffixes[exp - 1];
   }
 
+  formatBytes(value: any) {
+    var units = ['B', 'KB', 'MB', 'GB', 'TB'];
+
+    for (var i = 0; value >= 1024 && i < 4; i++) {
+      value /= 1024;
+    }
+
+    return value.toFixed(2) + units[i];
+  }
+
   getObjectValue(obj: any, path: string): any {
     if (!path) { return obj; }
     const properties: string[] = path.split('.');
