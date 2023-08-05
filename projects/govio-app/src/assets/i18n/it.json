@@ -388,6 +388,7 @@
 		},
 		"TYPE": {
 			"DATE": "Data",
+			"DATETIME": "Data Tempo",
 			"MANUALE": "Manuale",
 			"STRING": "Stringa"
 		}
