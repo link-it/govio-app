@@ -267,10 +267,10 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
 
     this._recipients = body.taxcode.split(',').map((item: string) => {
       const data: any = { ..._body };
-      data.taxcode = item;
+      data.taxcode = item.toUpperCase();
       const _valid = this.validaCodiceFiscale(item);
       return {
-        taxcode: item,
+        taxcode: item.toUpperCase(),
         service_instance: this.serviceInstancesSelected$.id,
         idempotency_key: uuidv4(),
         data: data,
