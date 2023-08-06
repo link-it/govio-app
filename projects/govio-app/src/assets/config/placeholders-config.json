@@ -44,6 +44,7 @@
       "small": true,
       "values": {
         "DATE": { "label": "APP.TYPE.DATE", "background": "#D1D100", "border": "#D1D100", "color": "#1f1f1f" },
+        "DATETIME": { "label": "APP.TYPE.DATETIME", "background": "#D1D100", "border": "#D1D100", "color": "#1f1f1f" },
         "STRING": { "label": "APP.TYPE.STRING", "background": "#326C1A", "border": "#326C1A", "color": "#ffffff" },
         "accepeted": { "label": "APP.STATUS.ACCEPTED", "background": "#A8D695", "border": "#A8D695", "color": "#1f1f1f" },
         "throttled": { "label": "APP.STATUS.THROTTLED", "background": "#A8D695", "border": "#A8D695", "color": "#1f1f1f" },

@@ -255,9 +255,13 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
     }
 
     this._templatePlaceholders.forEach((item: any) => {
+      let _value = this._placeholdersFormGroup.controls[item.name].value;
+      if (item.type === 'DATETIME') {
+        _value = moment(_value.valueOf()).utc().format();
+      }
       _body.placeholders.push({
           name: item.name,
-          value: this._placeholdersFormGroup.controls[item.name].value
+          value: _value
         });
     });
 
@@ -544,6 +548,25 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
     this._formGroup.updateValueAndValidity();
 
     this._templatePlaceholders = [];
+  }
+
+  _convertType(type: string) {
+    let _convertType = '';
+    switch (type) {
+      case 'DATE':
+        _convertType = 'date';
+        break;
+      case 'DATETIME':
+        _convertType = 'datetime-local';
+        break;
+      case 'STRING':
+        _convertType = 'string';
+        break;
+      default:
+        _convertType = 'string';
+        break;
+    }
+    return _convertType;
   }
 
   openTemplateInfo() {
