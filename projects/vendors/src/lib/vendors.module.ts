@@ -10,6 +10,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { GravatarModule, GravatarConfig, FALLBACK, RATING } from 'ngx-gravatar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from "ng2-currency-mask";
 
 const gravatarConfig: GravatarConfig = {
   fallback: FALLBACK.mm,
@@ -20,6 +21,16 @@ const gravatarConfig: GravatarConfig = {
 };
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: "left",
+  allowNegative: false,
+  decimal: ",",
+  precision: 2,
+  prefix: "€ ",
+  suffix: "",
+  thousands: "."
+};
 
 @NgModule({
   imports: [
@@ -33,6 +44,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     GravatarModule.forRoot(gravatarConfig),
     InfiniteScrollModule,
     NgSelectModule,
+    CurrencyMaskModule,
     NgxChartsModule
   ],
   exports: [
@@ -46,8 +58,12 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     GravatarModule,
     InfiniteScrollModule,
     NgSelectModule,
+    CurrencyMaskModule,
     NgxChartsModule
   ],
+  providers: [
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
+  ]
 })
 export class VendorsModule {
 }

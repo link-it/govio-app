@@ -1541,6 +1541,21 @@
 										</translations>
 									</concept_node>
 									<concept_node>
+										<name>InvalidAfterDueDate</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>it-IT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
 										<name>IoServiceId</name>
 										<description/>
 										<comment/>
@@ -1737,6 +1752,21 @@
 									</concept_node>
 									<concept_node>
 										<name>Pattern</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>it-IT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>PayeeTaxcode</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -2854,6 +2884,21 @@
 										<name>VALIDATION</name>
 										<children>
 											<concept_node>
+												<name>Digits</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
+											<concept_node>
 												<name>Email</name>
 												<description/>
 												<comment/>
@@ -3185,6 +3230,36 @@
 											</concept_node>
 											<concept_node>
 												<name>GeneralInformations_sub</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
+											<concept_node>
+												<name>PaymentData</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
+											<concept_node>
+												<name>PaymentData_sub</name>
 												<description/>
 												<comment/>
 												<translations>

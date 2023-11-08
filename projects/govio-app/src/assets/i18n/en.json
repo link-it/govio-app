@@ -117,6 +117,7 @@
 			"HasPayment": "Has payment",
 			"Id": "ID",
 			"Index": "Index",
+			"InvalidAfterDueDate": "Invalid after due date",
 			"IoServiceId": "IO service id",
 			"LastUpdateDate": "Last update",
 			"LastUpdateStatus": "Last update status",
@@ -131,6 +132,7 @@
 			"Organization": "Organization",
 			"Password": "Password",
 			"Pattern": "Pattern",
+			"PayeeTaxcode": "Payee taxcode",
 			"Placeholder": "Placeholder",
 			"Position": "Position",
 			"Principal": "Username",
@@ -217,6 +219,7 @@
 			"Sign_in_message": "Sign in with your account",
 			"Unimplemented": "Unimplemented yet",
 			"VALIDATION": {
+				"Digits": "The field must contain only numeric characters",
 				"Email": "Insert valid email",
 				"FieldRequired": "Field required",
 				"GreaterThanEqual": "The amount must have a greater or equal value than {{value}}",
@@ -244,7 +247,9 @@
 			},
 			"TITLE": {
 				"GeneralInformations": "General informations",
-				"GeneralInformations_sub": ""
+				"GeneralInformations_sub": "",
+				"PaymentData": "Payment data",
+				"PaymentData_sub": ""
 			}
 		},
 		"PDF": {
