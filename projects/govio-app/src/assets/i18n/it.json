@@ -117,6 +117,7 @@
 			"HasPayment": "Ha il pagamento",
 			"Id": "ID",
 			"Index": "Indice",
+			"InvalidAfterDueDate": "Non valido dopo la data di scadenza",
 			"IoServiceId": "ID servizio IO",
 			"LastUpdateDate": "Data ultimo aggiornamento",
 			"LastUpdateStatus": "Ultimo aggiornamento stato",
@@ -131,6 +132,7 @@
 			"Organization": "Organizzazione",
 			"Password": "Password",
 			"Pattern": "Pattern",
+			"PayeeTaxcode": "Codice fiscale del beneficiario",
 			"Placeholder": "Segnaposto",
 			"Position": "Posizione",
 			"Principal": "Nome utente",
@@ -244,7 +246,9 @@
 			},
 			"TITLE": {
 				"GeneralInformations": "Informazioni generali",
-				"GeneralInformations_sub": ""
+				"GeneralInformations_sub": "",
+				"PaymentData": "Dati di pagamento",
+				"PaymentData_sub": ""
 			}
 		},
 		"PDF": {
