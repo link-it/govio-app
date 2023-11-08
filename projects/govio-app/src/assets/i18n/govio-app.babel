@@ -2884,6 +2884,21 @@
 										<name>VALIDATION</name>
 										<children>
 											<concept_node>
+												<name>Digits</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
+											<concept_node>
 												<name>Email</name>
 												<description/>
 												<comment/>

@@ -219,6 +219,7 @@
 			"Sign_in_message": "Accedi con il tuo account",
 			"Unimplemented": "Funzionalità attualmente non disponibile",
 			"VALIDATION": {
+				"Digits": "Il campo deve contenere solo caratteri numerici",
 				"Email": "Inserisci una e-mail valida",
 				"FieldRequired": "Campo richiesto",
 				"GreaterThanEqual": "L'importo deve avere un valore maggiore o uguale a {{value}}",

@@ -219,6 +219,7 @@
 			"Sign_in_message": "Sign in with your account",
 			"Unimplemented": "Unimplemented yet",
 			"VALIDATION": {
+				"Digits": "The field must contain only numeric characters",
 				"Email": "Insert valid email",
 				"FieldRequired": "Field required",
 				"GreaterThanEqual": "The amount must have a greater or equal value than {{value}}",
