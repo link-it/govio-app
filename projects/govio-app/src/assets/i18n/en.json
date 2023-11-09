@@ -53,7 +53,7 @@
 				"ContentFile": "Content",
 				"ContentFile_sub": "",
 				"FileMessages": "File messages",
-				"FileMessages_sub": "Export error messages to csv file",
+				"FileMessages_sub": "Export messages to csv file",
 				"GeneralInformations": "General informations",
 				"GeneralInformations_sub": "",
 				"Placeholders": "Placeholders",
@@ -61,7 +61,9 @@
 				"Recipients": "Recipients",
 				"Report": "Report",
 				"ShowMessages": "Messages",
-				"ShowMessages_sub": ""
+				"ShowMessages_sub": "",
+				"StatsMessages": "Stats",
+				"StatsMessages_sub": ""
 			}
 		},
 		"FILTER": {
@@ -122,6 +124,7 @@
 			"LastUpdateDate": "Last update",
 			"LastUpdateStatus": "Last update status",
 			"LegalName": "Legal name",
+			"Legend": "Legend",
 			"Logo": "Logo",
 			"Mandatory": "Mandatory",
 			"Markdown": "Markdown",
@@ -144,6 +147,7 @@
 			"Subject": "Subject",
 			"TaxCode": "Tax code",
 			"Template": "Template",
+			"Total": "Total",
 			"Type": "Type",
 			"User": "User",
 			"UserFullName": "User full name"
@@ -177,6 +181,7 @@
 			"ERROR": {
 				"Default": "Sorry, unpredictable problem",
 				"DefaultHelp": "Please try again later",
+				"NoMessages": "No messages",
 				"TimeoutError": "Timeout has occurred",
 				"Unauthorized": "Unauthorized",
 				"Unprocessable Entity": "Unprocessable Entity"

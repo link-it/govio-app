@@ -250,7 +250,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
 
     if (this.serviceInstancesSelected$.template.has_payment) {
       _body.payment = {
-        amount: body.amount,
+        amount: body.amount * 100,
         notice_number: body.notice_number,
         invalid_after_due_date: this.serviceInstancesSelected$.template.has_due_date,
         payee_taxcode: this.organizationSelected$.tax_code

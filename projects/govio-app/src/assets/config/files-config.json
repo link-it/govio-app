@@ -5,8 +5,8 @@
     ],
     "secondaryText": [
       { "field": "user.full_name", "type": "avatar", "tooltip": "user.full_name", "blockSpace": true },
-      { "field": "acquired_messages", "type": "number", "icon": "send", "hideZero": true, "tooltip": "APP.TOOLTIP.AcquiredMessages", "blockSpace": true },
-      { "field": "error_messages", "type": "number", "icon": "exclamation-triangle", "iconClass": "text-danger", "hideZero": true, "tooltip": "APP.TOOLTIP.ErrorMessages" }
+      { "field": "acquired_messages", "type": "number", "icon": "send", "hideZero": false, "tooltip": "APP.TOOLTIP.AcquiredMessages", "blockSpace": true },
+      { "field": "error_messages", "type": "number", "icon": "exclamation-triangle", "iconClass": "text-danger", "hideZero": false, "tooltip": "APP.TOOLTIP.ErrorMessages" }
     ],
     "metadata": {
       "text": [
@@ -49,5 +49,67 @@
         "ERROR": { "label": "APP.STATUS.ERROR", "background": "#E82323", "border": "#E82323", "color": "#ffffff" }
       }
     }
+  },
+
+  "chartOptions": {
+    "chartHeight": "250px",
+
+    "view": null,
+
+    "showXAxis": true,
+    "showYAxis": true,
+    "gradient": false,
+    "showLegend": true,
+    "legendTitle": "Legend",
+    "legendPosition": "below",
+    "showXAxisLabel": false,
+    "tooltipDisabled": false,
+    "showText": true,
+    "xAxisLabel": "",
+    "showYAxisLabel": false,
+    "yAxisLabel": "",
+    "showGridLines": true,
+    "innerPadding": "10%",
+    "barPadding": 8,
+    "groupPadding": 16,
+    "roundDomains": true,
+    "maxRadius": 10,
+    "minRadius": 3,
+    "showSeriesOnHover": true,
+    "roundEdges": false,
+    "animations": true,
+    "showDataLabel": false,
+    "noBarWhenZero": false,
+    "trimXAxisTicks": true,
+    "trimYAxisTicks": true,
+    "rotateXAxisTicks": true,
+    "maxXAxisTickLength": 16,
+    "maxYAxisTickLength": 16,
+    "strokeColor": "#FFFFFF",
+    "strokeWidth": 2,
+    "labels": true,
+
+    "colorScheme": {
+      "name": "custom",
+      "selectable": true,
+      "group": "ordinal",
+      "domain": ["#96b964", "#ff8f52", "#cd4a51", "#00b862", "#afdf0a", "#a7b61a", "#f3e562", "#ff9800", "#ff5722", "#ff4514"]
+    },
+
+    "customColorScheme": {
+      "REJECTED": "#ff0000",
+      "PROCESSED": "#96b964",
+      "FORBIDDEN": "#ff8f52",
+      "Rifiutato": "#ff0000",
+      "Elaborato": "#96b964",
+      "Proibito": "#ff8f52",
+      "Rejected": "#ff0000",
+      "Processed": "#96b964",
+      "Forbidden": "#ff8f52"
+    },
+  
+    "selectedColorScheme": "natural",
+
+    "schemeType": "ordinal"
   }
 }

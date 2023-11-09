@@ -277,6 +277,31 @@
           </div>
         </div>
       </div>
+      <div class="settings-content border-top mb-3" *ngIf="_stats.length > 0">
+        <div class="row gl-mt-3 mt-4">
+          <div class="col-lg-4 mb-4">
+            <h4 class="gl-mt-0 text-break">{{ 'APP.FILES.TITLE.StatsMessages' | translate }}</h4>
+            <div class="text-break" markdown>{{ 'APP.FILES.TITLE.StatsMessages_sub' | translate }}</div>
+          </div>
+          <div class="col-lg-8">
+            <div class="px-3 py-1 w-100 mb-5" [ngStyle]="{ height: chartOptions.chartHeight }">
+              <ngx-charts-advanced-pie-chart
+                #pieChart
+                [view]="view"
+                [results]="_stats" 
+                [schemeType]="chartOptions.schemeType"
+                [animations]="chartOptions.animations"
+                [labels]="chartOptions.labels"
+                [legend]="chartOptions.showLegend"
+                [legendTitle]="'APP.LABEL.Legend' | translate"
+                [label]="'APP.LABEL.Total' | translate"
+                [customColors]="customColors"
+                [labelFormatting]="customLabel"
+              ></ngx-charts-advanced-pie-chart>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="settings border-top mt-3" *ngIf="!_isNew">
         <div class="settings-header">
           <h4 class="settings-title">{{ 'APP.FILES.TITLE.FileMessages' | translate }}</h4>
@@ -285,7 +310,7 @@
             <i class="bi bi-upload ms-2" *ngIf="!_exportSpin"></i>
             <span class="spinner-border spinner-border-sm ms-2" *ngIf="_exportSpin"></span>
           </button>
-          <p markdown>{{ 'APP.FILES.TITLE.FileMessages_sub' | translate }}<span class="badge badge-muted badge-pill gp-badge sm ms-2">{{ file?.error_messages || 0 }}</span></p>
+          <p markdown>{{ 'APP.FILES.TITLE.FileMessages_sub' | translate }}<span class="badge badge-muted badge-pill gp-badge sm ms-2 d-none">{{ file?.error_messages || 0 }}</span></p>
         </div>
       </div>
     </div>

@@ -53,7 +53,7 @@
 				"ContentFile": "Contenuto",
 				"ContentFile_sub": "",
 				"FileMessages": "File messaggi",
-				"FileMessages_sub": "Esporta i messaggi di errore in un file csv",
+				"FileMessages_sub": "Esporta i messaggi in un file CSV",
 				"GeneralInformations": "Informazioni generali",
 				"GeneralInformations_sub": "",
 				"Placeholders": "Segnaposto",
@@ -61,7 +61,9 @@
 				"Recipients": "Destinatari",
 				"Report": "Rapporto",
 				"ShowMessages": "Messaggi",
-				"ShowMessages_sub": ""
+				"ShowMessages_sub": "",
+				"StatsMessages": "Statistiche",
+				"StatsMessages_sub": ""
 			}
 		},
 		"FILTER": {
@@ -122,6 +124,7 @@
 			"LastUpdateDate": "Data ultimo aggiornamento",
 			"LastUpdateStatus": "Ultimo aggiornamento stato",
 			"LegalName": "Ragione sociale",
+			"Legend": "Leggenda",
 			"Logo": "Logo",
 			"Mandatory": "Obbligatorio",
 			"Markdown": "Markdown",
@@ -144,6 +147,7 @@
 			"Subject": "Oggetto",
 			"TaxCode": "Codice fiscale",
 			"Template": "Modello",
+			"Total": "Totale",
 			"Type": "Tipo",
 			"User": "Utente",
 			"UserFullName": "Nome utente"
@@ -177,6 +181,7 @@
 			"ERROR": {
 				"Default": "Si è verificato un problema non previsto",
 				"DefaultHelp": "Si prega di riprovare più tardi",
+				"NoMessages": "Nessun messaggio",
 				"TimeoutError": "Si è verificato un timeout",
 				"Unauthorized": "Non autorizzato",
 				"Unprocessable Entity": "Entità non elaborabile"

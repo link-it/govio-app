@@ -20,6 +20,8 @@ import { File } from './file';
 
 declare const saveAs: any;
 
+import { PieChartComponent, SingleSeries, MultiSeries, Series, LegendPosition } from '@swimlane/ngx-charts';
+
 @Component({
   selector: 'app-file-details',
   templateUrl: 'file-details.component.html',
@@ -56,6 +58,16 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
   _isNew = false;
   _formGroup: UntypedFormGroup = new UntypedFormGroup({});
   _file: File = new File({});
+
+  _stats: SingleSeries = [];
+
+  chartOptions: any = null;
+  view: any = null; // [700, 400];
+
+  colorSets: any;
+  colorScheme: any = null;
+
+  customColorScheme: any = null;
 
   fileProviders: any = null;
 
@@ -126,6 +138,9 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
         this.configService.getConfig(this.model).subscribe(
           (config: any) => {
             this.config = config;
+            this.chartOptions = config.chartOptions;
+            this.colorScheme = config.chartOptions.colorScheme;
+            this.customColorScheme = config.chartOptions.customColorScheme;
             this._loadAll();
           }
         );
@@ -139,6 +154,9 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
         this.configService.getConfig(this.model).subscribe(
           (config: any) => {
             this.config = config;
+            this.chartOptions = config.chartOptions;
+            this.colorScheme = config.chartOptions.colorScheme;
+            this.customColorScheme = config.chartOptions.customColorScheme;
             if (this._isEdit) {
               this._initForm({ ...this._file });
               setTimeout(() => {
@@ -348,6 +366,7 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
 
           this._spin = false;
           this._loadServiceInstance(this.file.service_instance_id);
+          this._loadFileStats();
         },
         error: (error: any) => {
           this._spin = false;
@@ -355,6 +374,37 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
         }
       });
     }
+  }
+
+  _loadFileStats() {
+    if (this.id) {
+      this._spin = true;
+      this._stats = [];
+      this.apiService.getDetails(this.model, this.id, 'stats').subscribe({
+        next: (response: any) => {
+          // this._stats = response.map((v: any) => ({name: this.translate.instant(`APP.STATUS.${v.status}`), value: v.count}));
+          this._stats = response.map((v: any) => ({name: this.translate.instant(`APP.STATUS.${v.status}`), name_: v.status, value: v.count}));
+
+          this._spin = false;
+        },
+        error: (error: any) => {
+          this._spin = false;
+          Tools.OnError(error);
+        }
+      });
+    }
+  }
+
+  customColors = (value: string) => {
+    return this.customColorScheme[value] || '#c0e2f7';
+  }
+
+  customLabel = (value: any) => {
+    return this.translate.instant(`APP.STATUS.${value}`);
+  }
+
+  customLegend = (value: any) => {
+    return this.translate.instant(`APP.STATUS.${value}`);
   }
 
   _loadServiceInstance(id: number) {
@@ -419,10 +469,6 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
 
   _clickTab(tab: string) {
     this._currentTab = tab;
-  }
-
-  _dummyAction(event: any, param: any) {
-    console.log(event, param);
   }
 
   _editFile() {
@@ -595,7 +641,6 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
         _options.params =  { ..._options.params, q: term };
       }
       if (typeof term === 'object' ) {
-        console.log('term', term);
         _options.params =  { ..._options.params, ...term };
       }
     }
@@ -619,6 +664,18 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
     this.serviceInstancesSelected$ = event;
   }
 
+  _deepFlattenToObject(obj: any, prefix: string = '') {
+    return Object.keys(obj).reduce((acc: any, k: any) => {
+      const pre = prefix.length ? prefix + '_' : '';
+      if (typeof obj[k] === 'object' && obj[k] !== null) {
+        Object.assign(acc, this._deepFlattenToObject(obj[k], pre + k));
+      } else {
+        acc[pre + k] = obj[k];
+      }
+      return acc;
+    }, {});
+  }
+  
   onExport() {
     let _data: any[] = [];
     this._exportSpin = true;
@@ -635,11 +692,12 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
         })
       ).subscribe({
         next: (response: any) => {
-          this._data = response;
+          const _arrObjFlatten = response.map((item: any) => this._deepFlattenToObject(item));
+          this._data = _arrObjFlatten;
           if (this._data.length) {
-            Tools.DownloadCSVFile(this._data, 'FileMessagesError');
+            Tools.DownloadCSVFile(this._data, 'FileMessages');
           } else {
-            Tools.OnError(null, this.translate.instant('APP.MESSAGE.ERROR.NoMessageError'));
+            Tools.OnError(null, this.translate.instant('APP.MESSAGE.ERROR.NoMessages'));
           }
           this._exportSpin = false;
         },
