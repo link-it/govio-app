@@ -10,7 +10,7 @@
       "text": [
         { "field": "id", "type": "cardinal", "class": "" },
         { "field": "organization.legal_name", "type": "text" },
-        { "field": "service.service_name", "type": "text", "emptySpace": true },	      
+        { "field": "service.service_name", "type": "text", "emptySpace": true },
         { "field": "per", "type": "message", "emptySpace": true },
         { "field": "taxcode", "type": "text" }
       ],
