@@ -234,6 +234,7 @@
 				"MinAmount": "L'importo deve essere un valore maggiore di {{value}}",
 				"NameMaxLength": "La lunghezza del nome deve essere minore o uguale a {{length}}.",
 				"NoticeLenght": "Il numero avviso deve contenere {{value}} caratteri",
+				"NoticeNumber": "Il numero dell'avviso non è valido",
 				"Number": "Il valore deve essere un numero",
 				"OneOfLength": "La lunghezza deve essere uno dei seguenti valori",
 				"OrganizationTaxCode": "Il codice fiscale deve essere numerico e di 11 cifre",

@@ -508,9 +508,10 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
           if (this.serviceInstancesSelected$.template.has_payment) {
             this._formGroup.controls['notice_number'].setValidators([
               Validators.required,
-              Validators.minLength(18),
-              Validators.maxLength(18),
-              CustomValidators.digits
+              Validators.pattern('^[0123][0-9]{17}$'),
+              // Validators.minLength(18),
+              // Validators.maxLength(18),
+              // CustomValidators.digits
             ]);
             this._formGroup.controls['amount'].setValidators([
               Validators.required,
