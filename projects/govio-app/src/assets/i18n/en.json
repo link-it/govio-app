@@ -234,6 +234,7 @@
 				"MinAmount": "The amount must be a value greater than {{value}}",
 				"NameMaxLength": "The length of the name must be less than or equal to {{length}}.",
 				"NoticeLenght": "The notice number must have {{value}} char",
+				"NoticeNumber": "The notice number is invalid",
 				"Number": "The value must be a number",
 				"OneOfLength": "The length must be one of the following values",
 				"OrganizationTaxCode": "The tax code must be numeric and 11 digits",
