@@ -205,7 +205,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
           case 'organization_id':
           case 'service_id':
           case 'taxcode':
-          case 'scheduled_expedition_date':
+          // case 'scheduled_expedition_date':
             value = data[key] ? data[key] : null;
             _group[key] = new UntypedFormControl(value, [Validators.required]);
             break;
@@ -236,7 +236,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
     this._errorMessagesCount = 0;
     this._recipientsInvalidCount = 0;
 
-    const _scheduled_expedition_date = moment(body.scheduled_expedition_date.valueOf()).utc().format();
+    const _scheduled_expedition_date = body.scheduled_expedition_date ? moment(body.scheduled_expedition_date.valueOf()).utc().format() : null;
     const _due_date = body.due_date ? moment(body.due_date.valueOf()).utc().format() : null;
 
     const _body: any = {
