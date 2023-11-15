@@ -6,7 +6,7 @@
         [logo]="_config.AppConfig.Layout.Header.logo"
         [loggedIn]="_session"
         [login]="_session"
-        [username]="_session?.principal"
+        [username]="_session?.email || _session?.principal"
         [menu-action-list]="_menuActions"
         [menu-app-action-list]="_menuAppActions"
         [language-list]="_languages"
