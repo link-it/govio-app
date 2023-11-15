@@ -73,7 +73,7 @@
               <ng-container [ngSwitch]="menu.action">
                 <ng-container *ngSwitchCase="'profile'">
                   <li role="presentation" class="gp-new-dropdown-item">
-                    <button role="menuitem" type="button" class="dropdown-item" (click)="_onMenuAction(menu)">
+                    <button role="menuitem" type="button" class="dropdown-item" [ngClass]="{'disabled': !menu.enabled}" (click)="_onMenuAction(menu)">
                       <div class="gp-new-dropdown-item-text-wrapper">
                         <div class="gl-font-weight-bold">{{ menu.title }}</div>
                         <p class="gp-new-dropdown-item-text-primary m-0">{{ menu.subTitle }}</p>
@@ -84,7 +84,7 @@
                 </ng-container>
                 <ng-container *ngSwitchDefault>
                   <li role="presentation" class="gp-new-dropdown-item">
-                    <button role="menuitem" type="button" class="dropdown-item" (click)="_onMenuAction(menu)">
+                    <button role="menuitem" type="button" class="dropdown-item" [ngClass]="{'disabled': !menu.enabled}" (click)="_onMenuAction(menu)">
                       <div class="gp-new-dropdown-item-text-wrapper">
                         <p class="gp-new-dropdown-item-text-primary m-0">{{ menu.title }}</p>
                       </div>
