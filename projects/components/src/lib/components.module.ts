@@ -164,7 +164,7 @@ import { MarkAsteriskModule } from './directives/mark-asterisk.module';
     TextUppercaseModule,
     TextLowercaseModule,
     CountUpeModule,
-    MarkAsteriskModule    
+    MarkAsteriskModule
   ]
 })
 export class ComponentsModule { }

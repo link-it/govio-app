@@ -19,19 +19,33 @@
 
     <div class="settings" *ngIf="(message && !_spin)">
       <div class="settings-content">
-        <div class="row gl-mt-3">
-          <div class="row gl-mt-3">
-            <div class="col-lg-4 mb-4">
-              <h4 class="gl-mt-0 text-break">{{ 'APP.MESSAGES.TITLE.GeneralInformations' | translate }}</h4>
-              <div class="text-break" markdown>{{ 'APP.MESSAGES.TITLE.GeneralInformations_sub' | translate }}</div>
-            </div>
-            <div class="col-lg-8">
-              <ui-data-view
-                [data]="message"
-                [config]="config"
-                [columns]="appConfig.AppConfig?.Layout?.Details?.columns || 6">
-              </ui-data-view>
-            </div>
+        <div class="row gl-mt-3 mb-5">
+          <div class="col-lg-4 mb-4">
+            <h4 class="gl-mt-0 text-break">{{ 'APP.MESSAGES.TITLE.GeneralInformations' | translate }}</h4>
+            <div class="text-break" markdown>{{ 'APP.MESSAGES.TITLE.GeneralInformations_sub' | translate }}</div>
+          </div>
+          <div class="col-lg-8">
+            <ui-data-view
+              [data]="message"
+              [config]="config"
+              [columns]="appConfig.AppConfig?.Layout?.Details?.columns || 6">
+            </ui-data-view>
+          </div>
+        </div>
+      </div>
+      <div class="settings-content border-top">
+        <div class="row gl-mt-3 mb-5 mt-4" *ngIf="message.payment">
+          <div class="col-lg-4 mb-4">
+            <h4 class="gl-mt-0 text-break">{{ 'APP.MESSAGES.TITLE.PaymentData' | translate }}</h4>
+            <div class="text-break" markdown>{{ 'APP.MESSAGES.TITLE.PaymentData_sub' | translate }}</div>
+          </div>
+          <div class="col-lg-8">
+            <ui-data-view
+              [data]="message"
+              [config]="config"
+              [details]="config.paymentsDetails"
+              [columns]="appConfig.AppConfig?.Layout?.Details?.columns || 6">
+            </ui-data-view>
           </div>
         </div>
       </div>

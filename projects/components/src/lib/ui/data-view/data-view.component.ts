@@ -13,6 +13,7 @@ export class DataViewComponent implements OnInit {
   @Input('data') _data: any = null;
   @Input('config') _config: any = null;
   @Input('columns') _columns: number = 6;
+  @Input('details') _details: any = null;
 
   @Output() downloadClick: EventEmitter<any> = new EventEmitter();
 
@@ -21,7 +22,7 @@ export class DataViewComponent implements OnInit {
   constructor(private sanitized: DomSanitizer) { }
 
   ngOnInit() {
-    this._detailsConfig = this._config.details;
+    this._detailsConfig = this._details || this._config.details;
   }
 
   __downloadClick(item: any) {

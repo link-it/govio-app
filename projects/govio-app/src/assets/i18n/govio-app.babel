@@ -853,6 +853,36 @@
 													</translation>
 												</translations>
 											</concept_node>
+											<concept_node>
+												<name>StatsMessages</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
+											<concept_node>
+												<name>StatsMessages_sub</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
 										</children>
 									</folder_node>
 								</children>
@@ -1541,6 +1571,21 @@
 										</translations>
 									</concept_node>
 									<concept_node>
+										<name>InvalidAfterDueDate</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>it-IT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
 										<name>IoServiceId</name>
 										<description/>
 										<comment/>
@@ -1587,6 +1632,21 @@
 									</concept_node>
 									<concept_node>
 										<name>LegalName</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>it-IT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>Legend</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -1737,6 +1797,21 @@
 									</concept_node>
 									<concept_node>
 										<name>Pattern</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>it-IT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>PayeeTaxcode</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -1902,6 +1977,21 @@
 									</concept_node>
 									<concept_node>
 										<name>Template</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>it-IT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>Total</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -2285,6 +2375,21 @@
 											</concept_node>
 											<concept_node>
 												<name>DefaultHelp</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
+											<concept_node>
+												<name>NoMessages</name>
 												<description/>
 												<comment/>
 												<translations>
@@ -2854,6 +2959,21 @@
 										<name>VALIDATION</name>
 										<children>
 											<concept_node>
+												<name>Digits</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
+											<concept_node>
 												<name>Email</name>
 												<description/>
 												<comment/>
@@ -2975,6 +3095,21 @@
 											</concept_node>
 											<concept_node>
 												<name>NoticeLenght</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
+											<concept_node>
+												<name>NoticeNumber</name>
 												<description/>
 												<comment/>
 												<translations>
@@ -3185,6 +3320,36 @@
 											</concept_node>
 											<concept_node>
 												<name>GeneralInformations_sub</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
+											<concept_node>
+												<name>PaymentData</name>
+												<description/>
+												<comment/>
+												<translations>
+													<translation>
+														<language>en-US</language>
+														<approved>false</approved>
+													</translation>
+													<translation>
+														<language>it-IT</language>
+														<approved>false</approved>
+													</translation>
+												</translations>
+											</concept_node>
+											<concept_node>
+												<name>PaymentData_sub</name>
 												<description/>
 												<comment/>
 												<translations>

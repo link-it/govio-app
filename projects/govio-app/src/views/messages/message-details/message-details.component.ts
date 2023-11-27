@@ -108,7 +108,10 @@ export class MessageDetailsComponent implements OnInit, OnChanges, AfterContentC
       this.apiService.getDetails(this.model, this.id, '', aux).subscribe({
         next: (response: any) => {
           this.message = response; // new Message({ ...response });
-          this._message = new Message({ ...response });
+          if (this.message.payment && this.message.payment.amount) {
+            this.message.payment.amount = this.message.payment.amount / 100;
+          }
+          this._message = new Message({ ...this.message });
 
           this._sender = this.message._embedded.sender;
 

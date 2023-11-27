@@ -2,6 +2,7 @@ import { AfterContentChecked, Component, OnInit, ViewChild } from '@angular/core
 import { Router, ActivatedRoute } from '@angular/router';
 import { AbstractControl, FormBuilder, FormControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
+import { CurrencyPipe } from '@angular/common';
 
 import { TranslateService } from '@ngx-translate/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -12,6 +13,7 @@ import { ConfigService } from 'projects/tools/src/lib/config.service';
 import { Tools } from 'projects/tools/src/lib/tools.service';
 import { EventsManagerService } from 'projects/tools/src/lib/eventsmanager.service';
 import { OpenAPIService } from 'projects/govio-app/src/services/openAPI.service';
+import { CustomValidators } from 'projects/tools/src/lib/custom-forms-validators/custom-forms.module';
 
 import { SendMessage } from './send-message';
 
@@ -106,6 +108,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
     private router: Router,
     private translate: TranslateService,
     private formBuilder: FormBuilder,
+    private currencyPipe: CurrencyPipe,
     private modalService: BsModalService,
     private configService: ConfigService,
     private tools: Tools,
@@ -202,7 +205,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
           case 'organization_id':
           case 'service_id':
           case 'taxcode':
-          case 'scheduled_expedition_date':
+          // case 'scheduled_expedition_date':
             value = data[key] ? data[key] : null;
             _group[key] = new UntypedFormControl(value, [Validators.required]);
             break;
@@ -233,7 +236,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
     this._errorMessagesCount = 0;
     this._recipientsInvalidCount = 0;
 
-    const _scheduled_expedition_date = moment(body.scheduled_expedition_date.valueOf()).utc().format();
+    const _scheduled_expedition_date = body.scheduled_expedition_date ? moment(body.scheduled_expedition_date.valueOf()).utc().format() : null;
     const _due_date = body.due_date ? moment(body.due_date.valueOf()).utc().format() : null;
 
     const _body: any = {
@@ -247,7 +250,7 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
 
     if (this.serviceInstancesSelected$.template.has_payment) {
       _body.payment = {
-        amount: body.amount,
+        amount: body.amount * 100,
         notice_number: body.notice_number,
         invalid_after_due_date: this.serviceInstancesSelected$.template.has_due_date,
         payee_taxcode: this.organizationSelected$.tax_code
@@ -503,8 +506,18 @@ export class SendMessagesComponent implements OnInit, AfterContentChecked {
           }
           this._formGroup.controls['due_date'].updateValueAndValidity();
           if (this.serviceInstancesSelected$.template.has_payment) {
-            this._formGroup.controls['notice_number'].setValidators(Validators.required);
-            this._formGroup.controls['amount'].setValidators(Validators.required);
+            this._formGroup.controls['notice_number'].setValidators([
+              Validators.required,
+              Validators.pattern('^[0123][0-9]{17}$'),
+              // Validators.minLength(18),
+              // Validators.maxLength(18),
+              // CustomValidators.digits
+            ]);
+            this._formGroup.controls['amount'].setValidators([
+              Validators.required,
+              CustomValidators.number(),
+              CustomValidators.gt(0)
+            ]);
           } else {
             this._formGroup.controls['notice_number'].removeValidators([]);
             this._formGroup.controls['amount'].removeValidators([]);

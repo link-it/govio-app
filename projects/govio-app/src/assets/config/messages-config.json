@@ -10,8 +10,8 @@
       "text": [
         { "field": "id", "type": "cardinal", "class": "" },
         { "field": "organization.legal_name", "type": "text" },
-	      { "field": "service.service_name", "type": "text", "emptySpace": true },	      
-	      { "field": "per", "type": "message", "emptySpace": true },
+        { "field": "service.service_name", "type": "text", "emptySpace": true },
+        { "field": "per", "type": "message", "emptySpace": true },
         { "field": "taxcode", "type": "text" }
       ],
       "label": [
@@ -41,6 +41,13 @@
     { "label": "APP.LABEL.AppioMessageId", "field": "appio_message_id", "type": "text", "hideEmpty": true }
   ],
 
+  "paymentsDetails": [
+    { "label": "APP.LABEL.NoticeNumber", "field": "payment.notice_number", "type": "text" },
+    { "label": "APP.LABEL.Amount", "field": "payment.amount", "type": "currency" },
+    { "label": "APP.LABEL.PayeeTaxcode", "field": "payment.payee_taxcode", "type": "text" },
+    { "label": "APP.LABEL.InvalidAfterDueDate", "field": "payment.invalid_after_due_date", "type": "tag", "options": "enabled" }
+  ],
+
   "options": {
     "status": {
       "label": "APP.LABEL.Status",
@@ -60,6 +67,14 @@
         "PROCESSING": { "label": "APP.STATUS.PROCESSING", "background": "#9E9E9E", "border": "#9E9E9E", "color": "#ffffff" },
         "DENIED": { "label": "APP.STATUS.DENIED", "background": "#F44336", "border": "#F44336", "color": "#ffffff" },
         "BAD_REQUEST": { "label": "APP.STATUS.BAD_REQUEST", "background": "#F44336", "border": "#F44336", "color": "#ffffff" }
+      }
+    },
+    "enabled": {
+      "label": "APP.LABEL.Enabled",
+      "small": true,
+      "values": {
+        "true": { "label": "APP.STATUS.ENABLED", "background": "#57cc99", "border": "#57cc99", "color": "#1f1f1f" },
+        "false": { "label": "APP.STATUS.DISABLED", "background": "#A4ABB6", "border": "#A4ABB6", "color": "#ffffff" }
       }
     }
   }

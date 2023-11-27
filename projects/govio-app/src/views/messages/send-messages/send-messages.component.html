@@ -172,9 +172,15 @@
                       <div class="col-6 form-group notice_number">
                         <label class="label-bold" for="notice_number">{{ 'APP.LABEL.NoticeNumber' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'notice_number'" *ngIf="_markAsteriskUpdated"></span></label>
                         <div class="">
-                          <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('notice_number')" type="text" name="notice_numberg" id="notice_number" formControlName="notice_number">
+                          <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('notice_number')" type="text" name="notice_number" id="notice_number" formControlName="notice_number">
                           <p *ngIf="f['notice_number'].invalid && (f['notice_number'].dirty || f['notice_number'].touched)" class="form-text text-danger">
                             <span *ngIf="f['notice_number'].errors && f['notice_number'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                            <span *ngIf="f['notice_number'].errors && f['notice_number'].errors['pattern']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.NoticeNumber' | translate }}</span>
+                            <span *ngIf="f['notice_number'].errors && f['notice_number'].errors['digits']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Digits' | translate }}</span>
+                            <span *ngIf="f['notice_number'].errors && f['notice_number'].errors['oneOfLength']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.OneOfLength' | translate }} [{{ f['notice_number'].errors['oneOfLength']['reason'] }}]</span>
+                            <span *ngIf="f['notice_number'].errors && f['notice_number'].errors['rangeLength']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.NoticeLenght' | translate:{ value: 18} }}</span>
+                            <span *ngIf="f['notice_number'].errors && f['notice_number'].errors['minlength']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.NoticeLenght' | translate:{ value: f['notice_number'].errors['minlength'].requiredLength } }}</span>
+                            <span *ngIf="f['notice_number'].errors && f['notice_number'].errors['maxlength']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.NoticeLenght' | translate:{ value: f['notice_number'].errors['maxlength'].requiredLength } }}</span>
                           </p>
                           <ui-input-help field="notice_number" context="MESSAGE"></ui-input-help>
                         </div>
@@ -182,9 +188,11 @@
                       <div class="col-6 form-group amount">
                         <label class="label-bold" for="amount">{{ 'APP.LABEL.Amount' | translate }} <span appMarkAsterisk [formGroup]="_formGroup" [controlName]="'amount'" *ngIf="_markAsteriskUpdated"></span></label>
                         <div class="">
-                          <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('amount')" type="number" name="amountg" id="amount" formControlName="amount">
+                          <input autocomplete="off" class="form-control" [class.gl-field-error-outline]="_hasControlError('amount')" type="text" name="amount" id="amount" formControlName="amount" currencyMask>
                           <p *ngIf="f['amount'].invalid && (f['amount'].dirty || f['amount'].touched)" class="form-text text-danger">
                             <span *ngIf="f['amount'].errors && f['amount'].errors['required']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.FieldRequired' | translate }}</span>
+                            <span *ngIf="f['amount'].errors && f['amount'].errors['number']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.Number' | translate }}</span>
+                            <span *ngIf="f['amount'].errors && f['amount'].errors['gt']" class="d-block">{{ 'APP.MESSAGE.VALIDATION.GreaterThanZero' | translate }}</span>
                           </p>
                           <ui-input-help field="amount" context="MESSAGE"></ui-input-help>
                         </div>

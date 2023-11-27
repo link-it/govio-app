@@ -53,7 +53,7 @@
 				"ContentFile": "Content",
 				"ContentFile_sub": "",
 				"FileMessages": "File messages",
-				"FileMessages_sub": "Export error messages to csv file",
+				"FileMessages_sub": "Export messages to csv file",
 				"GeneralInformations": "General informations",
 				"GeneralInformations_sub": "",
 				"Placeholders": "Placeholders",
@@ -61,7 +61,9 @@
 				"Recipients": "Recipients",
 				"Report": "Report",
 				"ShowMessages": "Messages",
-				"ShowMessages_sub": ""
+				"ShowMessages_sub": "",
+				"StatsMessages": "Stats",
+				"StatsMessages_sub": ""
 			}
 		},
 		"FILTER": {
@@ -117,10 +119,12 @@
 			"HasPayment": "Has payment",
 			"Id": "ID",
 			"Index": "Index",
+			"InvalidAfterDueDate": "Invalid after due date",
 			"IoServiceId": "IO service id",
 			"LastUpdateDate": "Last update",
 			"LastUpdateStatus": "Last update status",
 			"LegalName": "Legal name",
+			"Legend": "Legend",
 			"Logo": "Logo",
 			"Mandatory": "Mandatory",
 			"Markdown": "Markdown",
@@ -131,6 +135,7 @@
 			"Organization": "Organization",
 			"Password": "Password",
 			"Pattern": "Pattern",
+			"PayeeTaxcode": "Payee taxcode",
 			"Placeholder": "Placeholder",
 			"Position": "Position",
 			"Principal": "Username",
@@ -142,6 +147,7 @@
 			"Subject": "Subject",
 			"TaxCode": "Tax code",
 			"Template": "Template",
+			"Total": "Total",
 			"Type": "Type",
 			"User": "User",
 			"UserFullName": "User full name"
@@ -175,6 +181,7 @@
 			"ERROR": {
 				"Default": "Sorry, unpredictable problem",
 				"DefaultHelp": "Please try again later",
+				"NoMessages": "No messages",
 				"TimeoutError": "Timeout has occurred",
 				"Unauthorized": "Unauthorized",
 				"Unprocessable Entity": "Unprocessable Entity"
@@ -217,6 +224,7 @@
 			"Sign_in_message": "Sign in with your account",
 			"Unimplemented": "Unimplemented yet",
 			"VALIDATION": {
+				"Digits": "The field must contain only numeric characters",
 				"Email": "Insert valid email",
 				"FieldRequired": "Field required",
 				"GreaterThanEqual": "The amount must have a greater or equal value than {{value}}",
@@ -226,6 +234,7 @@
 				"MinAmount": "The amount must be a value greater than {{value}}",
 				"NameMaxLength": "The length of the name must be less than or equal to {{length}}.",
 				"NoticeLenght": "The notice number must have {{value}} char",
+				"NoticeNumber": "The notice number is invalid",
 				"Number": "The value must be a number",
 				"OneOfLength": "The length must be one of the following values",
 				"OrganizationTaxCode": "The tax code must be numeric and 11 digits",
@@ -244,7 +253,9 @@
 			},
 			"TITLE": {
 				"GeneralInformations": "General informations",
-				"GeneralInformations_sub": ""
+				"GeneralInformations_sub": "",
+				"PaymentData": "Payment data",
+				"PaymentData_sub": ""
 			}
 		},
 		"PDF": {
