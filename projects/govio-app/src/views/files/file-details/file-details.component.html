@@ -305,7 +305,7 @@
       <div class="settings border-top mt-3" *ngIf="!_isNew">
         <div class="settings-header">
           <h4 class="settings-title">{{ 'APP.FILES.TITLE.FileMessages' | translate }}</h4>
-          <button class="btn gl-button btn-default" type="button" (click)="onExport()" [disabled]="_exportSpin">
+          <button class="btn gl-button btn-default" type="button" (click)="onExport()" [disabled]="_exportSpin || !_hasMessages()">
             <span>{{'APP.BUTTON.Export' | translate }}</span>
             <i class="bi bi-upload ms-2" *ngIf="!_exportSpin"></i>
             <span class="spinner-border spinner-border-sm ms-2" *ngIf="_exportSpin"></span>
