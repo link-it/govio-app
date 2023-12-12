@@ -4,6 +4,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import * as moment from 'moment';
 
+interface RGB {
+  b: number;
+  g: number;
+  r: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -68,5 +74,102 @@ export class UtilsLib {
     const format = (typeof config === 'object' ? config.format : config) || 'DD-MM-YYYY';
     const date = value ? moment(value).format(format) : '';
     return date;
+  }
+
+  msToTime(ms: number) {
+    let seconds = Math.floor((ms / 1000) % 60);
+    let minutes = Math.floor((ms / (1000 * 60)) % 60);
+    let hours = Math.floor((ms / (1000 * 60 * 60)) % 24);
+    let days = Math.floor(ms / (1000 * 60 * 60 * 24));
+    let time = '';
+    if (days > 0) {
+      time += days + " d ";
+      ms -= days * (1000 * 60 * 60 * 24);
+    }
+    if (hours > 0) {
+      time += hours + " h ";
+      ms -= hours * (1000 * 60 * 60);
+    }
+    if (minutes > 0) {
+      time += minutes + " m ";
+      ms -= minutes * (1000 * 60);
+    }
+    if (seconds > 0) {
+      time += seconds + " s ";
+      ms -= seconds * 1000;
+    }
+    return time += ms + " ms";
+  }
+
+  removeEmptyFromObj(obj: any) {
+    const $this = this;
+    return Object.keys(obj)
+      .filter(function (k) {
+        return obj[k] != null;
+      })
+      .reduce(function (acc: any, k: string) {
+        acc[k] = typeof obj[k] === "object" ? $this.removeEmptyFromObj(obj[k]) : obj[k];
+        return acc;
+      }, {});
+  }
+
+  // Random utilities
+
+  _getRandomDifferent(arr: any[], last: string | undefined = undefined) {
+    if (arr.length === 0) {
+      return null;
+    } else if (arr.length === 1) {
+      return arr[0];
+    } else {
+      let num = 0;
+      do {
+        num = Math.floor(Math.random() * arr.length);
+      } while (arr[num] === last);
+      return arr[num];
+    }
+  }
+  
+  _getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  // Colors utilities
+
+  rgbToYIQ({ r, g, b }: RGB): number {
+    return ((r * 299) + (g * 587) + (b * 114)) / 1000;
+  }
+
+  hexToRgb(hex: string): RGB | undefined {
+    if (!hex || hex === undefined || hex === '') {
+      return undefined;
+    }
+
+    const result: RegExpExecArray | null =
+      /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : undefined;
+  }
+
+  contrast(colorHex: string | undefined, threshold: number = 128): string {
+    if (colorHex === undefined) {
+      return '#000000';
+    }
+
+    const rgb: RGB | undefined = this.hexToRgb(colorHex);
+
+    if (rgb === undefined) {
+      return '#000000';
+    }
+
+    return this.rgbToYIQ(rgb) >= threshold ? '#000000' : '#ffffff';
   }
 }

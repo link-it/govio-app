@@ -1,4 +1,6 @@
 {
+  "exportLimit": 100,
+
   "itemRow": {
     "primaryText": [
       { "field": "filename", "type": "text" }

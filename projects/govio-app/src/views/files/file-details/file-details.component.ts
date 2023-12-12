@@ -61,6 +61,8 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
 
   _stats: SingleSeries = [];
 
+  exportLimit: number = 100;
+
   chartOptions: any = null;
   view: any = null; // [700, 400];
 
@@ -138,6 +140,7 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
         this.configService.getConfig(this.model).subscribe(
           (config: any) => {
             this.config = config;
+            this.exportLimit = config.exportLimit;
             this.chartOptions = config.chartOptions;
             this.colorScheme = config.chartOptions.colorScheme;
             this.customColorScheme = config.chartOptions.customColorScheme;
@@ -676,16 +679,20 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
     }, {});
   }
   
+  _hasMessages() {
+    return (this.file.acquired_messages + this.file.error_messages) > 0;
+  }
+
   onExport() {
     let _data: any[] = [];
     this._exportSpin = true;
-    let aux: any = { params: this._queryToHttpParams({ file_messages_status: 'error', limit: 100 }) };
+    let aux: any = { params: this._queryToHttpParams({ limit: this.exportLimit }) };
     this.apiService.getDetails(this.model, this.id, 'file-messages', aux)
       .pipe(
         switchMap(response => {
           _data = _data.concat(response.items);
           if(response._links && response._links.next) {
-            return this._getData(response._links.next.href, aux, _data);
+            return this._getData(response._links.next.href, {}, _data);
           } else {
             return of(_data);
           }
@@ -714,8 +721,8 @@ export class FileDetailsComponent implements OnInit, OnChanges, AfterContentChec
       .pipe(
         switchMap((data:any)=>{
           fullData = fullData.concat(data.items);
-          return !data.next? of(fullData):
-            this._getData(data.next, aux, fullData)
+          return !(data._links?.next)? of(fullData):
+            this._getData(data._links.next.href, aux, fullData)
         })
       );
   }
