@@ -1,6 +1,6 @@
 {
   "/govio/api/*": {
-    "target": "http://172.16.1.121:8083/govio/api/v1",
+    "target": "http://172.16.1.90:8083/govio/api/v1",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": false,
@@ -9,7 +9,7 @@
     }
   },
   "/api/*": {
-    "target": "http://172.16.1.121:8083/govio/api/v1",
+    "target": "http://172.16.1.90:8083/govio/api/v1",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": false,
@@ -24,7 +24,7 @@
     "changeOrigin": true
   },
   "/profile": {
-    "target": "http://172.16.1.121:8083/govio/api/v1",
+    "target": "http://172.16.1.90:8083/govio/api/v1",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,

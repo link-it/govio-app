@@ -12,7 +12,7 @@
     },
 
     "GOVAPI": {
-      "HOST": "http://172.16.1.121/govhub-reverse-proxy/govio/api/v1",
+      "HOST": "http://172.16.1.90/govhub-reverse-proxy/govio/api/v1",
       "LOGOUT_URL": "/logout"
     },
 
