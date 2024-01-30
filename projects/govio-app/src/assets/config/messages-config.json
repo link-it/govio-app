@@ -34,7 +34,7 @@
     { "label": "APP.LABEL.ExpeditionDate", "field": "expedition_date", "type": "date", "format": "DD-MM-YYYY HH:mm:ss" },
     { "label": "APP.LABEL.LastUpdateStatus", "field": "last_update_status", "type": "date", "format": "DD-MM-YYYY HH:mm:ss" },
     { "label": "APP.LABEL.Status", "field": "status", "type": "tag", "options": "status", "badged": true },
-    { "label": "APP.LABEL.Id", "field": "id", "type": "number" },
+    { "label": "APP.LABEL.Id", "field": "id", "type": "text" },
     { "label": "APP.LABEL.Organization", "field": "organization.legal_name", "type": "text" },
     { "label": "APP.LABEL.ServiceName", "field": "service.service_name", "type": "text" },
     { "label": "APP.LABEL.Template", "field": "template.name", "type": "text" },
@@ -74,7 +74,8 @@
       "small": true,
       "values": {
         "true": { "label": "APP.STATUS.ENABLED", "background": "#57cc99", "border": "#57cc99", "color": "#1f1f1f" },
-        "false": { "label": "APP.STATUS.DISABLED", "background": "#A4ABB6", "border": "#A4ABB6", "color": "#ffffff" }
+        "false": { "label": "APP.STATUS.DISABLED", "background": "#A4ABB6", "border": "#A4ABB6", "color": "#ffffff" },
+        "undefined": { "label": "APP.STATUS.DISABLED", "background": "#A4ABB6", "border": "#A4ABB6", "color": "#ffffff" }
       }
     }
   }
