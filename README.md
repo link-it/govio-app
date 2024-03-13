@@ -1,59 +1,15 @@
-# GovIO Workspace
+# GovIO App 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+WebApp di GovNotify
 
-## Install
+# Licenza
 
-Run `npm install`.
+GovHub - Application suite for Public Administration
 
-This command installs a package and any packages that it depends on. If the package has a package-lock the installation of dependencies will be driven by that, respecting the following order of precedence.
+Copyright (c) 2023-2024 Link.it srl (https://www.link.it).
 
-It must be performed only if the "node_module" folder is not present or if the packages are updated.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3, as published by the Free Software Foundation.
 
-## Development server
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-Run `npm run start-govio` for a dev server. Navigate to `http://localhost:5202/`. The app will automatically reload if you change any of the source files.
-
-## Development server with proxy
-
-Run `npm run start-govio-proxy` for a dev server with proxy.
-
-## Build
-
-Run `npm run distribution-govio` to build the project. The build artifacts will be stored in the `dist/govio-app/` directory.
-
-## Build Production
-
-Run `npm run production-govio` to build the project clean and qwith version upgrade. The build artifacts will be stored in the `dist/govio-app/` directory.
-
-## Application configuration
-
-To configure the application it is necessary to edit the "app-config.jon" file in the "assets/config" folder.
-
-### Host
-
-Change the "HOST" attribute in the "GOVAPI" section:
-
-```json
-{
-    ...
-    "GOVAPI": {
-      "HOST": "http://localhost:5202",
-      ...
-    },
-    ...
-}
-```
-
-### Show/Hide HeaderBar
-
-```json
-{
-    ...
-    "Layout": {
-      "showHeaderBar": true,
-      ...
-    },
-    ...
-}
-```
+You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
